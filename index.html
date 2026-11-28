@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#f8fafc" />
-  <title>MathLab 3D — Casio fx-580VN X · Tích Phân Đặc Ruột · Oxyz Trọng Tâm</title>
+  <title>MathLab 3D — fx-580VN X · Đồ Thị · Hình Học 2D · Oxyz 3D</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -211,7 +211,7 @@
         <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-sm shrink-0 font-bold text-white text-sm">∑</div>
         <div class="min-w-0">
           <h1 class="text-sm font-extrabold tracking-tight text-slate-900 leading-tight truncate">MathLab 3D</h1>
-          <p class="text-[10px] text-slate-500 hidden sm:block truncate">fx-580VN X · Tích phân đặc ruột · Oxyz trọng tâm</p>
+          <p class="text-[10px] text-slate-500 hidden sm:block truncate">fx-580VN X · Hình phẳng 2D tự nhận định lý · Tích phân 3D · Oxyz</p>
         </div>
       </div>
 
@@ -220,6 +220,7 @@
         <button data-module="solver" type="button" class="nav-module-btn px-3 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 cursor-pointer">🧮 fx-580VN X</button>
         <button data-module="revolve" type="button" class="nav-module-btn px-3 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 cursor-pointer">🌀 Tích phân 3D</button>
         <button data-module="space3d" type="button" class="nav-module-btn px-3 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 cursor-pointer">🧊 Oxyz 3D</button>
+        <button data-module="geom2d" type="button" class="nav-module-btn px-3 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 cursor-pointer">📐 Hình học 2D</button>
       </nav>
 
       <div class="flex items-center gap-1 shrink-0">
@@ -454,7 +455,7 @@
               <button type="button" data-cmenu="stats" class="cmenu-tile rounded border border-neutral-800/40 bg-white/45 hover:bg-neutral-900 hover:text-[#d5e3d1] text-[9px] font-bold flex flex-col items-center justify-center leading-tight cursor-pointer"><span>9: Thống kê</span><span class="text-[8px] opacity-70">Flexio 799</span></button>
               <button type="button" data-cmenu="complex" class="cmenu-tile rounded border border-neutral-800/40 bg-white/45 hover:bg-neutral-900 hover:text-[#d5e3d1] text-[9px] font-bold flex flex-col items-center justify-center leading-tight cursor-pointer"><span>A: Số phức</span><span class="text-[8px] opacity-70">a + bi</span></button>
               <button type="button" data-cmenu="sigma" class="cmenu-tile rounded border border-neutral-800/40 bg-white/45 hover:bg-neutral-900 hover:text-[#d5e3d1] text-[9px] font-bold flex flex-col items-center justify-center leading-tight cursor-pointer"><span>B: Tổng ∑</span><span class="text-[8px] opacity-70">∑ f(x)</span></button>
-              <button type="button" data-cmenu="close" class="cmenu-tile rounded border border-neutral-900 bg-neutral-900 text-[#d5e3d1] text-[9px] font-bold flex flex-col items-center justify-center leading-tight cursor-pointer"><span>Đóng</span><span class="text-[8px] opacity-80">Quay lại</span></button>
+              <button type="button" data-cmenu="inequality" class="cmenu-tile rounded border border-neutral-800/40 bg-white/45 hover:bg-neutral-900 hover:text-[#d5e3d1] text-[9px] font-bold flex flex-col items-center justify-center leading-tight cursor-pointer"><span>C: BPT 2–4</span><span class="text-[8px] opacity-70">&gt; &lt; ≥ ≤</span></button>
             </div>
           </div>
         </div>
@@ -478,6 +479,7 @@
             <option value="stats">9: Thống kê Flexio 799</option>
             <option value="complex">10: Số phức (CMPLX)</option>
             <option value="sigma">11: Tổng Sigma (∑)</option>
+            <option value="inequality">12: Bất PT Bậc 2 / 3 / 4 (&gt; &lt; ≥ ≤)</option>
           </select>
         </div>
 
@@ -524,6 +526,20 @@
             </div>
             <div id="poly-coef-grid" class="grid grid-cols-3 gap-1"></div>
             <div class="text-[9.5px] text-neutral-400 text-center">Bấm phím <strong>=</strong> liên tiếp để nhảy qua từng Nghiệm & Cực đại / Cực tiểu</div>
+          </div>
+          <div id="solver-input-inequality" class="solver-input-panel hidden space-y-1.5">
+            <div class="grid grid-cols-3 gap-1">
+              <button data-ideg="2" type="button" class="ineq-deg-btn py-1 rounded text-[11px] font-semibold bg-blue-600 text-white cursor-pointer">BPT Bậc 2</button>
+              <button data-ideg="3" type="button" class="ineq-deg-btn py-1 rounded text-[11px] font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 cursor-pointer">BPT Bậc 3</button>
+              <button data-ideg="4" type="button" class="ineq-deg-btn py-1 rounded text-[11px] font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 cursor-pointer">BPT Bậc 4</button>
+            </div>
+            <div class="grid grid-cols-4 gap-1">
+              <button data-iop="gt" type="button" class="ineq-op-btn py-1 rounded text-[11px] font-bold bg-emerald-600 text-white cursor-pointer">&gt; 0</button>
+              <button data-iop="lt" type="button" class="ineq-op-btn py-1 rounded text-[11px] font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 cursor-pointer">&lt; 0</button>
+              <button data-iop="ge" type="button" class="ineq-op-btn py-1 rounded text-[11px] font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 cursor-pointer">≥ 0</button>
+              <button data-iop="le" type="button" class="ineq-op-btn py-1 rounded text-[11px] font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 cursor-pointer">≤ 0</button>
+            </div>
+            <div id="ineq-coef-grid" class="grid grid-cols-3 gap-1"></div>
           </div>
           <div id="solver-input-system2" class="solver-input-panel hidden space-y-1.5">
             <div class="grid grid-cols-3 gap-1">
@@ -1136,13 +1152,107 @@
         </div>
       </div>
     </section>
+    <!-- ==================== MODULE 5: HÌNH HỌC PHẲNG 2D (GEOGEBRA + TỰ ĐỘNG PHÁT HIỆN ĐỊNH LÝ) ==================== -->
+    <section id="module-geom2d" class="module-view hidden grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+      <!-- Left/Center: GeoGebra-like Interactive Plane Geometry Canvas -->
+      <div class="lg:col-span-8 flex flex-col gap-2">
+        <!-- Toolbar -->
+        <div class="glass-card rounded-2xl p-2 space-y-1.5">
+          <div class="flex flex-wrap items-center gap-1">
+            <button type="button" data-gtool="move" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-bold bg-blue-600 text-white shadow-sm cursor-pointer" title="Kéo thả điểm tự do hoặc kéo nền">🖱️ Di chuyển</button>
+            <button type="button" data-gtool="point" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Chấm điểm tự do hoặc dính lên đường/đường tròn">• Điểm</button>
+            <button type="button" data-gtool="segment" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Đoạn thẳng qua 2 điểm">╱ Đoạn</button>
+            <button type="button" data-gtool="line" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Đường thẳng vô hạn qua 2 điểm">↔ Đường thẳng</button>
+            <button type="button" data-gtool="circle" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Đường tròn biết Tâm và 1 điểm">○ Đường tròn</button>
+            <button type="button" data-gtool="circum3" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Đường tròn ngoại tiếp qua 3 điểm">◎ ĐT 3 điểm</button>
+            <button type="button" data-gtool="midpoint" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Trung điểm 2 điểm">⌖ Trung điểm</button>
+            <button type="button" data-gtool="perp" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Đường vuông góc (chọn Điểm rồi chọn Đường)">⊥ Vuông góc</button>
+            <button type="button" data-gtool="parallel" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Đường song song (chọn Điểm rồi chọn Đường)">∥ Song song</button>
+            <button type="button" data-gtool="bisector" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Phân giác góc ABC (chọn A, đỉnh B, C)">∠ Phân giác</button>
+            <button type="button" data-gtool="intersect" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Giao điểm 2 đường thẳng / đường tròn">✕ Giao điểm</button>
+            <button type="button" data-gtool="tangent" class="g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer" title="Tiếp tuyến từ Điểm đến Đường tròn">◔ Tiếp tuyến</button>
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-1.5 pt-1 border-t border-slate-100">
+            <div class="flex flex-wrap items-center gap-1">
+              <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wide mr-0.5">Tâm △ (chọn 3 đỉnh):</span>
+              <button type="button" data-gtool="centroid" class="g2d-tool-btn px-2 py-1 rounded-md text-[11px] font-medium bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 cursor-pointer">Trọng tâm G</button>
+              <button type="button" data-gtool="orthocenter" class="g2d-tool-btn px-2 py-1 rounded-md text-[11px] font-medium bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 cursor-pointer">Trực tâm H</button>
+              <button type="button" data-gtool="circumcenter" class="g2d-tool-btn px-2 py-1 rounded-md text-[11px] font-medium bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 cursor-pointer">Tâm O</button>
+              <button type="button" data-gtool="incenter" class="g2d-tool-btn px-2 py-1 rounded-md text-[11px] font-medium bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 cursor-pointer">Tâm nội tiếp I</button>
+              <button type="button" data-gtool="euler9" class="g2d-tool-btn px-2 py-1 rounded-md text-[11px] font-medium bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 cursor-pointer">ĐT 9 điểm Euler</button>
+            </div>
+            <div class="flex items-center gap-1">
+              <button id="g2d-btn-grid" type="button" class="px-2 py-1 rounded-md text-[11px] font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 cursor-pointer" title="Bật/tắt lưới tọa độ"># Lưới</button>
+              <button id="g2d-btn-undo" type="button" class="px-2 py-1 rounded-md text-[11px] font-semibold bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 cursor-pointer" title="Hoàn tác bước vừa vẽ">↩ Hoàn tác</button>
+              <button id="g2d-btn-clear" type="button" class="px-2 py-1 rounded-md text-[11px] font-semibold bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 cursor-pointer" title="Xóa trắng bảng vẽ">🗑️ Xóa</button>
+            </div>
+          </div>
+          <div id="g2d-tool-hint" class="text-[11px] text-blue-700 bg-blue-50/70 border border-blue-200/80 rounded-lg px-2.5 py-1 font-medium">
+            🖱️ Chọn công cụ phía trên để bắt đầu vẽ trên bảng trắng — bảng bên phải sẽ tự động phát hiện định lý theo thời gian thực!
+          </div>
+        </div>
+
+        <!-- Interactive Canvas Container -->
+        <div id="g2d-canvas-wrap" class="glass-card rounded-2xl overflow-hidden relative bg-white border border-slate-200" style="height: clamp(390px, 60vh, 590px);">
+          <canvas id="geom2d-canvas" class="w-full h-full block touch-none cursor-crosshair"></canvas>
+          <div id="g2d-coords-pill" class="pointer-events-none absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-slate-200 text-[11px] font-mono-math text-slate-700 shadow-sm">
+            Điểm: 0 · Đường: 0 · ĐT: 0
+          </div>
+          <div class="absolute top-2.5 right-2.5 flex gap-1">
+            <button id="g2d-zoom-in" type="button" class="w-7 h-7 rounded-lg bg-white/90 hover:bg-white border border-slate-200 text-slate-700 font-bold text-sm shadow-sm cursor-pointer">+</button>
+            <button id="g2d-zoom-out" type="button" class="w-7 h-7 rounded-lg bg-white/90 hover:bg-white border border-slate-200 text-slate-700 font-bold text-sm shadow-sm cursor-pointer">−</button>
+            <button id="g2d-zoom-reset" type="button" class="px-2 h-7 rounded-lg bg-white/90 hover:bg-white border border-slate-200 text-slate-600 font-semibold text-[10px] shadow-sm cursor-pointer">1:1</button>
+          </div>
+        </div>
+
+        <!-- Append-only Quick Olympiad Demo Presets -->
+        <div class="glass-card rounded-2xl p-2 flex flex-wrap items-center gap-1.5">
+          <span class="text-[10px] font-bold text-slate-500 uppercase">Thêm hình mẫu khám phá:</span>
+          <button type="button" data-gpreset="euler" class="g2d-preset-btn px-2 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 border border-slate-200 cursor-pointer">+ Đường thẳng Euler (H,G,O)</button>
+          <button type="button" data-gpreset="cyclic" class="g2d-preset-btn px-2 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 border border-slate-200 cursor-pointer">+ Tứ giác nội tiếp & Ptolemy</button>
+          <button type="button" data-gpreset="simson" class="g2d-preset-btn px-2 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 border border-slate-200 cursor-pointer">+ Đường thẳng Simson</button>
+          <button type="button" data-gpreset="butterfly" class="g2d-preset-btn px-2 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 border border-slate-200 cursor-pointer">+ Con bướm (Butterfly)</button>
+          <button type="button" data-gpreset="pascal" class="g2d-preset-btn px-2 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 border border-slate-200 cursor-pointer">+ Lục giác Pascal (VMO)</button>
+          <button type="button" data-gpreset="ceva" class="g2d-preset-btn px-2 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 border border-slate-200 cursor-pointer">+ Ceva & Thales</button>
+        </div>
+      </div>
+
+      <!-- Right Panel: Real-Time Auto-Theorem Discovery -->
+      <div class="lg:col-span-4 glass-card rounded-2xl p-3 flex flex-col gap-2.5" style="max-height: clamp(500px, 76vh, 740px);">
+        <div class="flex items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <div>
+            <h2 class="text-sm font-extrabold text-slate-900 flex items-center gap-1.5">🔍 Phát hiện Định lý Tự động</h2>
+            <p class="text-[10.5px] text-slate-500">Tự quét hình vẽ → chỉ rõ điểm & đường tạo định lý</p>
+          </div>
+          <span id="g2d-theorem-count" class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-blue-100 text-blue-700 shrink-0">0 định lý</span>
+        </div>
+
+        <!-- Level Filter Pills -->
+        <div class="flex flex-wrap gap-1">
+          <button type="button" data-glevel="all" class="g2d-level-btn px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-blue-600 text-white cursor-pointer">Tất cả</button>
+          <button type="button" data-glevel="cap2" class="g2d-level-btn px-2 py-0.5 rounded-md text-[10.5px] font-medium bg-slate-100 text-slate-600 cursor-pointer">Cấp 2</button>
+          <button type="button" data-glevel="chuyen9" class="g2d-level-btn px-2 py-0.5 rounded-md text-[10.5px] font-medium bg-slate-100 text-slate-600 cursor-pointer">Chuyên 9</button>
+          <button type="button" data-glevel="tinh" class="g2d-level-btn px-2 py-0.5 rounded-md text-[10.5px] font-medium bg-slate-100 text-slate-600 cursor-pointer">HSG Tỉnh</button>
+          <button type="button" data-glevel="vmo" class="g2d-level-btn px-2 py-0.5 rounded-md text-[10.5px] font-medium bg-slate-100 text-slate-600 cursor-pointer">VMO</button>
+        </div>
+
+        <!-- Discovered Theorems List -->
+        <div id="g2d-theorem-list" class="flex-1 overflow-y-auto space-y-2 pr-0.5">
+          <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50/70 p-4 text-center space-y-1.5">
+            <div class="text-2xl">📐</div>
+            <div class="text-xs font-bold text-slate-700">Bảng vẽ đang trống</div>
+            <p class="text-[11px] text-slate-500 leading-relaxed">Hãy chấm điểm, vẽ tam giác, đường tròn, đường vuông góc... hoặc bấm một nút <strong>Thêm hình mẫu</strong> ở dưới. Khi các yếu tố kết hợp tạo thành định lý (Cấp 2 → Chuyên 9 → HSG Tỉnh → VMO), tên định lý và các điểm/đường tạo nên nó sẽ tự hiện ngay tại đây!</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Complete 5-Chapter Math Formula Handbook Modal (From All 5 Reference Sheets!) -->
   <div id="tips-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="w-full sm:max-w-3xl max-h-[86vh] bg-white border border-slate-200 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden">
       <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-amber-50/80">
-        <h2 class="text-sm sm:text-base font-extrabold text-amber-900">📚 Sổ Tay Toàn Bộ Công Thức Toán 11–12 (5 Chuyên Đề)</h2>
+        <h2 class="text-sm sm:text-base font-extrabold text-amber-900">📚 Sổ Tay Toàn Bộ Công Thức Toán 8–12 & Giải Tích (7 Chuyên Đề)</h2>
         <button id="btn-close-tips" type="button" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-700 font-bold cursor-pointer">✕</button>
       </div>
       <div class="px-3 py-2 border-b border-slate-100 flex flex-wrap gap-1 bg-slate-50">
@@ -1151,6 +1261,8 @@
         <button type="button" data-ftab="lim" class="ftab-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-white text-slate-700 border border-slate-200 cursor-pointer">3. Giới hạn (lim)</button>
         <button type="button" data-ftab="hkc" class="ftab-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-white text-slate-700 border border-slate-200 cursor-pointer">4. Hình KG Cổ điển</button>
         <button type="button" data-ftab="oxyz" class="ftab-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-white text-slate-700 border border-slate-200 cursor-pointer">5. Không gian Oxyz</button>
+        <button type="button" data-ftab="alg" class="ftab-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-white text-slate-700 border border-slate-200 cursor-pointer">6. Đại số · Vi-ét · BĐT</button>
+        <button type="button" data-ftab="geom2d" class="ftab-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-white text-slate-700 border border-slate-200 cursor-pointer">7. Hình phẳng → VMO</button>
       </div>
       <div class="p-4 overflow-y-auto space-y-2.5 text-xs sm:text-sm leading-relaxed">
         <!-- Tab 1: Nguyên hàm & Tích phân -->
@@ -1208,6 +1320,17 @@
             <div>• <strong>Khử dạng vô định 0/0:</strong> Phân tích nhân tử chung (x − x₀), nhân liên hợp, hoặc quy tắc L'Hôpital P'(x₀)/Q'(x₀).</div>
             <div>• <strong>Khử dạng vô định ∞/∞:</strong> Chia cả tử và mẫu cho lũy thừa bậc cao nhất của x.</div>
           </div>
+          <div class="rounded-xl bg-slate-50 border border-slate-200 p-3 space-y-1">
+            <h3 class="font-bold text-indigo-800">VCB Tương đương (khi u → 0) & Khai triển Maclaurin</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 font-serif text-slate-800">
+              <div>• sin u ~ u · tan u ~ u · arcsin u ~ u</div>
+              <div>• 1 − cos u ~ u²/2 · e<sup>u</sup> − 1 ~ u</div>
+              <div>• ln(1 + u) ~ u · (1 + u)<sup>α</sup> − 1 ~ αu</div>
+              <div>• e<sup>x</sup> = 1 + x + x²/2! + x³/3! + o(x³)</div>
+              <div>• sin x = x − x³/6 + o(x³) · cos x = 1 − x²/2 + o(x²)</div>
+              <div>• lim<sub>u→0</sub> (1 + u)<sup>1/u</sup> = e</div>
+            </div>
+          </div>
         </div>
 
         <!-- Tab 4: Hình học Không gian Cổ điển -->
@@ -1243,16 +1366,60 @@
             <div>• <strong>d(M, d)</strong> = |[AM⃗, u⃗]| / |u⃗| · <strong>d(d₁, d₂ chéo nhau)</strong> = |[u₁⃗, u₂⃗]·A₁A₂⃗| / |[u₁⃗, u₂⃗]|</div>
           </div>
         </div>
+
+        <!-- Tab 6: Đại số Cấp 2, Vi-ét, BĐT, Lượng giác, Mũ-Log -->
+        <div id="ftab-alg" class="ftab-panel hidden space-y-2">
+          <div class="rounded-xl bg-blue-50/70 border border-blue-200 p-3 space-y-1">
+            <h3 class="font-bold text-blue-800">Phương trình bậc 2 & Hệ thức Vi-ét (Lớp 9)</h3>
+            <div>• PT ax² + bx + c = 0 (a ≠ 0): Δ = b² − 4ac; Δ' = b'² − ac (b' = b/2).</div>
+            <div>• <strong>Hệ thức Vi-ét:</strong> S = x₁ + x₂ = −b/a ; P = x₁·x₂ = c/a.</div>
+            <div>• Biểu thức đối xứng hay gặp: x₁² + x₂² = S² − 2P ; x₁³ + x₂³ = S³ − 3SP ; |x₁ − x₂| = √(S² − 4P).</div>
+          </div>
+          <div class="rounded-xl bg-emerald-50/70 border border-emerald-200 p-3 space-y-1">
+            <h3 class="font-bold text-emerald-800">Bất đẳng thức kinh điển (AM-GM / Cauchy & Bunyakovsky)</h3>
+            <div>• <strong>Cauchy (AM-GM):</strong> Với a, b ≥ 0: a + b ≥ 2√(ab) ; với a, b, c ≥ 0: a + b + c ≥ 3∛(abc).</div>
+            <div>• <strong>Bunyakovsky (Cauchy–Schwarz):</strong> (a₁² + a₂² + ... + aₙ²)(b₁² + b₂² + ... + bₙ²) ≥ (a₁b₁ + ... + aₙbₙ)².</div>
+            <div>• <strong>Cộng mẫu Engel (Schwarz):</strong> a₁²/x₁ + a₂²/x₂ ≥ (a₁ + a₂)² / (x₁ + x₂) (xᵢ &gt; 0).</div>
+          </div>
+          <div class="rounded-xl bg-slate-50 border border-slate-200 p-3 space-y-1">
+            <h3 class="font-bold text-slate-900">Lượng giác · Cấp số · Xác suất Bayes · Tài chính</h3>
+            <div>• sin²x + cos²x = 1 · cos2x = cos²x − sin²x = 2cos²x − 1 = 1 − 2sin²x · sin2x = 2sinx cosx.</div>
+            <div>• CSC: uₙ = u₁ + (n−1)d, Sₙ = n(u₁+uₙ)/2 · CSN: uₙ = u₁qⁿ⁻¹, Sₙ = u₁(1−qⁿ)/(1−q).</div>
+            <div>• <strong>Bayes:</strong> P(A|B) = P(A)·P(B|A) / P(B) · <strong>Lãi kép:</strong> A = P(1+r)ⁿ ; liên tục: A = Peʳᵗ.</div>
+          </div>
+        </div>
+
+        <!-- Tab 7: Hình học phẳng từ Cơ bản -> Chuyên Toán 9 -> HSG Tỉnh -> VMO -->
+        <div id="ftab-geom2d" class="ftab-panel hidden space-y-2">
+          <div class="rounded-xl bg-indigo-50/70 border border-indigo-200 p-3 space-y-1">
+            <h3 class="font-bold text-indigo-800">Cấp 2 & Ôn thi Chuyên Toán Lớp 9</h3>
+            <div>• <strong>Thales & Phân giác:</strong> DE ∥ BC ⇔ AD/AB = AE/AC · Phân giác AD: DB/DC = AB/AC.</div>
+            <div>• <strong>Menelaus (thẳng hàng):</strong> (DB/DC)·(EC/EA)·(FA/FB) = 1 · <strong>Ceva (đồng quy):</strong> tích bằng −1 (có hướng).</div>
+            <div>• <strong>Stewart:</strong> AD²·a = AB²·n + AC²·m − amn · <strong>Apollonius:</strong> mₐ² = (2b²+2c²−a²)/4.</div>
+            <div>• <strong>Phương tích:</strong> PA·PB = PC·PD = PT² = |PO² − R²| · <strong>Ptolemy:</strong> ABCD nội tiếp ⇔ AC·BD = AB·CD + AD·BC.</div>
+            <div>• <strong>Simson – Steiner:</strong> Hình chiếu (hoặc đối xứng) của M ∈ (ABC) lên 3 cạnh thẳng hàng (Steiner đi qua trực tâm H).</div>
+            <div>• <strong>Euler:</strong> H, G, O thẳng hàng (OH⃗ = 3OG⃗); đường tròn 9 điểm Euler tâm trung điểm OH, R₉ = R/2.</div>
+          </div>
+          <div class="rounded-xl bg-violet-50/70 border border-violet-200 p-3 space-y-1">
+            <h3 class="font-bold text-violet-800">Cấp 3, HSG Tỉnh, VMO & Bổ sung</h3>
+            <div>• <strong>Carnot:</strong> 3 đường vuông góc 3 cạnh đồng quy ⇔ (MB²−MC²)+(NC²−NA²)+(PA²−PB²) = 0.</div>
+            <div>• <strong>Đối trung (Symmedian) & Lemoine:</strong> Tiếp tuyến tại B, C cắt tại T ⇒ AT đối trung; DB/DC = AB²/AC².</div>
+            <div>• <strong>Miquel, Trục/Tâm đẳng phương, Monge–D'Alembert, Đường tròn Apollonius, Bổ đề Archimedes.</strong></div>
+            <div>• <strong>Xạ ảnh VMO:</strong> Hàng điểm điều hòa (A,B;C,D)=−1, Tứ giác điều hòa, Pascal, Brianchon, Desargues, Pappus, Brokard, Con bướm (Butterfly), Feuerbach, Newton–Gauss, Mixtilinear, Casey.</div>
+            <div>• <strong>Mở rộng:</strong> Pitot (tứ giác ngoại tiếp: AB+CD = BC+DA), Brahmagupta, Napoleon, Morley, Van Aubel, Sawayama–Thébault.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Slim Mobile Bottom Nav -->
-  <nav class="mobile-bottom-nav sm:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200 px-1.5 pt-1 grid grid-cols-4 gap-1 shadow-lg">
+  <!-- Slim Mobile Bottom Nav (5 modules) -->
+  <nav class="mobile-bottom-nav sm:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200 px-1 pt-1 grid grid-cols-5 gap-0.5 shadow-lg">
     <button data-module="graph" type="button" class="nav-module-btn flex flex-col items-center justify-center py-1 min-h-[44px] rounded-xl text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200 cursor-pointer"><span class="text-sm leading-none mb-0.5">📈</span><span>Đồ thị</span></button>
     <button data-module="solver" type="button" class="nav-module-btn flex flex-col items-center justify-center py-1 min-h-[44px] rounded-xl text-[10px] font-medium text-slate-500 border border-transparent cursor-pointer"><span class="text-sm leading-none mb-0.5">🧮</span><span>fx-580</span></button>
     <button data-module="revolve" type="button" class="nav-module-btn flex flex-col items-center justify-center py-1 min-h-[44px] rounded-xl text-[10px] font-medium text-slate-500 border border-transparent cursor-pointer"><span class="text-sm leading-none mb-0.5">🌀</span><span>Xoay 3D</span></button>
     <button data-module="space3d" type="button" class="nav-module-btn flex flex-col items-center justify-center py-1 min-h-[44px] rounded-xl text-[10px] font-medium text-slate-500 border border-transparent cursor-pointer"><span class="text-sm leading-none mb-0.5">🧊</span><span>Oxyz</span></button>
+    <button data-module="geom2d" type="button" class="nav-module-btn flex flex-col items-center justify-center py-1 min-h-[44px] rounded-xl text-[10px] font-medium text-slate-500 border border-transparent cursor-pointer"><span class="text-sm leading-none mb-0.5">📐</span><span>Hình 2D</span></button>
   </nav>
 
   <script>
@@ -1305,34 +1472,54 @@
     function vecHTML(name) { return `<span class="math-vec">${name}</span>`; }
     function fracExprHTML(top, bot) { return `<span class="math-frac"><span class="num">${top}</span><span class="den">${bot}</span></span>`; }
     function fmtDec7(n) { if (!Number.isFinite(n)) return "∞"; if (Math.abs(n) < 1e-11) return "0"; return String(Number(n.toFixed(7))); }
-    function fmtNum(val) {
+    function fmtCompactDec(n, digits = 3) {
+      if (!Number.isFinite(n)) return "∞";
+      if (Math.abs(n) < 1e-10) return "0";
+      return String(Number(n.toFixed(digits)));
+    }
+    function fmtNum(val, opts = null) {
       if (!Number.isFinite(val)) return "∞"; if (Math.abs(val) < 1e-10) return "0";
       if (!exactMode) return fmtDec7(val);
-      // 1) Small-denominator exact fraction (e.g. 2/3, 16/3, 8/9) - never captures 2840/113 or 989/571!
-      const frSmall = toFraction(val, 240, 2e-6); if (frSmall) return fracHTML(frSmall.p, frSmall.q);
-      // 2) Exact pi multiple (e.g. pi/2, 8pi, 9pi, 16pi/15)
-      const piFr = toFraction(val / Math.PI, 120, 2e-5);
-      if (piFr && piFr.p !== 0) {
-        const sign = piFr.p < 0 ? "−" : "", ap = Math.abs(piFr.p), top = ap === 1 ? "π" : `${ap}π`;
-        return piFr.q === 1 ? `${sign}${top}` : `${sign}<span class="math-frac"><span class="num">${top}</span><span class="den">${piFr.q}</span></span>`;
-      }
-      // 2b) Exact pi^2 multiple (e.g. 54pi^2, 2pi^2 for Torus / Shifted Circle revolution!)
-      const pi2Fr = toFraction(val / (Math.PI * Math.PI), 120, 2e-5);
-      if (pi2Fr && pi2Fr.p !== 0) {
-        const sign = pi2Fr.p < 0 ? "−" : "", ap = Math.abs(pi2Fr.p), top = ap === 1 ? "π<sup>2</sup>" : `${ap}π<sup>2</sup>`;
-        return pi2Fr.q === 1 ? `${sign}${top}` : `${sign}<span class="math-frac"><span class="num">${top}</span><span class="den">${pi2Fr.q}</span></span>`;
-      }
-      // 3) Exact simplified radical (e.g. sqrt(3), sqrt(17)/3, 2*sqrt(5))
-      const sqFr = toFraction(val * val, 240, 2e-6);
-      if (sqFr && sqFr.p > 0) {
+      const allowPi = !opts || opts.allowPi !== false;
+      const allowLn = !opts || opts.allowLn !== false;
+      // 1) Exact clean fraction (small denominator <= 100, tight tolerance 1e-8)
+      const frSmall = toFraction(val, 100, 1e-8); if (frSmall) return fracHTML(frSmall.p, frSmall.q);
+      // 2) Exact simplified radical (e.g. sqrt(2)/2, sqrt(3)/3, 2*sqrt(5), tight tolerance 1e-8)
+      const sqFr = toFraction(val * val, 64, 1e-8);
+      if (sqFr && sqFr.p > 0 && sqFr.p <= 1000) {
         const numRad = simplifyIntRadical(sqFr.p * sqFr.q), den = sqFr.q, g = gcd(numRad.k, den);
         const k = numRad.k / g, q = den / g, m = numRad.m, sign = val < 0 ? "−" : "";
         const top = m === 1 ? String(k) : (k === 1 ? sqrtHTML(m) : `${k}${sqrtHTML(m)}`);
         return q === 1 ? `${sign}${top}` : `${sign}<span class="math-frac"><span class="num">${top}</span><span class="den">${q}</span></span>`;
       }
-      // 4) Exact larger-denominator fraction (tight tol)
-      const frExact = toFraction(val, 360, 1e-9); if (frExact) return fracHTML(frExact.p, frExact.q);
-      return fmtDec7(val);
+      // 3) Exact natural log multiple: p/q * ln(k) for k in {2,3,4,5,6,7,8,9,10} (ultra-tight 1e-8!)
+      if (allowLn) {
+        for (const k of [2, 3, 5, 6, 7, 10, 4, 8, 9]) {
+          const lnFr = toFraction(val / Math.log(k), 12, 1e-8);
+          if (lnFr && lnFr.p !== 0 && Math.abs(lnFr.p) <= 24) {
+            const sign = lnFr.p < 0 ? "−" : "", ap = Math.abs(lnFr.p);
+            const top = ap === 1 ? `ln ${k}` : `${ap}ln ${k}`;
+            return lnFr.q === 1 ? `${sign}${top}` : `${sign}<span class="math-frac"><span class="num">${top}</span><span class="den">${lnFr.q}</span></span>`;
+          }
+        }
+      }
+      // 4) Exact pi multiple (only clean denominators <= 24 & ultra-tight 1e-8 — NEVER hallucinates 3π²/61!)
+      if (allowPi) {
+        const piFr = toFraction(val / Math.PI, 24, 1e-8);
+        if (piFr && piFr.p !== 0 && Math.abs(piFr.p) <= 200) {
+          const sign = piFr.p < 0 ? "−" : "", ap = Math.abs(piFr.p), top = ap === 1 ? "π" : `${ap}π`;
+          return piFr.q === 1 ? `${sign}${top}` : `${sign}<span class="math-frac"><span class="num">${top}</span><span class="den">${piFr.q}</span></span>`;
+        }
+        // 4b) Exact pi^2 multiple (only clean denominators <= 12 & ultra-tight 1e-8 for torus/revolution)
+        const pi2Fr = toFraction(val / (Math.PI * Math.PI), 12, 1e-8);
+        if (pi2Fr && pi2Fr.p !== 0 && Math.abs(pi2Fr.p) <= 200) {
+          const sign = pi2Fr.p < 0 ? "−" : "", ap = Math.abs(pi2Fr.p), top = ap === 1 ? "π<sup>2</sup>" : `${ap}π<sup>2</sup>`;
+          return pi2Fr.q === 1 ? `${sign}${top}` : `${sign}<span class="math-frac"><span class="num">${top}</span><span class="den">${pi2Fr.q}</span></span>`;
+        }
+      }
+      // 5) Exact larger-denominator fraction (ultra-tight 1e-9, e.g. 1/937 -> only if genuinely exact!)
+      const frExact = toFraction(val, 1000, 1e-9); if (frExact) return fracHTML(frExact.p, frExact.q);
+      return (opts && opts.compact) ? fmtCompactDec(val, 3) : fmtDec7(val);
     }
     function fmtQuadRoot(a, b, delta, sign) {
       const val = (-b + sign * Math.sqrt(delta)) / (2 * a); if (!exactMode) return fmtDec7(val);
@@ -1372,24 +1559,90 @@
       s = s.replace(/asin\(/gi, 'sin<sup>−1</sup>(').replace(/acos\(/gi, 'cos<sup>−1</sup>(').replace(/atan\(/gi, 'tan<sup>−1</sup>(');
       s = s.replace(/exp\(([^()]+)\)/gi, 'e<sup>$1</sup>').replace(/exp\(([^()]*)$/gi, 'e<sup>$1</sup>');
       s = s.replace(/fact\(([^()]+)\)/gi, '($1)!');
-      s = s.replace(/abs\(([^()]+)\)/gi, '|$1|').replace(/\^\(([^()]+)\)/g, '<sup>$1</sup>').replace(/\^([a-zA-Z0-9\-]+)/g, '<sup>$1</sup>');
+      s = s.replace(/abs\(([^()]+)\)/gi, '|$1|').replace(/\^\(([^()]+)\)/g, '<sup>$1</sup>').replace(/\^(-?[a-zA-Z0-9]+)/g, '<sup>$1</sup>');
       s = s.replace(/\(([^()]+)\)\s*\/\s*\(([^()]+)\)/g, '<span class="math-frac"><span class="num">$1</span><span class="den">$2</span></span>');
       s = s.replace(/([a-zA-Z0-9_.π]+(?:<sup>[^<]+<\/sup>)?)\s*\/\s*\(([^()]+)\)/g, '<span class="math-frac"><span class="num">$1</span><span class="den">$2</span></span>');
       s = s.replace(/\(([^()]+)\)\s*\/\s*([a-zA-Z0-9_.π]+(?:<sup>[^<]+<\/sup>)?)/g, '<span class="math-frac"><span class="num">$1</span><span class="den">$2</span></span>');
       s = s.replace(/([a-zA-Z0-9_.π]+(?:<sup>[^<]+<\/sup>)?)\s*\/\s*([a-zA-Z0-9_.π]+(?:<sup>[^<]+<\/sup>)?)/g, '<span class="math-frac"><span class="num">$1</span><span class="den">$2</span></span>');
       return s.replace(/\bpi\b/gi, 'π').replace(/\*/g, '×').replace(/ - /g, ' − ').replace(/(^|[(=+\s])-/g, '$1−');
     }
+    const casioCursorMap = new WeakMap();
+    const casioCalcHistory = [];
+    let casioHistIdx = -1;
+    const _CASIO_FN_TOKENS = ["sqrt(","cbrt(","asin(","acos(","atan(","sin(","cos(","tan(","abs(","log(","ln(","exp(","fact(","nCr(","nPr(","pi"];
+
+    function getCasioCursor(el) {
+      if (!el) return 0;
+      const len = (el.value || "").length;
+      if (!casioCursorMap.has(el)) { casioCursorMap.set(el, len); return len; }
+      const p = casioCursorMap.get(el);
+      return Math.max(0, Math.min(len, p));
+    }
+    function setCasioCursor(el, pos) {
+      if (!el) return;
+      const len = (el.value || "").length;
+      casioCursorMap.set(el, Math.max(0, Math.min(len, pos)));
+    }
+    function stepCasioCursorLeft(el) {
+      if (!el) return false;
+      const val = el.value || "";
+      const pos = getCasioCursor(el);
+      if (pos <= 0) return false;
+      const before = val.slice(0, pos);
+      for (const tok of _CASIO_FN_TOKENS) {
+        if (before.endsWith(tok)) { setCasioCursor(el, pos - tok.length); return true; }
+      }
+      setCasioCursor(el, pos - 1);
+      return true;
+    }
+    function stepCasioCursorRight(el) {
+      if (!el) return false;
+      const val = el.value || "";
+      const pos = getCasioCursor(el);
+      if (pos >= val.length) return false;
+      const after = val.slice(pos);
+      for (const tok of _CASIO_FN_TOKENS) {
+        if (after.startsWith(tok)) { setCasioCursor(el, pos + tok.length); return true; }
+      }
+      setCasioCursor(el, pos + 1);
+      return true;
+    }
+    function _formatCursorSegment(seg) {
+      return String(seg || "")
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/\bpi\b/gi, "π").replace(/sqrt\(/gi, "√(").replace(/cbrt\(/gi, "∛(")
+        .replace(/\*/g, "×").replace(/-/g, "−");
+    }
     function insertIntoInput(el, token) {
       if (!el) return;
       const val = el.value || "";
-      if (token === "AC") el.value = "";
-      else if (token === "DEL") {
-        // Delete whole function token if ending with one (e.g. sqrt(, sin(, cbrt()
-        const fnM = val.match(/(?:sqrt|cbrt|asin|acos|atan|sin|cos|tan|abs|log|ln|exp|fact|nCr|nPr)\($/);
-        if (fnM) el.value = val.slice(0, val.length - fnM[0].length);
-        else el.value = val.slice(0, -1);
+      let pos = getCasioCursor(el);
+      if (token === "AC") {
+        el.value = "";
+        setCasioCursor(el, 0);
+      } else if (token === "DEL") {
+        if (pos > 0) {
+          const before = val.slice(0, pos);
+          let delLen = 1;
+          for (const tok of _CASIO_FN_TOKENS) {
+            if (before.endsWith(tok)) { delLen = tok.length; break; }
+          }
+          el.value = val.slice(0, pos - delLen) + val.slice(pos);
+          setCasioCursor(el, pos - delLen);
+        }
+      } else if (token === "DEL_FWD") {
+        if (pos < val.length) {
+          const after = val.slice(pos);
+          let delLen = 1;
+          for (const tok of _CASIO_FN_TOKENS) {
+            if (after.startsWith(tok)) { delLen = tok.length; break; }
+          }
+          el.value = val.slice(0, pos) + val.slice(pos + delLen);
+          setCasioCursor(el, pos);
+        }
       } else {
-        el.value = val + token;
+        el.value = val.slice(0, pos) + token + val.slice(pos);
+        setCasioCursor(el, pos + token.length);
       }
       el.dispatchEvent(new Event("input", { bubbles: true }));
     }
@@ -1712,6 +1965,7 @@
       if (mod==="graph") setTimeout(()=>{resizeGraphCanvas();drawGraph();},20);
       else if (mod==="revolve") setTimeout(()=>{initRevolve3DIfNeeded();resizeRevolve3D();updateRevolveScene();},30);
       else if (mod==="space3d") setTimeout(()=>{init3DIfNeeded();resize3D();update3DScene();},30);
+      else if (mod==="geom2d") setTimeout(()=>{if(window._geom2dResize)window._geom2dResize();},25);
     }
     document.querySelectorAll(".nav-module-btn").forEach(btn => btn.addEventListener("click", () => switchModule(btn.getAttribute("data-module"))));
 
@@ -2200,23 +2454,37 @@
             intervals.push(sl >= 0 ? "+" : "−");
           }
           const xCells = ["−∞", ...ptsX.flatMap(x => ["", fmtNum(x)]), "", "+∞"];
-          const ypCells = ["", ...intervals.flatMap((sgn, i) => i < ptsX.length ? [`<span class="font-extrabold ${sgn==="+"?"text-emerald-600":"text-rose-600"}">${sgn}</span>`, `<span class="font-bold text-slate-900">0</span>`] : [`<span class="font-extrabold ${sgn==="+"?"text-emerald-600":"text-rose-600"}">${sgn}</span>`]), ""];
-          const yCells = ["", ...intervals.flatMap((sgn, i) => {
-            const arr = sgn === "+" ? '<span class="text-emerald-600 font-extrabold text-sm">↗</span>' : '<span class="text-rose-600 font-extrabold text-sm">↘</span>';
-            if (i < ptsX.length) {
-              const ex = extrema.find(e => Math.abs(e.x - ptsX[i]) < 1e-3);
-              return [arr, `<strong class="math-display text-[11px] text-blue-700">${ex ? fmtNum(ex.y) : ""}</strong>`];
-            }
-            return [arr];
-          }), ""];
+          const ypCells = ["", ...intervals.flatMap((sgn, i) => i < ptsX.length ? [`<span class="font-extrabold text-xs ${sgn==="+"?"text-emerald-600":"text-rose-600"}">${sgn}</span>`, `<span class="font-bold text-slate-900">0</span>`] : [`<span class="font-extrabold text-xs ${sgn==="+"?"text-emerald-600":"text-rose-600"}">${sgn}</span>`]), ""];
+          const limEnd = dir => {
+            try {
+              const v1 = activeFn(dir * 1e3), v2 = activeFn(dir * 1e4);
+              if (!Number.isFinite(v2)) return "";
+              if (Math.abs(v2) > 1e4) return v2 > 0 ? "+∞" : "−∞";
+              if (Math.abs(v2 - v1) < 1e-2) return fmtNum(v2);
+              return v2 > v1 ? "+∞" : "−∞";
+            } catch(_) { return ""; }
+          };
+          const yLeft = limEnd(-1), yRight = limEnd(1);
+          const yCells = [
+            `<span class="math-display inline-flex items-center justify-center text-[11px] font-semibold text-slate-600">${yLeft}</span>`,
+            ...intervals.flatMap((sgn, i) => {
+              const arr = sgn === "+" ? '<span class="text-emerald-600 font-extrabold text-base leading-none">↗</span>' : '<span class="text-rose-600 font-extrabold text-base leading-none">↘</span>';
+              if (i < ptsX.length) {
+                const ex = extrema.find(e => Math.abs(e.x - ptsX[i]) < 1e-3);
+                return [arr, `<strong class="math-display inline-flex items-center justify-center text-[11px] text-blue-700">${ex ? fmtNum(ex.y) : ""}</strong>`];
+              }
+              return [arr];
+            }),
+            `<span class="math-display inline-flex items-center justify-center text-[11px] font-semibold text-slate-600">${yRight}</span>`
+          ];
           return `
             <div class="pt-1.5 border-t border-slate-200">
               <div class="font-bold text-indigo-700 mb-1">📋 Bảng biến thiên (BBT) tự động của f${activeIdx}(x):</div>
               <div class="overflow-x-auto">
-                <table class="w-full border-collapse text-center text-[11px] bg-white rounded-lg overflow-hidden border border-slate-300">
-                  <tr class="border-b border-slate-300 bg-slate-100"><th class="px-2 py-1 border-r border-slate-300 italic font-serif">x</th>${xCells.map(c=>`<td class="px-1.5 py-1 math-display">${c}</td>`).join("")}</tr>
-                  <tr class="border-b border-slate-300"><th class="px-2 py-1 border-r border-slate-300 italic font-serif">y'</th>${ypCells.map(c=>`<td class="px-1.5 py-1">${c}</td>`).join("")}</tr>
-                  <tr><th class="px-2 py-1.5 border-r border-slate-300 italic font-serif">y</th>${yCells.map(c=>`<td class="px-1.5 py-1.5">${c}</td>`).join("")}</tr>
+                <table class="w-full table-fixed border-collapse text-center text-[11px] bg-white rounded-lg overflow-hidden border border-slate-300">
+                  <tr class="border-b border-slate-300 bg-slate-100"><th class="w-10 px-2 py-1.5 border-r border-slate-300 italic font-serif text-center">x</th>${xCells.map(c=>`<td class="px-1 py-1.5 text-center align-middle"><span class="math-display inline-flex items-center justify-center">${c}</span></td>`).join("")}</tr>
+                  <tr class="border-b border-slate-300"><th class="w-10 px-2 py-1.5 border-r border-slate-300 italic font-serif text-center">y'</th>${ypCells.map(c=>`<td class="px-1 py-1.5 text-center align-middle">${c}</td>`).join("")}</tr>
+                  <tr><th class="w-10 px-2 py-2 border-r border-slate-300 italic font-serif text-center">y</th>${yCells.map(c=>`<td class="px-1 py-2 text-center align-middle">${c}</td>`).join("")}</tr>
                 </table>
               </div>
             </div>
@@ -2256,7 +2524,7 @@
      * MODULE 2: AUTHENTIC fx-580VN X SOLVER
      * =========================================================================
      */
-    const solverModesOrder = ["calc","quadratic","system2","derivative","integral","limit","sequence","matrix","stats","complex","sigma"];
+    const solverModesOrder = ["calc","quadratic","inequality","system2","derivative","integral","limit","sequence","matrix","stats","complex","sigma"];
     let activeSolverMode = "calc", seqKind = "csc", intKind = "def", matSize = 2, statMode = "freq";
     let polyDeg = 2, sysDim = 2, matEditKey = "A";
     let lcdStepPages = [], lcdStepIdx = 0;
@@ -2276,15 +2544,20 @@
       updateStatusPills(); triggerActiveSolve();
     });
 
-    function setActiveCasioInput(inp) {
+    function setActiveCasioInput(inp, cursorPos = null) {
       if (!inp) return;
+      const changed = lastFocusedCasioInput !== inp;
       lastFocusedCasioInput = inp;
+      if (cursorPos !== null) setCasioCursor(inp, cursorPos);
+      else if (changed) setCasioCursor(inp, (inp.value || "").length);
       document.querySelectorAll(".casio-target").forEach(el => el.classList.remove("active-casio-cell"));
       inp.classList.add("active-casio-cell");
       renderInteractiveLCD();
     }
     function bindCasioTargets() {
       document.querySelectorAll(".casio-target").forEach(inp => {
+        if (inp.dataset.casioBound) return;
+        inp.dataset.casioBound = "1";
         inp.setAttribute("inputmode", "none");
         inp.setAttribute("readonly", "readonly");
         inp.addEventListener("click", () => setActiveCasioInput(inp));
@@ -2297,8 +2570,19 @@
       const el = document.getElementById(inputId);
       const isAct = lastFocusedCasioInput && lastFocusedCasioInput.id === inputId;
       const v = el ? el.value : "";
-      const body = v ? renderMathHTML(v) : `<span class="opacity-45">${fallback}</span>`;
-      return `<span data-slot-id="${inputId}" class="lcd-slot ${isAct ? "active-slot" : ""}">${body}${isAct ? '<span class="casio-caret"></span>' : ""}</span>`;
+      if (!v) {
+        return `<span data-slot-id="${inputId}" class="lcd-slot ${isAct ? "active-slot" : ""}">${isAct ? '<span class="casio-caret"></span>' : ""}<span class="opacity-45">${fallback}</span></span>`;
+      }
+      if (isAct) {
+        const pos = getCasioCursor(el);
+        if (pos < v.length) {
+          const leftSeg = _formatCursorSegment(v.slice(0, pos));
+          const rightSeg = _formatCursorSegment(v.slice(pos));
+          return `<span data-slot-id="${inputId}" class="lcd-slot active-slot font-mono-math tracking-tight">${leftSeg}<span class="casio-caret"></span>${rightSeg}</span>`;
+        }
+        return `<span data-slot-id="${inputId}" class="lcd-slot active-slot">${renderMathHTML(v)}<span class="casio-caret"></span></span>`;
+      }
+      return `<span data-slot-id="${inputId}" class="lcd-slot">${renderMathHTML(v)}</span>`;
     }
     function renderInteractiveLCD() {
       if (activeSolverMode === "calc") {
@@ -2335,8 +2619,14 @@
       else lcdExpr.innerHTML = lcdHtml;
       lcdResult.innerHTML = lcdResHtml;
       solverTitle.textContent = title; solverFinalAnswer.innerHTML = answerHtml;
-      solverSteps.classList.add("hidden"); toggleStepsLabel.textContent = "Xem lời giải từng bước";
-      solverSteps.innerHTML = steps.map((s,i)=>`<div class="step-card rounded-xl p-3 border border-slate-200"><div class="text-xs font-bold text-blue-700 mb-0.5">Bước ${i+1}: ${s.head}</div><div class="text-slate-700 text-xs sm:text-sm">${s.body}</div></div>`).join("");
+      solverSteps.innerHTML = steps.map((s,i)=>`<div class="step-card rounded-xl p-3 border border-slate-200 bg-white/95"><div class="text-xs font-bold text-blue-700 mb-0.5">Bước ${i+1}: ${s.head}</div><div class="text-slate-700 text-xs sm:text-sm leading-relaxed">${s.body}</div></div>`).join("");
+      if (steps && steps.length > 0) {
+        solverSteps.classList.remove("hidden");
+        toggleStepsLabel.textContent = "Ẩn lời giải từng bước";
+      } else {
+        solverSteps.classList.add("hidden");
+        toggleStepsLabel.textContent = "Xem lời giải từng bước";
+      }
     }
     function getModeSlots(mode) {
       if (mode === "calc") return ["calc-expr"];
@@ -2652,14 +2942,625 @@
       const rawStr = resTerms.length ? resTerms.map((t,i)=>`${t.sign>=0?(i===0?"":" + "):(i===0?"-":" - ")}${t.raw}`).join("")+" + C" : "C";
       return { expr: rawStr, html: htmlStr, parts, termSteps };
     }
-    function symbolicAntiderivative(raw) { const d = symbolicAntiderivativeDetailed(raw); return d ? d.expr : null; }
+    // ================= ADVANCED OFFLINE CAS ENGINE (Hướng A: SGK 8-12 + Giải Tích I ĐH) =================
+    function _extractPolyCoefs(exprStr, maxDeg = 5) {
+      const fn = compileExpression(exprStr);
+      if (!fn) return null;
+      const N = maxDeg + 1;
+      const xs = Array.from({ length: N }, (_, i) => i - Math.floor(N / 2));
+      const ys = xs.map(x => { try { const v = fn(x); return Number.isFinite(v) ? v : NaN; } catch (_) { return NaN; } });
+      if (ys.some(y => !Number.isFinite(y))) return null;
+      // Solve Vandermonde via Gaussian elimination
+      const M = xs.map((x, r) => {
+        const row = [];
+        for (let c = 0; c < N; c++) row.push(Math.pow(x, c));
+        row.push(ys[r]);
+        return row;
+      });
+      for (let col = 0; col < N; col++) {
+        let piv = col;
+        for (let r = col + 1; r < N; r++) if (Math.abs(M[r][col]) > Math.abs(M[piv][col])) piv = r;
+        if (Math.abs(M[piv][col]) < 1e-12) return null;
+        [M[col], M[piv]] = [M[piv], M[col]];
+        const div = M[col][col];
+        for (let c = col; c <= N; c++) M[col][c] /= div;
+        for (let r = 0; r < N; r++) {
+          if (r === col) continue;
+          const f = M[r][col];
+          for (let c = col; c <= N; c++) M[r][c] -= f * M[col][c];
+        }
+      }
+      const coefAsc = M.map(row => Math.abs(row[N]) < 1e-8 ? 0 : row[N]);
+      // Verify at 4 non-integer test points to guarantee it is truly a polynomial!
+      for (const tx of [-2.37, -0.41, 0.73, 2.89]) {
+        let pv = 0;
+        for (let i = 0; i < N; i++) pv += coefAsc[i] * Math.pow(tx, i);
+        const fv = fn(tx);
+        if (!Number.isFinite(fv) || Math.abs(pv - fv) > 1e-5 * (1 + Math.abs(fv))) return null;
+      }
+      // Return descending [a_d, ..., a_0]
+      const desc = coefAsc.slice().reverse();
+      while (desc.length > 1 && Math.abs(desc[0]) < 1e-8) desc.shift();
+      return desc;
+    }
+
+    function _formatPolyHTML(desc) {
+      const deg = desc.length - 1;
+      const parts = [];
+      for (let i = 0; i <= deg; i++) {
+        const c = desc[i], p = deg - i;
+        if (Math.abs(c) < 1e-9) continue;
+        const sgn = c >= 0 ? (parts.length ? " + " : "") : (parts.length ? " − " : "−");
+        const ac = Math.abs(c);
+        const numStr = (p > 0 && Math.abs(ac - 1) < 1e-9) ? "" : fmtNum(ac);
+        const xStr = p === 0 ? "" : (p === 1 ? "x" : `x<sup>${p}</sup>`);
+        parts.push(sgn + numStr + xStr);
+      }
+      return parts.length ? parts.join("") : "0";
+    }
+
+    function _polyDivDesc(num, den) {
+      let rem = num.slice();
+      const dDeg = den.length - 1, dLead = den[0];
+      if (rem.length < den.length) return { q: [0], r: rem };
+      const q = new Array(rem.length - den.length + 1).fill(0);
+      for (let i = 0; i <= rem.length - den.length; i++) {
+        const coef = rem[i] / dLead;
+        q[i] = Math.abs(coef) < 1e-10 ? 0 : coef;
+        for (let j = 0; j < den.length; j++) rem[i + j] -= coef * den[j];
+      }
+      while (rem.length > 1 && Math.abs(rem[0]) < 1e-8) rem.shift();
+      return { q, r: rem };
+    }
+
+    function _splitTopLevelSlash(raw) {
+      let s = String(raw || "").trim();
+      while (s.startsWith("(") && s.endsWith(")")) {
+        let d = 0, ok = true;
+        for (let i = 0; i < s.length - 1; i++) {
+          if (s[i] === "(") d++;
+          else if (s[i] === ")") { d--; if (d === 0) { ok = false; break; } }
+        }
+        if (ok) s = s.slice(1, -1).trim(); else break;
+      }
+      let depth = 0, slashIdx = -1, count = 0;
+      for (let i = 0; i < s.length; i++) {
+        if (s[i] === "(") depth++;
+        else if (s[i] === ")") depth--;
+        else if (s[i] === "/" && depth === 0) { slashIdx = i; count++; }
+      }
+      if (count !== 1 || slashIdx <= 0 || slashIdx >= s.length - 1) return null;
+      return { num: s.slice(0, slashIdx).trim(), den: s.slice(slashIdx + 1).trim() };
+    }
+
+    function _solveLinearSystem(A, b) {
+      const n = A.length;
+      const M = A.map((row, i) => row.concat([b[i]]));
+      for (let col = 0; col < n; col++) {
+        let piv = col;
+        for (let r = col + 1; r < n; r++) if (Math.abs(M[r][col]) > Math.abs(M[piv][col])) piv = r;
+        if (Math.abs(M[piv][col]) < 1e-11) return null;
+        [M[col], M[piv]] = [M[piv], M[col]];
+        const div = M[col][col];
+        for (let c = col; c <= n; c++) M[col][c] /= div;
+        for (let r = 0; r < n; r++) {
+          if (r === col) continue;
+          const f = M[r][col];
+          for (let c = col; c <= n; c++) M[r][c] -= f * M[col][c];
+        }
+      }
+      return M.map(row => Math.abs(row[n]) < 1e-9 ? 0 : row[n]);
+    }
+
+    function _rationalAntiderivativeDetailed(raw) {
+      const sp = _splitTopLevelSlash(raw);
+      if (!sp) return null;
+      const P = _extractPolyCoefs(sp.num, 5);
+      const Q = _extractPolyCoefs(sp.den, 4);
+      if (!P || !Q || Q.length < 2) return null;
+      const qDeg = Q.length - 1, qLead = Q[0];
+      const normP = P.map(v => v / qLead);
+      const normQ = Q.map(v => v / qLead);
+      const { q: quot, r: rem } = _polyDivDesc(normP, normQ);
+      const customSteps = [];
+      const resTerms = [];
+
+      // Integrate polynomial quotient if non-zero
+      const hasQuot = quot.some(v => Math.abs(v) > 1e-9);
+      if (hasQuot) {
+        customSteps.push({
+          head: "Chia đa thức tử cho mẫu thức",
+          body: `<div class="math-display">${fracExprHTML(_formatPolyHTML(P), _formatPolyHTML(Q))} = ${_formatPolyHTML(quot)} + ${fracExprHTML(_formatPolyHTML(rem), _formatPolyHTML(normQ))}</div>`
+        });
+        const qd = quot.length - 1;
+        for (let i = 0; i <= qd; i++) {
+          const c = quot[i], p = qd - i;
+          if (Math.abs(c) < 1e-9) continue;
+          const nc = c / (p + 1), np = p + 1;
+          const xPart = np === 1 ? "x" : `x<sup>${np}</sup>`;
+          resTerms.push({ sign: nc >= 0 ? 1 : -1, html: _cleanCoefHTML(Math.abs(nc), xPart), raw: `(${fmtDec7(Math.abs(nc))})*x^${np}` });
+        }
+      }
+
+      const fmtAlg = v => fmtNum(v, { allowPi: false, allowLn: false, compact: exactMode });
+      const isApproxNum = v => !toFraction(v, 1000, 1e-8) && !toFraction(v * v, 64, 1e-8);
+      let hasIrrationalRoot = false;
+      const hasRem = rem.some(v => Math.abs(v) > 1e-9);
+      if (hasRem) {
+        // Factor normQ into real linear factors (with multiplicity) and irreducible quadratics
+        const roots = solvePolyRootsAll(normQ);
+        const realGroups = []; // { r, mult }
+        const quadFactors = []; // { p, q } for x^2 + p*x + q
+        const used = new Array(roots.length).fill(false);
+        for (let i = 0; i < roots.length; i++) {
+          if (used[i]) continue;
+          if (Math.abs(roots[i].im) < 1e-4) {
+            let mult = 1, rSum = roots[i].re;
+            used[i] = true;
+            for (let j = i + 1; j < roots.length; j++) {
+              if (!used[j] && Math.abs(roots[j].im) < 1e-4 && Math.abs(roots[j].re - roots[i].re) < 1e-3) {
+                used[j] = true; mult++; rSum += roots[j].re;
+              }
+            }
+            const rVal = Math.abs(rSum / mult) < 1e-7 ? 0 : rSum / mult;
+            realGroups.push({ r: rVal, mult });
+          } else {
+            // Find conjugate pair
+            let conjIdx = -1;
+            for (let j = i + 1; j < roots.length; j++) {
+              if (!used[j] && Math.abs(roots[j].re - roots[i].re) < 1e-3 && Math.abs(roots[j].im + roots[i].im) < 1e-3) {
+                conjIdx = j; break;
+              }
+            }
+            if (conjIdx >= 0) {
+              used[i] = true; used[conjIdx] = true;
+              const re = roots[i].re, im = roots[i].im;
+              const pCoef = Math.abs(-2 * re) < 1e-7 ? 0 : -2 * re;
+              const qCoef = re * re + im * im;
+              quadFactors.push({ p: pCoef, q: qCoef });
+            }
+          }
+        }
+        // Check if repeated irreducible quadratics exist (unsupported simple formula)
+        if (quadFactors.length === 2 && Math.abs(quadFactors[0].p - quadFactors[1].p) < 1e-3 && Math.abs(quadFactors[0].q - quadFactors[1].q) < 1e-3) return null;
+
+        // Build basis functions for partial fractions
+        const basis = [];
+        const factorDesc = [];
+        for (const g of realGroups) {
+          const linLabel = Math.abs(g.r) < 1e-8 ? "x" : `(x ${g.r > 0 ? "−" : "+"} ${fmtNum(Math.abs(g.r))})`;
+          factorDesc.push(g.mult > 1 ? `${linLabel}<sup>${g.mult}</sup>` : linLabel);
+          for (let k = 1; k <= g.mult; k++) {
+            basis.push({ kind: "lin", r: g.r, k, evalAt: x => 1 / Math.pow(x - g.r, k) });
+          }
+        }
+        for (const qf of quadFactors) {
+          const qLabel = _formatPolyHTML([1, qf.p, qf.q]);
+          factorDesc.push(`(${qLabel})`);
+          basis.push({ kind: "quad_x", p: qf.p, q: qf.q, evalAt: x => x / (x * x + qf.p * x + qf.q) });
+          basis.push({ kind: "quad_1", p: qf.p, q: qf.q, evalAt: x => 1 / (x * x + qf.p * x + qf.q) });
+        }
+        if (basis.length !== qDeg) return null;
+
+        // Pick qDeg safe sample points away from all real roots
+        const sampleXs = [];
+        let cand = 0.37;
+        while (sampleXs.length < qDeg) {
+          if (realGroups.every(g => Math.abs(cand - g.r) > 0.25)) sampleXs.push(cand);
+          cand = cand > 0 ? -cand - 0.53 : -cand + 0.71;
+        }
+        const remFn = x => _polyEvalR(rem, x), denFn = x => _polyEvalR(normQ, x);
+        const matA = sampleXs.map(x => basis.map(b => b.evalAt(x)));
+        const vecB = sampleXs.map(x => remFn(x) / denFn(x));
+        const sol = _solveLinearSystem(matA, vecB);
+        if (!sol) return null;
+
+        // Build partial fraction decomposition display & integrate each component
+        const pfPartsHTML = [];
+        const intStepsHTML = [];
+        for (let i = 0; i < basis.length; i++) {
+          const b = basis[i], coef = sol[i];
+          if (b.kind === "lin") {
+            if (Math.abs(coef) < 1e-7) continue;
+            if (isApproxNum(b.r) || isApproxNum(coef)) hasIrrationalRoot = true;
+            const argH = Math.abs(b.r) < 1e-8 ? "x" : `x ${b.r > 0 ? "−" : "+"} ${fmtAlg(Math.abs(b.r))}`;
+            const argR = Math.abs(b.r) < 1e-8 ? "x" : `(x ${b.r > 0 ? "-" : "+"} ${fmtDec7(Math.abs(b.r))})`;
+            const denH = b.k === 1 ? argH : `(${argH})<sup>${b.k}</sup>`;
+            pfPartsHTML.push(`${coef >= 0 ? (pfPartsHTML.length ? " + " : "") : (pfPartsHTML.length ? " − " : "−")}${fracExprHTML(fmtAlg(Math.abs(coef)), denH)}`);
+            if (b.k === 1) {
+              const coefStr = Math.abs(Math.abs(coef) - 1) < 1e-8 ? "" : `${fmtAlg(Math.abs(coef))} · `;
+              const h = `${coefStr}ln|${argH}|`;
+              const r = `${fmtDec7(Math.abs(coef))}*ln(abs(${argR}))`;
+              resTerms.push({ sign: coef >= 0 ? 1 : -1, html: h, raw: r });
+              intStepsHTML.push(_stepLine(`• ∫ ${fracExprHTML(fmtAlg(coef), argH)} dx = <strong>${coef < 0 ? "−" : ""}${h}</strong>`));
+            } else {
+              const outC = -coef / (b.k - 1);
+              const dPow = b.k - 1 === 1 ? `(${argH})` : `(${argH})<sup>${b.k - 1}</sup>`;
+              const h = fracExprHTML(fmtAlg(Math.abs(outC)), dPow);
+              const r = `(${fmtDec7(Math.abs(outC))})/((${argR})^${b.k - 1})`;
+              resTerms.push({ sign: outC >= 0 ? 1 : -1, html: h, raw: r });
+              intStepsHTML.push(_stepLine(`• ∫ ${fracExprHTML(fmtAlg(coef), denH)} dx = <strong>${outC < 0 ? "−" : ""}${h}</strong>`));
+            }
+          } else if (b.kind === "quad_x") {
+            const M = coef, N = sol[i + 1];
+            i++; // consume paired quad_1
+            if (Math.abs(M) < 1e-7 && Math.abs(N) < 1e-7) continue;
+            if (isApproxNum(b.p) || isApproxNum(b.q) || isApproxNum(M) || isApproxNum(N)) hasIrrationalRoot = true;
+            const qH = `x<sup>2</sup>${Math.abs(b.p)>1e-8 ? (b.p>0 ? ` + ${fmtAlg(b.p)}x` : ` − ${fmtAlg(Math.abs(b.p))}x`) : ""}${Math.abs(b.q)>1e-8 ? (b.q>0 ? ` + ${fmtAlg(b.q)}` : ` − ${fmtAlg(Math.abs(b.q))}`) : ""}`;
+            const qR = `(x^2 + (${fmtDec7(b.p)})*x + (${fmtDec7(b.q)}))`;
+            const numH = `${Math.abs(M)>1e-8 ? `${fmtAlg(M)}x` : ""}${Math.abs(N)>1e-8 ? (Math.abs(M)>1e-8 ? (N>0 ? ` + ${fmtAlg(N)}` : ` − ${fmtAlg(Math.abs(N))}`) : fmtAlg(N)) : ""}`;
+            pfPartsHTML.push(`${pfPartsHTML.length ? " + " : ""}${fracExprHTML(numH, qH)}`);
+            const lnC = M / 2;
+            const remC = N - M * b.p / 2;
+            const halfP = b.p / 2;
+            const w2 = b.q - halfP * halfP;
+            const w = Math.sqrt(Math.max(1e-12, w2));
+            if (Math.abs(lnC) > 1e-7) {
+              const coefStr = Math.abs(Math.abs(lnC) - 1) < 1e-8 ? "" : `${fmtAlg(Math.abs(lnC))} · `;
+              const h = `${coefStr}ln(${qH})`;
+              const r = `${fmtDec7(Math.abs(lnC))}*ln(abs(${qR}))`;
+              resTerms.push({ sign: lnC >= 0 ? 1 : -1, html: h, raw: r });
+              intStepsHTML.push(_stepLine(`• Phần logarit: ∫ ${fracExprHTML(`${fmtAlg(lnC)}·(2x ${b.p>=0?"+":"−"} ${fmtAlg(Math.abs(b.p))})`, qH)} dx = <strong>${lnC < 0 ? "−" : ""}${h}</strong>`));
+            }
+            if (Math.abs(remC) > 1e-7) {
+              const atanC = remC / w;
+              const uH = Math.abs(halfP) < 1e-8 ? "x" : `x ${halfP > 0 ? "+" : "−"} ${fmtAlg(Math.abs(halfP))}`;
+              const argFracH = Math.abs(w - 1) < 1e-7 ? uH : fracExprHTML(uH, fmtAlg(w));
+              const coefStr = Math.abs(Math.abs(atanC) - 1) < 1e-8 ? "" : `${fmtAlg(Math.abs(atanC))} · `;
+              const h = `${coefStr}arctan(${argFracH})`;
+              const r = `${fmtDec7(Math.abs(atanC))}*atan((x+(${fmtDec7(halfP)}))/(${fmtDec7(w)}))`;
+              resTerms.push({ sign: atanC >= 0 ? 1 : -1, html: h, raw: r });
+              intStepsHTML.push(_stepLine(`• Phần arctan (hoàn chỉnh bình phương mẫu (${uH})² + (${fmtAlg(w)})²): <strong>${atanC < 0 ? "−" : ""}${h}</strong>`));
+            }
+          }
+        }
+        const cleanFactorDesc = [];
+        for (const g of realGroups) {
+          const linLabel = Math.abs(g.r) < 1e-8 ? "x" : `(x ${g.r > 0 ? "−" : "+"} ${fmtAlg(Math.abs(g.r))})`;
+          cleanFactorDesc.push(g.mult > 1 ? `${linLabel}<sup>${g.mult}</sup>` : linLabel);
+        }
+        for (const qf of quadFactors) {
+          const qLabel = `x<sup>2</sup>${Math.abs(qf.p)>1e-8 ? (qf.p>0 ? ` + ${fmtAlg(qf.p)}x` : ` − ${fmtAlg(Math.abs(qf.p))}x`) : ""}${Math.abs(qf.q)>1e-8 ? (qf.q>0 ? ` + ${fmtAlg(qf.q)}` : ` − ${fmtAlg(Math.abs(qf.q))}`) : ""}`;
+          cleanFactorDesc.push(`(${qLabel})`);
+        }
+        customSteps.push({
+          head: "Phân tích mẫu thức thành nhân tử (Hữu tỷ — Giải tích I)",
+          body: `<div class="math-display">Q(x) = ${_formatPolyHTML(normQ)} ${hasIrrationalRoot ? "≈" : "="} <strong>${cleanFactorDesc.join(" · ")}</strong></div>${hasIrrationalRoot ? `<div class="mt-1 text-[11px] text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1">💡 Lưu ý: Mẫu thức có nghiệm vô tỷ (không nguyên), nên các hệ số được làm tròn gọn xấp xỉ (bấm <strong>S⇔D</strong> nếu cần xem đủ 7 chữ số thập phân).</div>` : ""}`
+        });
+        if (pfPartsHTML.length) {
+          customSteps.push({
+            head: "Phân tích thành tổng các phân thức đơn giản (Hệ số bất định)",
+            body: `<div class="math-display">${fracExprHTML(_formatPolyHTML(rem), _formatPolyHTML(normQ))} = ${pfPartsHTML.join("")}</div>`
+          });
+        }
+        if (intStepsHTML.length) {
+          customSteps.push({
+            head: "Tính nguyên hàm từng phân thức đơn giản",
+            body: `<div class="space-y-1">${intStepsHTML.join("")}</div>`
+          });
+        }
+      }
+      const htmlStr = resTerms.length ? resTerms.map((t, i) => `${t.sign >= 0 ? (i === 0 ? "" : " + ") : (i === 0 ? "−" : " − ")}${t.html}`).join("") + " + C" : "C";
+      const rawStr = resTerms.length ? resTerms.map((t, i) => `${t.sign >= 0 ? (i === 0 ? "" : " + ") : (i === 0 ? "-" : " - ")}${t.raw}`).join("") + " + C" : "C";
+      return { expr: rawStr, html: htmlStr, parts: [raw], termSteps: [], customSteps };
+    }
+
+    function _advancedAntiderivativeDetailed(raw) {
+      const s = String(raw || "").replace(/\s+/g, "");
+      if (!s) return null;
+      // 1. Rational P(x)/Q(x) via partial fractions
+      const rat = _rationalAntiderivativeDetailed(s);
+      if (rat) return rat;
+
+      // 2. Classic u-substitution: f'(x) / f(x) -> c * ln|f(x)| + C
+      const sp = _splitTopLevelSlash(s);
+      if (sp) {
+        const numFn = compileExpression(sp.num), denFn = compileExpression(sp.den);
+        if (numFn && denFn) {
+          const ratios = [];
+          for (const tx of [-1.7, -0.6, 0.45, 1.35, 2.25]) {
+            const h = 1e-6, dVal = denFn(tx), dp = (denFn(tx + h) - denFn(tx - h)) / (2 * h), nVal = numFn(tx);
+            if (Number.isFinite(dVal) && Number.isFinite(dp) && Math.abs(dp) > 1e-5 && Number.isFinite(nVal)) {
+              ratios.push(nVal / dp);
+            }
+          }
+          if (ratios.length >= 4 && ratios.every(r => Math.abs(r - ratios[0]) < 1e-4 * (1 + Math.abs(ratios[0])))) {
+            const c = ratios[0];
+            if (Math.abs(c) > 1e-8) {
+              const denH = renderMathHTML(sp.den);
+              const h = `${c < 0 ? "−" : ""}${_cleanCoefHTML(Math.abs(c), `ln|${denH}|`)} + C`;
+              const r = `(${fmtDec7(c)})*ln(abs(${sp.den})) + C`;
+              return {
+                expr: r, html: h, parts: [raw], termSteps: [],
+                customSteps: [
+                  { head: "Nhận dạng đổi biến số dạng ∫ c·u'(x)/u(x) dx", body: `Đặt <span class="math-display">t = ${denH} ⇒ dt = (${denH})' dx</span>. Khi đó tử thức bằng <strong>${fmtNum(c)} · dt</strong>.` },
+                  { head: "Áp dụng công thức ∫ (1/t) dt = ln|t| + C", body: `<div class="math-display">∫ ${renderMathHTML(raw)} dx = ${fmtNum(c)} ∫ ${fracExprHTML("dt","t")} = <strong>${h}</strong></div>` }
+                ]
+              };
+            }
+          }
+        }
+      }
+
+      // 3. Irrational: 1 / sqrt(a^2 - x^2) -> arcsin(x/a) + C
+      let m = s.match(/^([+-]?\d*\.?\d*)\/?sqrt\((\d+\.?\d*)-x\^2\)$/i);
+      if (m && s.includes("/")) {
+        const c = (m[1] === "" || m[1] === "+") ? 1 : (m[1] === "-" ? -1 : parseFloat(m[1]));
+        const a2 = parseFloat(m[2]), a = Math.sqrt(a2);
+        const h = `${c < 0 ? "−" : ""}${_cleanCoefHTML(Math.abs(c), `arcsin(${Math.abs(a - 1) < 1e-8 ? "x" : fracExprHTML("x", fmtNum(a))})`)} + C`;
+        const r = `(${fmtDec7(c)})*asin(x/${fmtDec7(a)}) + C`;
+        return {
+          expr: r, html: h, parts: [raw], termSteps: [],
+          customSteps: [
+            { head: "Nhận dạng tích phân vô tỷ cơ bản ∫ dx / √(a² − x²)", body: `Ta có <span class="math-display">a² = ${fmtNum(a2)} ⇒ a = ${fmtNum(a)}</span>. Đặt <span class="math-display">x = ${fmtNum(a)}·sin t</span>.` },
+            { head: "Áp dụng công thức chuẩn", body: `<div class="math-display">∫ ${renderMathHTML(raw)} dx = <strong>${h}</strong></div>` }
+          ]
+        };
+      }
+
+      // 4. Trig identities: sin(x)^2, cos(x)^2, 1/cos(x)^2, 1/sin(x)^2, cot(x)
+      if (/^sin\(x\)\^2$/i.test(s)) {
+        const h = `${fracExprHTML("x","2")} − ${fracExprHTML("sin(2x)","4")} + C`;
+        return {
+          expr: "0.5*x - 0.25*sin(2*x) + C", html: h, parts: [raw], termSteps: [],
+          customSteps: [
+            { head: "Hạ bậc lượng giác (SGK Toán 11)", body: `<div class="math-display">sin²x = ${fracExprHTML("1 − cos(2x)","2")}</div>` },
+            { head: "Lấy nguyên hàm từng hạng tử", body: `<div class="math-display">∫ sin²x dx = ∫ ${fracExprHTML("1","2")} dx − ${fracExprHTML("1","2")} ∫ cos(2x) dx = <strong>${h}</strong></div>` }
+          ]
+        };
+      }
+      if (/^cos\(x\)\^2$/i.test(s)) {
+        const h = `${fracExprHTML("x","2")} + ${fracExprHTML("sin(2x)","4")} + C`;
+        return {
+          expr: "0.5*x + 0.25*sin(2*x) + C", html: h, parts: [raw], termSteps: [],
+          customSteps: [
+            { head: "Hạ bậc lượng giác (SGK Toán 11)", body: `<div class="math-display">cos²x = ${fracExprHTML("1 + cos(2x)","2")}</div>` },
+            { head: "Lấy nguyên hàm từng hạng tử", body: `<div class="math-display">∫ cos²x dx = ∫ ${fracExprHTML("1","2")} dx + ${fracExprHTML("1","2")} ∫ cos(2x) dx = <strong>${h}</strong></div>` }
+          ]
+        };
+      }
+      if (/^1\/cos\(x\)\^2$/i.test(s)) {
+        return { expr: "tan(x) + C", html: "tan(x) + C", parts: [raw], termSteps: [], customSteps: [{ head: "Áp dụng công thức nguyên hàm lượng giác cơ bản", body: `<div class="math-display">∫ ${fracExprHTML("1","cos²x")} dx = <strong>tan(x) + C</strong></div>` }] };
+      }
+      if (/^1\/sin\(x\)\^2$/i.test(s)) {
+        return { expr: "-1/tan(x) + C", html: "−cot(x) + C", parts: [raw], termSteps: [], customSteps: [{ head: "Áp dụng công thức nguyên hàm lượng giác cơ bản", body: `<div class="math-display">∫ ${fracExprHTML("1","sin²x")} dx = <strong>−cot(x) + C</strong></div>` }] };
+      }
+
+      // 5. Integration by Parts (Tích phân từng phần): ln(x), x*e^(ax), x*sin(ax), x*cos(ax), x*ln(x)
+      if (/^ln\(x\)$/i.test(s)) {
+        const h = "x·ln|x| − x + C";
+        return {
+          expr: "x*ln(abs(x)) - x + C", html: h, parts: [raw], termSteps: [],
+          customSteps: [
+            { head: "Áp dụng Tích phân từng phần (Nhất Lô — Đặt u = ln x, dv = dx)", body: `Chọn <span class="math-display">u = ln x ⇒ du = ${fracExprHTML("1","x")} dx</span> ; <span class="math-display">dv = dx ⇒ v = x</span>.` },
+            { head: "Áp dụng công thức ∫ u dv = uv − ∫ v du", body: `<div class="math-display">∫ ln x dx = x·ln|x| − ∫ x · ${fracExprHTML("1","x")} dx = x·ln|x| − ∫ 1 dx = <strong>${h}</strong></div>` }
+          ]
+        };
+      }
+      m = s.match(/^([+-]?\d*\.?\d*)\*?x\*?ln\(x\)$/i);
+      if (m) {
+        const c = (m[1] === "" || m[1] === "+") ? 1 : (m[1] === "-" ? -1 : parseFloat(m[1]));
+        const h = `${c < 0 ? "−" : ""}${_cleanCoefHTML(Math.abs(c / 2), "x²·ln|x|")} ${c >= 0 ? "−" : "+"} ${_cleanCoefHTML(Math.abs(c / 4), "x²")} + C`;
+        const r = `(${fmtDec7(c / 2)})*x^2*ln(abs(x)) - (${fmtDec7(c / 4)})*x^2 + C`;
+        return {
+          expr: r, html: h, parts: [raw], termSteps: [],
+          customSteps: [
+            { head: "Áp dụng Tích phân từng phần (Nhất Lô — Nhì Đa)", body: `Đặt <span class="math-display">u = ln x ⇒ du = ${fracExprHTML("1","x")} dx</span> ; <span class="math-display">dv = ${fmtNum(c)}x dx ⇒ v = ${fmtNum(c / 2)}x²</span>.` },
+            { head: "Thế vào công thức ∫ u dv = uv − ∫ v du", body: `<div class="math-display">I = ${fmtNum(c / 2)}x²·ln|x| − ∫ ${fmtNum(c / 2)}x dx = <strong>${h}</strong></div>` }
+          ]
+        };
+      }
+      m = s.match(/^([+-]?\d*\.?\d*)\*?x\*?(?:e\^x|exp\(x\))$/i);
+      if (m) {
+        const c = (m[1] === "" || m[1] === "+") ? 1 : (m[1] === "-" ? -1 : parseFloat(m[1]));
+        const h = `${c < 0 ? "−" : ""}${_cleanCoefHTML(Math.abs(c), "(x − 1)e<sup>x</sup>")} + C`;
+        const r = `(${fmtDec7(c)})*(x - 1)*exp(x) + C`;
+        return {
+          expr: r, html: h, parts: [raw], termSteps: [],
+          customSteps: [
+            { head: "Áp dụng Tích phân từng phần (Nhì Đa — Tứ Mũ)", body: `Đặt <span class="math-display">u = ${fmtNum(c)}x ⇒ du = ${fmtNum(c)} dx</span> ; <span class="math-display">dv = e<sup>x</sup> dx ⇒ v = e<sup>x</sup></span>.` },
+            { head: "Thế vào công thức ∫ u dv = uv − ∫ v du", body: `<div class="math-display">I = ${fmtNum(c)}x·e<sup>x</sup> − ∫ ${fmtNum(c)}e<sup>x</sup> dx = <strong>${h}</strong></div>` }
+          ]
+        };
+      }
+      m = s.match(/^([+-]?\d*\.?\d*)\*?x\*?(sin|cos)\(x\)$/i);
+      if (m) {
+        const c = (m[1] === "" || m[1] === "+") ? 1 : (m[1] === "-" ? -1 : parseFloat(m[1])), trig = m[2].toLowerCase();
+        if (trig === "sin") {
+          const h = `${c >= 0 ? "−" : ""}${_cleanCoefHTML(Math.abs(c), "x·cos(x)")} ${c >= 0 ? "+" : "−"} ${_cleanCoefHTML(Math.abs(c), "sin(x)")} + C`;
+          const r = `(${fmtDec7(-c)})*x*cos(x) + (${fmtDec7(c)})*sin(x) + C`;
+          return {
+            expr: r, html: h, parts: [raw], termSteps: [],
+            customSteps: [
+              { head: "Áp dụng Tích phân từng phần (Nhì Đa — Tam Lượng)", body: `Đặt <span class="math-display">u = ${fmtNum(c)}x ⇒ du = ${fmtNum(c)} dx</span> ; <span class="math-display">dv = sin(x) dx ⇒ v = −cos(x)</span>.` },
+              { head: "Thế vào công thức ∫ u dv = uv − ∫ v du", body: `<div class="math-display">I = −${fmtNum(c)}x·cos(x) + ∫ ${fmtNum(c)}cos(x) dx = <strong>${h}</strong></div>` }
+            ]
+          };
+        } else {
+          const h = `${c < 0 ? "−" : ""}${_cleanCoefHTML(Math.abs(c), "x·sin(x)")} ${c >= 0 ? "+" : "−"} ${_cleanCoefHTML(Math.abs(c), "cos(x)")} + C`;
+          const r = `(${fmtDec7(c)})*x*sin(x) + (${fmtDec7(c)})*cos(x) + C`;
+          return {
+            expr: r, html: h, parts: [raw], termSteps: [],
+            customSteps: [
+              { head: "Áp dụng Tích phân từng phần (Nhì Đa — Tam Lượng)", body: `Đặt <span class="math-display">u = ${fmtNum(c)}x ⇒ du = ${fmtNum(c)} dx</span> ; <span class="math-display">dv = cos(x) dx ⇒ v = sin(x)</span>.` },
+              { head: "Thế vào công thức ∫ u dv = uv − ∫ v du", body: `<div class="math-display">I = ${fmtNum(c)}x·sin(x) − ∫ ${fmtNum(c)}sin(x) dx = <strong>${h}</strong></div>` }
+            ]
+          };
+        }
+      }
+      return null;
+    }
+
+    function symbolicAntiderivative(raw) {
+      const d = symbolicAntiderivativeDetailed(raw) || _advancedAntiderivativeDetailed(raw);
+      return d ? d.expr : null;
+    }
+
+    function _solveDirectEquationInCalc(raw) {
+      const idx = raw.indexOf("=");
+      if (idx < 0 || raw.indexOf("=", idx + 1) >= 0) return false;
+      const lhs = raw.slice(0, idx).trim(), rhs = raw.slice(idx + 1).trim();
+      if (!lhs || !rhs) return false;
+      const diffExpr = `(${lhs}) - (${rhs})`;
+      const eqHtml = `${renderMathHTML(lhs)} = ${renderMathHTML(rhs)}`;
+
+      // Case 1: Polynomial equation of degree 1..4 in x
+      const poly = _extractPolyCoefs(diffExpr, 4);
+      if (poly && poly.length >= 2) {
+        const deg = poly.length - 1;
+        const stdHtml = `${_formatPolyHTML(poly)} = 0`;
+        if (deg === 1) {
+          const [a, b] = poly, x0 = -b / a; lastAnsValue = x0;
+          showSolverOutput("COMP · PT BẬC 1", eqHtml, `x = ${fmtNum(x0)}`, "Giải phương trình bậc nhất",
+            `<div class="math-display text-2xl font-extrabold text-blue-700">x = ${fmtNum(x0)}</div>`,
+            [
+              { head: "Chuyển vế và rút gọn về dạng chuẩn ax + b = 0", body: `<div class="math-display">${eqHtml} ⇔ <strong>${stdHtml}</strong></div>` },
+              { head: "Cô lập ẩn x và tính nghiệm", body: `<div class="math-display">${fmtNum(a)}x = ${fmtNum(-b)} ⇔ x = ${fracExprHTML(fmtNum(-b), fmtNum(a))} = <strong class="text-blue-700">${fmtNum(x0)}</strong></div>` },
+              { head: "Kết luận", body: `Vậy phương trình có nghiệm duy nhất <strong class="math-display">S = { ${fmtNum(x0)} }</strong>.` }
+            ]);
+          return true;
+        }
+        if (deg === 2) {
+          const [a, b, c] = poly, D = b * b - 4 * a * c;
+          const S = -b / a, P = c / a;
+          const steps = [
+            { head: "Đưa phương trình về dạng chuẩn ax² + bx + c = 0", body: `<div class="math-display">${eqHtml} ⇔ <strong>${stdHtml}</strong> (a = ${fmtNum(a)}, b = ${fmtNum(b)}, c = ${fmtNum(c)})</div>` },
+            { head: "Tính biệt thức Δ = b² − 4ac", body: `<div class="math-display">Δ = (${fmtNum(b)})² − 4·(${fmtNum(a)})·(${fmtNum(c)}) = <strong>${fmtNum(D)}</strong></div>` }
+          ];
+          let ansHtml = "", lcdRes = "";
+          if (D > 1e-10) {
+            const x1 = (-b + Math.sqrt(D)) / (2 * a), x2 = (-b - Math.sqrt(D)) / (2 * a);
+            lastAnsValue = x1;
+            lcdRes = `x₁=${fmtNum(x1)}; x₂=${fmtNum(x2)}`;
+            ansHtml = `<div class="math-display text-xl font-extrabold text-blue-700">x₁ = ${fmtNum(x1)} &nbsp; ; &nbsp; x₂ = ${fmtNum(x2)}</div>`;
+            steps.push({ head: "Vì Δ > 0, phương trình có 2 nghiệm phân biệt", body: `<div class="math-display">x₁ = ${fracExprHTML(`−(${fmtNum(b)}) + ${sqrtHTML(fmtNum(D))}`, `2·(${fmtNum(a)})`)} = <strong>${fmtNum(x1)}</strong> &nbsp; ; &nbsp; x₂ = ${fracExprHTML(`−(${fmtNum(b)}) − ${sqrtHTML(fmtNum(D))}`, `2·(${fmtNum(a)})`)} = <strong>${fmtNum(x2)}</strong></div>` });
+            steps.push({ head: "Kiểm tra theo Hệ thức Vi-ét (Lớp 9)", body: `<div class="math-display">S = x₁ + x₂ = −${fracExprHTML("b","a")} = <strong>${fmtNum(S)}</strong> &nbsp; ; &nbsp; P = x₁·x₂ = ${fracExprHTML("c","a")} = <strong>${fmtNum(P)}</strong></div>` });
+          } else if (Math.abs(D) <= 1e-10) {
+            const x0 = -b / (2 * a); lastAnsValue = x0;
+            lcdRes = `x = ${fmtNum(x0)} (kép)`;
+            ansHtml = `<div class="math-display text-xl font-extrabold text-blue-700">x₁ = x₂ = ${fmtNum(x0)} (nghiệm kép)</div>`;
+            steps.push({ head: "Vì Δ = 0, phương trình có nghiệm kép", body: `<div class="math-display">x₁ = x₂ = −${fracExprHTML("b","2a")} = <strong>${fmtNum(x0)}</strong></div>` });
+          } else {
+            const re = -b / (2 * a), im = Math.sqrt(-D) / (2 * Math.abs(a));
+            lcdRes = "Vô nghiệm thực";
+            ansHtml = `<div class="space-y-1"><div class="text-sm font-bold text-rose-600">Vô nghiệm trên ℝ</div><div class="math-display text-sm text-indigo-700">Trên ℂ: x = ${fmtNum(re)} ± ${fmtNum(im)}i</div></div>`;
+            steps.push({ head: "Vì Δ < 0, kết luận tập nghiệm", body: `Phương trình <strong>vô nghiệm thực</strong> (nghiệm phức: <span class="math-display">x = ${fmtNum(re)} ± ${fmtNum(im)}i</span>).` });
+          }
+          showSolverOutput("COMP · PT BẬC 2", eqHtml, lcdRes, "Giải phương trình bậc 2", ansHtml, steps);
+          return true;
+        }
+        // Degree 3 or 4
+        const roots = solvePolyRootsAll(poly);
+        const reals = roots.filter(r => Math.abs(r.im) < 1e-5);
+        if (reals.length) lastAnsValue = reals[0].re;
+        const rootListHtml = roots.map((r, i) => Math.abs(r.im) < 1e-5 ? `x<sub>${i+1}</sub> = <strong>${fmtNum(r.re)}</strong>` : `x<sub>${i+1}</sub> = <strong>${fmtNum(r.re)} ${r.im>=0?"+":"−"} ${fmtNum(Math.abs(r.im))}i</strong>`).join(" &nbsp; ; &nbsp; ");
+        const factorStr = reals.map(r => Math.abs(r.re) < 1e-7 ? "x" : `(x ${r.re > 0 ? "−" : "+"} ${fmtNum(Math.abs(r.re))})`).join("");
+        showSolverOutput(`COMP · PT BẬC ${deg}`, eqHtml, reals.length ? `x₁=${fmtNum(reals[0].re)}` : "Nghiệm phức", `Giải phương trình bậc ${deg}`,
+          `<div class="math-display text-lg font-extrabold text-blue-700">${rootListHtml}</div>`,
+          [
+            { head: `Đưa phương trình về dạng đa thức bậc ${deg}`, body: `<div class="math-display">${eqHtml} ⇔ <strong>${stdHtml}</strong></div>` },
+            { head: "Phân tích nhân tử / Giải nghiệm đa thức", body: `${reals.length === deg ? `<div class="math-display">${stdHtml} ⇔ ${Math.abs(poly[0]-1)<1e-7?"":fmtNum(poly[0])}${factorStr} = 0</div>` : `Tìm được <strong>${reals.length}</strong> nghiệm thực và <strong>${deg - reals.length}</strong> nghiệm phức.`}` },
+            { head: "Kết luận tập nghiệm", body: `<div class="math-display">${rootListHtml}</div>` }
+          ]);
+        return true;
+      }
+
+      // Case 2: Basic Trig equation sin(x)=m, cos(x)=m, tan(x)=m
+      const cleanS = raw.replace(/\s+/g, "");
+      const tm = cleanS.match(/^(sin|cos|tan)\(([^)]+)\)=([+-]?\d*\.?\d+(?:\/\d+\.?\d*)?)$/i);
+      if (tm) {
+        const fnName = tm[1].toLowerCase(), inner = tm[2], rhsFn = compileExpression(tm[3]);
+        const mVal = rhsFn ? rhsFn(0) : NaN;
+        if (Number.isFinite(mVal)) {
+          if ((fnName === "sin" || fnName === "cos") && Math.abs(mVal) > 1 + 1e-9) {
+            showSolverOutput("PT LƯỢNG GIÁC", eqHtml, "Vô nghiệm", "Giải phương trình lượng giác", `<div class="text-rose-600 font-bold">Vô nghiệm vì |${fmtNum(mVal)}| &gt; 1</div>`, [
+              { head: "Kiểm tra điều kiện có nghiệm (SGK Toán 11)", body: `Vì |${fnName}(u)| ≤ 1 với mọi u ∈ ℝ mà vế phải = <strong>${fmtNum(mVal)}</strong> (|m| &gt; 1), nên phương trình <strong>vô nghiệm</strong>.` }
+            ]);
+            return true;
+          }
+          const alpha = fnName === "sin" ? Math.asin(mVal) : (fnName === "cos" ? Math.acos(mVal) : Math.atan(mVal));
+          const aHtml = fmtNum(alpha);
+          let famHtml = "";
+          if (fnName === "sin") famHtml = `${renderMathHTML(inner)} = ${aHtml} + k2π &nbsp; hoặc &nbsp; ${renderMathHTML(inner)} = π − (${aHtml}) + k2π &nbsp; (k ∈ ℤ)`;
+          else if (fnName === "cos") famHtml = `${renderMathHTML(inner)} = ±(${aHtml}) + k2π &nbsp; (k ∈ ℤ)`;
+          else famHtml = `${renderMathHTML(inner)} = ${aHtml} + kπ &nbsp; (k ∈ ℤ)`;
+          showSolverOutput("PT LƯỢNG GIÁC", eqHtml, `α = ${aHtml}`, "Giải phương trình lượng giác cơ bản",
+            `<div class="math-display text-base font-extrabold text-blue-700">${famHtml}</div>`,
+            [
+              { head: "Nhận dạng phương trình lượng giác cơ bản (SGK Toán 11)", body: `<div class="math-display">${eqHtml}</div>` },
+              { head: "Tìm góc cơ bản α", body: `<div class="math-display">${fnName}(α) = ${fmtNum(mVal)} ⇒ α = <strong>${aHtml}</strong> rad (≈ ${(alpha * 180 / Math.PI).toFixed(2)}°)</div>` },
+              { head: "Viết họ nghiệm tổng quát", body: `<div class="math-display font-bold text-blue-700">${famHtml}</div>` }
+            ]);
+          return true;
+        }
+      }
+
+      // Case 3: General 1-variable numerical equation solver f(x) = g(x)
+      const fn = compileExpression(diffExpr);
+      if (!fn) return false;
+      const found = [];
+      const scanPts = 1200, lo = -50, hi = 50, step = (hi - lo) / scanPts;
+      let prevX = lo, prevY = fn(lo);
+      for (let i = 1; i <= scanPts; i++) {
+        const cx = lo + i * step, cy = fn(cx);
+        if (Number.isFinite(prevY) && Number.isFinite(cy)) {
+          if (Math.abs(cy) < 1e-10) {
+            if (!found.some(r => Math.abs(r - cx) < 1e-3)) found.push(cx);
+          } else if (prevY * cy < 0) {
+            let a = prevX, b = cx, fa = prevY;
+            for (let it = 0; it < 60; it++) {
+              const mid = 0.5 * (a + b), fm = fn(mid);
+              if (!Number.isFinite(fm)) break;
+              if (fa * fm <= 0) b = mid; else { a = mid; fa = fm; }
+            }
+            const r = 0.5 * (a + b);
+            if (Math.abs(fn(r)) < 1e-4 && !found.some(v => Math.abs(v - r) < 1e-3)) found.push(Math.abs(r) < 1e-9 ? 0 : r);
+          }
+        }
+        prevX = cx; prevY = cy;
+      }
+      if (found.length) {
+        lastAnsValue = found[0];
+        const lFn = compileExpression(lhs), rFn = compileExpression(rhs);
+        const listH = found.slice(0, 6).map((r, i) => `x<sub>${i+1}</sub> = <strong>${fmtNum(r)}</strong>`).join(" &nbsp; ; &nbsp; ");
+        const checkLines = found.slice(0, 4).map(r => `• Với x = <strong>${fmtNum(r)}</strong>: VT = ${fmtNum(lFn(r))}, VP = ${fmtNum(rFn(r))} (Thỏa mãn)`).join("<br/>");
+        showSolverOutput("COMP · SOLVE", eqHtml, `x = ${fmtNum(found[0])}`, "Giải phương trình f(x) = g(x)",
+          `<div class="math-display text-lg font-extrabold text-blue-700">${listH}</div>`,
+          [
+            { head: "Chuyển vế đặt hàm số F(x) = VT − VP", body: `<div class="math-display">F(x) = (${renderMathHTML(lhs)}) − (${renderMathHTML(rhs)}) = 0</div>` },
+            { head: "Dò nghiệm chính xác trên khoảng [−50; 50]", body: `Tìm được <strong>${found.length}</strong> nghiệm thực: <span class="math-display">${listH}</span>.` },
+            { head: "Thử lại nghiệm vào phương trình ban đầu", body: checkLines }
+          ]);
+        return true;
+      }
+      showSolverOutput("COMP · SOLVE", eqHtml, "Không thấy nghiệm", "Giải phương trình f(x) = g(x)",
+        `<div class="text-amber-700 font-semibold">Không tìm thấy nghiệm thực trên [−50; 50].</div>`,
+        [{ head: "Kiểm tra miền xác định & đồ thị", body: `Bạn có thể bấm <strong>📈 Đồ thị</strong> để quan sát giao điểm hai vế trên hệ trục Oxy.` }]);
+      return true;
+    }
 
     function solveCalc() {
       const raw = document.getElementById("calc-expr").value.trim(), mHtml = renderMathHTML(raw);
+      if (!raw) return;
+      if (casioCalcHistory[casioCalcHistory.length - 1] !== raw) {
+        casioCalcHistory.push(raw);
+        if (casioCalcHistory.length > 30) casioCalcHistory.shift();
+      }
+      casioHistIdx = -1;
       if (isImplicitEquation(raw)) {
         showSolverOutput("COMP · PT ẨN", mHtml, "Bấm 📈 Xem đồ thị", "Phương trình đường cong", `<div class="space-y-1.5"><div class="math-display text-xl font-extrabold text-blue-700">${mHtml}</div><div class="text-xs text-slate-600">Bấm nút <strong>📈 Xem đồ thị 2D ↗</strong> ở trên để vẽ ngay hình tròn, elip, hyperbol hoặc đường thẳng!</div></div>`, [{ head:"Nhận dạng phương trình", body:`Phương trình chứa biến (x, y): <span class="math-display">${mHtml}</span>. Chuyển sang Đồ thị 2D để xem đường cong.` }]);
         return;
       }
+      const ineqM = raw.match(/^(.+?)(>=|<=|≥|≤|>|<)(.+)$/);
+      if (ineqM) {
+        const opMap = { ">": "gt", "<": "lt", ">=": "ge", "≥": "ge", "<=": "le", "≤": "le" };
+        const diffPoly = _extractPolyCoefs(`(${ineqM[1].trim()}) - (${ineqM[3].trim()})`, 4);
+        if (diffPoly && diffPoly.length >= 2) {
+          _solvePolyInequalityCore(diffPoly, opMap[ineqM[2]], `Giải Bất phương trình (${renderMathHTML(raw)})`);
+          return;
+        }
+      }
+      if (raw.includes("=") && _solveDirectEquationInCalc(raw)) return;
       const fn = compileExpression(raw);
       if (!fn) { showSolverOutput("COMP", mHtml, "Syntax ERROR", "Lỗi cú pháp", `<span class="text-rose-600">Biểu thức chưa hợp lệ.</span>`, []); return; }
       const val = fn(0); lastAnsValue = val; const outHtml = fmtNum(val);
@@ -2901,27 +3802,32 @@
     function solveDerivative() {
       const raw=document.getElementById("deriv-expr").value, x0=parseFloat(document.getElementById("deriv-x0").value)||0, fn=compileExpression(raw);
       if (!fn) { showSolverOutput("d/dx", "", "Syntax ERROR", "Đạo hàm d/dx", `<span class="text-rose-600">Biểu thức chưa hợp lệ.</span>`, []); return; }
-      const h=1e-6, y0=fn(x0), slope=(fn(x0+h)-fn(x0-h))/(2*h), sHtml=fmtNum(slope); lastAnsValue = slope;
+      const h=1e-5, y0=fn(x0), slope=(fn(x0+h)-fn(x0-h))/(2*h), sHtml=fmtNum(slope); lastAnsValue = slope;
+      const d2Val = (fn(x0+h) - 2*y0 + fn(x0-h)) / (h*h);
+      const d2Html = Number.isFinite(d2Val) ? fmtNum(d2Val) : "—";
       const bTan = y0 - slope * x0, symD = symbolicDerivativeDetailed(raw);
-      const ansHtml = `<div class="space-y-1">${symD ? `<div class="math-display text-lg font-bold text-indigo-700">f'(x) = ${symD.formulaHtml}</div>` : ""}<div class="math-display text-2xl font-extrabold text-blue-700">f'(${fmtNum(x0)}) = ${sHtml}</div></div>`;
+      const ansHtml = `<div class="space-y-1">${symD ? `<div class="math-display text-lg font-bold text-indigo-700">f'(x) = ${symD.formulaHtml}</div>` : ""}<div class="math-display text-2xl font-extrabold text-blue-700">f'(${fmtNum(x0)}) = ${sHtml}</div><div class="text-xs text-slate-600 font-semibold">Đạo hàm cấp 2: <span class="math-display text-violet-700">f''(${fmtNum(x0)}) = ${d2Html}</span></div></div>`;
       const steps = [
         { head:"Hàm số & điểm cần tính đạo hàm", body:`<div class="math-display">f(x) = ${renderMathHTML(raw)} tại x₀ = <strong>${fmtNum(x0)}</strong></div>` }
       ];
-      if (symD) steps.push({ head:"Tính đạo hàm f'(x) theo bảng công thức đạo hàm", body:`<div class="space-y-1">${symD.steps.join("")}</div><div class="math-display mt-1">⇒ f'(x) = <strong>${symD.formulaHtml}</strong></div>` });
-      steps.push({ head:"Thế x₀ vào f'(x) và tính tung độ y₀ = f(x₀)", body:`<div class="math-display">• f'(${fmtNum(x0)}) = <strong class="text-blue-700">${sHtml}</strong> &nbsp; ; &nbsp; y₀ = f(${fmtNum(x0)}) = <strong>${fmtNum(y0)}</strong></div>` });
+      if (symD) steps.push({ head:"Tính đạo hàm f'(x) theo bảng công thức đạo hàm (SGK Toán 11)", body:`<div class="space-y-1">${symD.steps.join("")}</div><div class="math-display mt-1">⇒ f'(x) = <strong>${symD.formulaHtml}</strong></div>` });
+      steps.push({ head:"Thế x₀ vào f'(x), f''(x) và tính tung độ y₀ = f(x₀)", body:`<div class="math-display">• f'(${fmtNum(x0)}) = <strong class="text-blue-700">${sHtml}</strong> &nbsp; ; &nbsp; f''(${fmtNum(x0)}) = <strong class="text-violet-700">${d2Html}</strong> &nbsp; ; &nbsp; y₀ = f(${fmtNum(x0)}) = <strong>${fmtNum(y0)}</strong></div>` });
       steps.push({ head:"Viết phương trình tiếp tuyến tại M(x₀; y₀)", body:`<div class="math-display">y = f'(x₀)(x − x₀) + y₀ = <strong>${sHtml}x ${bTan>=0?"+":"−"} ${fmtNum(Math.abs(bTan))}</strong></div>` });
-      showSolverOutput("d/dx","",`= ${sHtml}`,"Đạo hàm hàm số & tại điểm", ansHtml, steps);
+      showSolverOutput("d/dx","",`= ${sHtml}`,"Đạo hàm cấp 1, cấp 2 & Tiếp tuyến", ansHtml, steps);
     }
     function solveIntegral() {
-      const raw=document.getElementById("int-expr").value, det=symbolicAntiderivativeDetailed(raw), anti=det?det.expr:null;
+      const raw=document.getElementById("int-expr").value, det=symbolicAntiderivativeDetailed(raw) || _advancedAntiderivativeDetailed(raw), anti=det?det.expr:null;
       if (intKind==="indef") {
         const ansHtml = det ? `<div class="math-display text-xl font-extrabold text-blue-700">F(x) = ${det.html}</div>` : `<div class="text-xs text-amber-800">Hàm chưa có nguyên hàm sơ cấp đơn giản — chuyển sang <strong>∫ₐᵇ Tích phân xác định</strong> hoặc <strong>🌀 Xoay 3D</strong>!</div>`;
-        const steps = det ? [
+        const steps = det ? (det.customSteps && det.customSteps.length ? [
+          ...det.customSteps,
+          { head:"Kết luận họ nguyên hàm (+C)", body:`Vậy họ nguyên hàm cần tìm là: ${ansHtml}` }
+        ] : [
           { head:"Tách nguyên hàm của tổng/hiệu thành từng hạng tử", body:`<div class="math-display">∫ (${renderMathHTML(raw)}) dx = ${det.parts.map((pt,i)=>`${i>0&&!pt.startsWith("-")?" + ":""}∫ ${renderMathHTML(pt)} dx`).join(" ")}</div>` },
           { head:"Tính nguyên hàm chi tiết từng hạng tử theo bảng nguyên hàm", body:`<div class="space-y-1">${det.termSteps.join("")}</div>` },
           { head:"Gộp kết quả & cộng hằng số tích phân C", body:`Vậy họ nguyên hàm cần tìm là: ${ansHtml}` }
-        ] : [
-          { head:"Nhận xét hàm dưới dấu tích phân", body:`Biểu thức <span class="math-display">${renderMathHTML(raw)}</span> không thuộc dạng tổng các hạng tử cơ bản đơn giản. Bạn có thể chuyển sang <strong>∫ₐᵇ Tích phân xác định</strong> để tính giá trị chính xác theo cận.` }
+        ]) : [
+          { head:"Nhận xét hàm dưới dấu tích phân", body:`Biểu thức <span class="math-display">${renderMathHTML(raw)}</span> không thuộc dạng nguyên hàm sơ cấp cơ bản. Bạn có thể chuyển sang <strong>∫ₐᵇ Tích phân xác định</strong> để tính giá trị chính xác theo cận.` }
         ];
         showSolverOutput("∫ NGUYÊN HÀM (+C)", "", anti?"F(x) + C":"Dùng cận", "Nguyên hàm không xác định", ansHtml, steps);
       } else {
@@ -2933,7 +3839,12 @@
         ];
         if (det) {
           const antiNoC = anti.replace(/\s*\+\s*C$/i, "");
-          steps.push({ head:"Tìm một nguyên hàm F(x) chi tiết", body:`<div class="space-y-1">${det.termSteps.join("")}</div><div class="math-display mt-1">⇒ F(x) = <strong>${det.html.replace(/\s*\+\s*C$/i,"")}</strong></div>` });
+          if (det.customSteps && det.customSteps.length) {
+            det.customSteps.forEach(cs => steps.push(cs));
+            steps.push({ head:"Một nguyên hàm F(x)", body:`<div class="math-display">⇒ F(x) = <strong>${det.html.replace(/\s*\+\s*C$/i,"")}</strong></div>` });
+          } else {
+            steps.push({ head:"Tìm một nguyên hàm F(x) chi tiết", body:`<div class="space-y-1">${det.termSteps.join("")}</div><div class="math-display mt-1">⇒ F(x) = <strong>${det.html.replace(/\s*\+\s*C$/i,"")}</strong></div>` });
+          }
           const fAnti = compileExpression(antiNoC.replace(/ln\|x\|/gi, "ln(abs(x))"));
           if (fAnti) {
             const fb = fAnti(b), fa = fAnti(a);
@@ -2985,10 +3896,17 @@
           const n0 = numFn ? numFn(aVal) : NaN, d0 = denFn ? denFn(aVal) : NaN;
           const is00 = Number.isFinite(n0) && Number.isFinite(d0) && Math.abs(n0) < 1e-6 && Math.abs(d0) < 1e-6;
           if (is00 && numFn && denFn) {
-            const h = 1e-6, np = (numFn(aVal+h)-numFn(aVal-h))/(2*h), dp = (denFn(aVal+h)-denFn(aVal-h))/(2*h);
+            const h = 1e-5, np = (numFn(aVal+h)-numFn(aVal-h))/(2*h), dp = (denFn(aVal+h)-denFn(aVal-h))/(2*h);
+            const hasVCB = Math.abs(aVal) < 1e-9 && /(sin|tan|ln|exp|e\^|cos)/i.test(raw);
+            const hasSqrt = /sqrt/i.test(raw);
+            const vcbHint = hasVCB ? ` (Gợi ý VCB tương đương khi x → 0: sin u ~ u, tan u ~ u, ln(1+u) ~ u, e<sup>u</sup>−1 ~ u, 1−cos u ~ u²/2)` : (hasSqrt ? ` (Nhân lượng liên hợp để khử căn thức)` : "");
+            const need2nd = Math.abs(np) < 1e-4 && Math.abs(dp) < 1e-4;
+            const np2 = (numFn(aVal+h)-2*numFn(aVal)+numFn(aVal-h))/(h*h), dp2 = (denFn(aVal+h)-2*denFn(aVal)+denFn(aVal-h))/(h*h);
             steps = [
-              { head:`Xác định dạng vô định tại x = ${fmtNum(aVal)}`, body:`Thay <span class="math-display">x = ${fmtNum(aVal)}</span> vào tử và mẫu ta được dạng vô định <span class="math-display">${fracExprHTML("0","0")}</span> (do tử và mẫu cùng có nhân tử chung <span class="math-display">(x ${aVal>=0?"−":"+"} ${fmtNum(Math.abs(aVal))})</span>).` },
-              { head:"Khử dạng vô định (Phân tích nhân tử / Quy tắc L'Hôpital)", body:`Rút gọn nhân tử chung <span class="math-display">(x ${aVal>=0?"−":"+"} ${fmtNum(Math.abs(aVal))})</span> hoặc lấy đạo hàm tử và mẫu tại <span class="math-display">x = ${fmtNum(aVal)}</span>:<br/><span class="math-display">L = ${fracExprHTML(`P'(${fmtNum(aVal)})`, `Q'(${fmtNum(aVal)})`)} = ${fracExprHTML(fmtNum(np), fmtNum(dp))} = <strong>${ans}</strong></span>` },
+              { head:`Xác định dạng vô định tại x = ${fmtNum(aVal)}`, body:`Thay <span class="math-display">x = ${fmtNum(aVal)}</span> vào tử và mẫu đều bằng 0 ⇒ dạng vô định <span class="math-display">${fracExprHTML("0","0")}</span>.${vcbHint}` },
+              { head: need2nd ? "Khử dạng vô định bằng Quy tắc L'Hôpital bậc 2" : "Khử dạng vô định (Nhân tử chung / VCB tương đương / L'Hôpital)", body: need2nd
+                ? `Lần 1 vẫn còn dạng 0/0 (P'(${fmtNum(aVal)}) = Q'(${fmtNum(aVal)}) = 0), lấy đạo hàm cấp 2:<br/><span class="math-display">L = ${fracExprHTML(`P''(${fmtNum(aVal)})`, `Q''(${fmtNum(aVal)})`)} = ${fracExprHTML(fmtNum(np2), fmtNum(dp2))} = <strong>${ans}</strong></span>`
+                : `Áp dụng quy tắc L'Hôpital (hoặc rút gọn nhân tử / VCB tương đương) tại <span class="math-display">x = ${fmtNum(aVal)}</span>:<br/><span class="math-display">L = ${fracExprHTML(`P'(${fmtNum(aVal)})`, `Q'(${fmtNum(aVal)})`)} = ${fracExprHTML(fmtNum(np), fmtNum(dp))} = <strong>${ans}</strong></span>` },
               { head:"Kết luận", body:`Vậy <span class="math-display font-bold text-blue-700">lim<sub>x→${fmtNum(aVal)}</sub> ${fHtml} = ${ans}</span>.` }
             ];
           } else {
@@ -3163,8 +4081,136 @@
             { head:"Công thức Môđun |z₁|", body:`<div class="math-display">|z₁| = ${sqrtHTML(`(${fmtNum(a)})<sup>2</sup> + (${fmtNum(b)})<sup>2</sup>`)} = ${sqrtHTML(fmtNum(a*a+b*b))} = <strong>${fmtNum(m1)}</strong></div>` }
           ]);
     }
+    let ineqDeg = 2, ineqOp = "gt";
+    const ineqDefaults = { 2: [1, -3, 2], 3: [1, -6, 11, -6], 4: [1, 0, -5, 0, 4] };
+    function buildIneqInputs() {
+      const grid = document.getElementById("ineq-coef-grid");
+      if (!grid) return;
+      const labels = ineqDeg === 2 ? ["a (x²)", "b (x)", "c"] : (ineqDeg === 3 ? ["a (x³)", "b (x²)", "c (x)", "d"] : ["a (x⁴)", "b (x³)", "c (x²)", "d (x)", "e"]);
+      const defs = ineqDefaults[ineqDeg];
+      grid.className = `grid grid-cols-${ineqDeg + 1} gap-1`;
+      grid.innerHTML = labels.map((lb, i) => `<div><label class="block text-[8.5px] text-neutral-400 text-center">${lb}</label><input id="ineq-c${i}" type="text" inputmode="none" readonly value="${defs[i]}" class="casio-target w-full px-1 py-1 rounded bg-neutral-950 border border-neutral-700 font-mono-math text-white text-center text-xs cursor-pointer" /></div>`).join("");
+      bindCasioTargets();
+      if (activeSolverMode === "inequality") setActiveCasioInput(document.getElementById("ineq-c0"));
+    }
+    function readIneqCoefs() { return Array.from({ length: ineqDeg + 1 }, (_, i) => parseFloat(document.getElementById(`ineq-c${i}`)?.value) || 0); }
+
+    function _solvePolyInequalityCore(cs, op, titleOverride = null) {
+      const OP_SYM = { gt: ">", lt: "<", ge: "≥", le: "≤" };
+      const sym = OP_SYM[op] || ">";
+      const wantPos = (op === "gt" || op === "ge");
+      const inclusive = (op === "ge" || op === "le");
+      const polyClean = cs.slice();
+      while (polyClean.length > 1 && Math.abs(polyClean[0]) < 1e-11) polyClean.shift();
+      const deg = polyClean.length - 1;
+      const fHtml = _formatPolyHTML(polyClean);
+      const ineqHtml = `${fHtml} ${sym} 0`;
+
+      if (deg <= 0) {
+        const c0 = polyClean[0] || 0;
+        const ok = (op === "gt" && c0 > 0) || (op === "lt" && c0 < 0) || (op === "ge" && c0 >= 0) || (op === "le" && c0 <= 0);
+        const res = ok ? "∀x ∈ ℝ" : "Vô nghiệm (S = ∅)";
+        showSolverOutput("BPT", ineqHtml, res, titleOverride || "Giải Bất phương trình", `<div class="math-display text-xl font-extrabold text-blue-700">${res}</div>`, [
+          { head: "Xét hằng số", body: `Biểu thức luôn bằng <strong>${fmtNum(c0)}</strong> ⇒ bất phương trình ${ok ? "luôn đúng với mọi x ∈ ℝ" : "vô nghiệm"}.` }
+        ]);
+        return;
+      }
+
+      // Find all real roots and group by multiplicity
+      const allRoots = solvePolyRootsAll(polyClean);
+      const realRaw = allRoots.filter(r => Math.abs(r.im) < 1e-4).map(r => r.re).sort((a, b) => a - b);
+      const rootGroups = []; // { val, mult }
+      for (const r of realRaw) {
+        if (rootGroups.length && Math.abs(r - rootGroups[rootGroups.length - 1].val) < 1e-3) {
+          const g = rootGroups[rootGroups.length - 1];
+          g.val = (g.val * g.mult + r) / (g.mult + 1);
+          g.mult++;
+        } else {
+          rootGroups.push({ val: Math.abs(r) < 1e-9 ? 0 : r, mult: 1 });
+        }
+      }
+
+      // Evaluate sign on every interval (-inf, r0), (r0, r1), ..., (r_{k-1}, +inf)
+      const bounds = [-Infinity, ...rootGroups.map(g => g.val), Infinity];
+      const intSigns = [];
+      for (let i = 0; i < bounds.length - 1; i++) {
+        const lo = bounds[i], hi = bounds[i + 1];
+        const tx = !Number.isFinite(lo) && !Number.isFinite(hi) ? 0 : (!Number.isFinite(lo) ? hi - 1 : (!Number.isFinite(hi) ? lo + 1 : 0.5 * (lo + hi)));
+        const v = _polyEvalR(polyClean, tx);
+        intSigns.push(v >= 0 ? "+" : "−");
+      }
+
+      // Build solution intervals (merging adjacent qualifying intervals when inclusive!)
+      const fmtR = v => fmtNum(v, { allowPi: false, allowLn: false, compact: exactMode });
+      const segs = []; // { lo, hi, loInc, hiInc }
+      for (let i = 0; i < intSigns.length; i++) {
+        const ok = wantPos ? (intSigns[i] === "+") : (intSigns[i] === "−");
+        if (ok) {
+          const lo = bounds[i], hi = bounds[i + 1];
+          const loInc = inclusive && Number.isFinite(lo);
+          const hiInc = inclusive && Number.isFinite(hi);
+          if (segs.length && Math.abs(segs[segs.length - 1].hi - lo) < 1e-9 && segs[segs.length - 1].hiInc && loInc) {
+            segs[segs.length - 1].hi = hi;
+            segs[segs.length - 1].hiInc = hiInc;
+          } else {
+            segs.push({ lo, hi, loInc, hiInc });
+          }
+        }
+      }
+      // Isolated points where f(r) = 0 when inclusive and not covered by any interval
+      const isolated = [];
+      if (inclusive) {
+        for (const g of rootGroups) {
+          const covered = segs.some(s => (g.val > s.lo - 1e-8 && g.val < s.hi + 1e-8) && ((g.val > s.lo + 1e-8 || s.loInc) && (g.val < s.hi - 1e-8 || s.hiInc)));
+          if (!covered) isolated.push(g.val);
+        }
+      }
+
+      let solHtml = "", lcdSol = "";
+      if (segs.length === 1 && segs[0].lo === -Infinity && segs[0].hi === Infinity) {
+        solHtml = "S = ℝ (mọi x ∈ ℝ)"; lcdSol = "∀x ∈ ℝ";
+      } else if (!segs.length && !isolated.length) {
+        solHtml = "S = ∅ (Vô nghiệm)"; lcdSol = "Vô nghiệm (∅)";
+      } else {
+        const parts = segs.map(s => {
+          const lBr = s.loInc ? "[" : "(", rBr = s.hiInc ? "]" : ")";
+          const lTxt = s.lo === -Infinity ? "−∞" : fmtR(s.lo);
+          const rTxt = s.hi === Infinity ? "+∞" : fmtR(s.hi);
+          return `${lBr}${lTxt}; ${rTxt}${rBr}`;
+        });
+        if (isolated.length) parts.push(`{ ${isolated.map(fmtR).join("; ")} }`);
+        solHtml = `x ∈ ${parts.join(" ∪ ")}`;
+        lcdSol = parts.length <= 2 ? parts.join(" ∪ ") : `${parts.length} khoảng nghiệm`;
+      }
+
+      // Build aligned HTML Sign Table (Bảng xét dấu)
+      const xCols = ["−∞", ...rootGroups.flatMap(g => ["", fmtR(g.val)]), "", "+∞"];
+      const sCols = ["", ...intSigns.flatMap((sg, i) => i < rootGroups.length ? [`<span class="font-extrabold text-sm ${sg==="+"?"text-emerald-600":"text-rose-600"}">${sg}</span>`, `<span class="font-bold text-slate-900">0</span>`] : [`<span class="font-extrabold text-sm ${sg==="+"?"text-emerald-600":"text-rose-600"}">${sg}</span>`]), ""];
+      const signTableHtml = `<div class="overflow-x-auto mt-1"><table class="w-full border-collapse text-center text-xs bg-white rounded-lg overflow-hidden border border-slate-300">
+        <tr class="border-b border-slate-300 bg-slate-100"><th class="px-2 py-1.5 border-r border-slate-300 italic font-serif w-12">x</th>${xCols.map(c => `<td class="px-1.5 py-1.5 align-middle"><span class="math-display inline-flex items-center justify-center">${c}</span></td>`).join("")}</tr>
+        <tr><th class="px-2 py-1.5 border-r border-slate-300 italic font-serif w-12">f(x)</th>${sCols.map(c => `<td class="px-1.5 py-1.5 align-middle">${c}</td>`).join("")}</tr>
+      </table></div>`;
+
+      const rootSummary = rootGroups.length
+        ? rootGroups.map((g, i) => `x<sub>${i+1}</sub> = <strong>${fmtR(g.val)}</strong>${g.mult > 1 ? ` <span class="text-[10px] text-amber-700">(bội ${g.mult})</span>` : ""}`).join(" &nbsp;;&nbsp; ")
+        : "Phương trình f(x) = 0 <strong>vô nghiệm thực</strong> ⇒ f(x) luôn cùng dấu với hệ số bậc cao nhất a = " + fmtR(polyClean[0]);
+
+      showSolverOutput(`BPT BẬC ${deg}`, ineqHtml, lcdSol, titleOverride || `Giải Bất phương trình bậc ${deg}`,
+        `<div class="math-display text-lg sm:text-xl font-extrabold text-blue-700">${solHtml}</div>`,
+        [
+          { head: `Xét đa thức vế trái f(x) ${sym} 0`, body: `<div class="math-display">f(x) = <strong>${fHtml}</strong> &nbsp; (cần tìm x sao cho f(x) ${sym} 0)</div>` },
+          { head: "Tìm các nghiệm thực và bội nghiệm của f(x) = 0", body: `<div>${rootSummary}</div>` },
+          { head: "Lập Bảng xét dấu f(x) (đan dấu qua nghiệm bội lẻ, giữ dấu qua nghiệm bội chẵn)", body: signTableHtml },
+          { head: "Kết luận tập nghiệm dạng khoảng", body: `Chọn các khoảng có dấu <strong>${wantPos ? "+" : "−"}</strong>${inclusive ? " (lấy cả điểm làm f(x) = 0)" : " (không lấy điểm làm f(x) = 0)"}:<br/><div class="math-display text-base font-extrabold text-blue-700 mt-0.5">${solHtml}</div>` }
+        ]);
+    }
+
+    function solveInequality() {
+      _solvePolyInequalityCore(readIneqCoefs(), ineqOp, `Giải Bất phương trình bậc ${ineqDeg}`);
+    }
+
     function triggerActiveSolve() {
-      const map={calc:solveCalc,quadratic:solveQuadratic,system2:solveSystem2,derivative:solveDerivative,integral:solveIntegral,limit:solveLimit,sequence:solveSequence,matrix:solveMatrix,stats:solveStats,complex:solveComplex,sigma:solveSigma};
+      const map={calc:solveCalc,quadratic:solveQuadratic,inequality:solveInequality,system2:solveSystem2,derivative:solveDerivative,integral:solveIntegral,limit:solveLimit,sequence:solveSequence,matrix:solveMatrix,stats:solveStats,complex:solveComplex,sigma:solveSigma};
       if(map[activeSolverMode]) map[activeSolverMode]();
     }
 
@@ -3189,15 +4235,44 @@
 
       const slots = getModeSlots(activeSolverMode);
       if (k === "DPAD_LEFT" || k === "DPAD_RIGHT" || k === "DPAD_UP" || k === "DPAD_DOWN") {
-        if (slots.length > 1) {
-          const curIdx = Math.max(0, slots.indexOf(lastFocusedCasioInput?.id || slots[0]));
-          const dir = (k === "DPAD_RIGHT" || k === "DPAD_DOWN") ? 1 : -1;
-          setActiveCasioInput(document.getElementById(slots[(curIdx + dir + slots.length) % slots.length]));
-        } else {
-          const idx = (solverModesOrder.indexOf(activeSolverMode) + (k==="DPAD_DOWN"||k==="DPAD_RIGHT"?1:solverModesOrder.length-1)) % solverModesOrder.length;
-          switchSolverMode(solverModesOrder[idx]);
+        let cur = lastFocusedCasioInput;
+        if (!cur || (slots.length && !slots.includes(cur.id))) cur = slots.length ? document.getElementById(slots[0]) : null;
+        if (k === "DPAD_LEFT") {
+          if (cur && stepCasioCursorLeft(cur)) { renderInteractiveLCD(); return; }
+          if (slots.length > 1) {
+            const curIdx = Math.max(0, slots.indexOf(cur?.id || slots[0]));
+            const prevEl = document.getElementById(slots[(curIdx - 1 + slots.length) % slots.length]);
+            if (prevEl) setActiveCasioInput(prevEl, (prevEl.value || "").length);
+          }
+          return;
         }
-        return;
+        if (k === "DPAD_RIGHT") {
+          if (cur && stepCasioCursorRight(cur)) { renderInteractiveLCD(); return; }
+          if (slots.length > 1) {
+            const curIdx = Math.max(0, slots.indexOf(cur?.id || slots[0]));
+            const nextEl = document.getElementById(slots[(curIdx + 1) % slots.length]);
+            if (nextEl) setActiveCasioInput(nextEl, 0);
+          }
+          return;
+        }
+        if (k === "DPAD_UP" || k === "DPAD_DOWN") {
+          if (slots.length > 1) {
+            const curIdx = Math.max(0, slots.indexOf(cur?.id || slots[0]));
+            const dir = k === "DPAD_DOWN" ? 1 : -1;
+            const targetEl = document.getElementById(slots[(curIdx + dir + slots.length) % slots.length]);
+            if (targetEl) setActiveCasioInput(targetEl, (targetEl.value || "").length);
+          } else if (activeSolverMode === "calc" && casioCalcHistory.length > 0 && cur) {
+            if (k === "DPAD_UP") {
+              casioHistIdx = casioHistIdx < 0 ? casioCalcHistory.length - 1 : Math.max(0, casioHistIdx - 1);
+            } else {
+              casioHistIdx = casioHistIdx < 0 ? -1 : (casioHistIdx + 1 < casioCalcHistory.length ? casioHistIdx + 1 : -1);
+            }
+            cur.value = casioHistIdx >= 0 ? casioCalcHistory[casioHistIdx] : "";
+            setCasioCursor(cur, cur.value.length);
+            renderInteractiveLCD();
+          }
+          return;
+        }
       }
 
       let t = lastFocusedCasioInput;
@@ -3246,6 +4321,13 @@
       if (activeModule === "solver") {
         if (e.key === "Enter") { e.preventDefault(); handleCasioKey("SOLVE"); }
         else if (e.key === "Backspace") { e.preventDefault(); handleCasioKey("DEL"); }
+        else if (e.key === "Delete") { e.preventDefault(); if (lastFocusedCasioInput) { insertIntoInput(lastFocusedCasioInput, "DEL_FWD"); renderInteractiveLCD(); } }
+        else if (e.key === "ArrowLeft") { e.preventDefault(); handleCasioKey("DPAD_LEFT"); }
+        else if (e.key === "ArrowRight") { e.preventDefault(); handleCasioKey("DPAD_RIGHT"); }
+        else if (e.key === "ArrowUp") { e.preventDefault(); handleCasioKey("DPAD_UP"); }
+        else if (e.key === "ArrowDown") { e.preventDefault(); handleCasioKey("DPAD_DOWN"); }
+        else if (e.key === "Home") { e.preventDefault(); if (lastFocusedCasioInput) { setCasioCursor(lastFocusedCasioInput, 0); renderInteractiveLCD(); } }
+        else if (e.key === "End") { e.preventDefault(); if (lastFocusedCasioInput) { setCasioCursor(lastFocusedCasioInput, (lastFocusedCasioInput.value||"").length); renderInteractiveLCD(); } }
         else if (e.key === "Escape") { e.preventDefault(); handleCasioKey("AC"); }
         else if (/^[0-9+\-*/^().,=xyzm]$/.test(e.key)) { e.preventDefault(); handleCasioKey(e.key); }
       } else if (activeModule === "graph") {
@@ -3276,6 +4358,17 @@
       document.querySelectorAll(".mat-size-btn").forEach(b => { b.className = b===btn ? "mat-size-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-600 text-white cursor-pointer" : "mat-size-btn px-2 py-0.5 rounded text-[11px] font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 cursor-pointer"; });
       updateStatusPills(); syncRevolveMathBoxes(); buildPolyInputs(); buildSystemInputs(); buildMatrixInputs(); solveMatrix();
     }));
+    document.querySelectorAll(".ineq-deg-btn").forEach(btn => btn.addEventListener("click", () => {
+      ineqDeg = Number(btn.getAttribute("data-ideg"));
+      document.querySelectorAll(".ineq-deg-btn").forEach(b => { b.className = b===btn ? "ineq-deg-btn py-1 rounded text-[11px] font-semibold bg-blue-600 text-white cursor-pointer" : "ineq-deg-btn py-1 rounded text-[11px] font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 cursor-pointer"; });
+      buildIneqInputs(); solveInequality();
+    }));
+    document.querySelectorAll(".ineq-op-btn").forEach(btn => btn.addEventListener("click", () => {
+      ineqOp = btn.getAttribute("data-iop");
+      document.querySelectorAll(".ineq-op-btn").forEach(b => { b.className = b===btn ? "ineq-op-btn py-1 rounded text-[11px] font-bold bg-emerald-600 text-white cursor-pointer" : "ineq-op-btn py-1 rounded text-[11px] font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 cursor-pointer"; });
+      solveInequality();
+    }));
+    buildIneqInputs();
     document.querySelectorAll(".poly-deg-btn").forEach(btn => btn.addEventListener("click", () => {
       polyDeg = Number(btn.getAttribute("data-pdeg")); lcdStepPages = [];
       document.querySelectorAll(".poly-deg-btn").forEach(b => b.className = b===btn ? "poly-deg-btn py-1 rounded text-[11px] font-semibold bg-blue-600 text-white cursor-pointer" : "poly-deg-btn py-1 rounded text-[11px] font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 cursor-pointer");
@@ -5079,6 +6172,1312 @@
       drawGraph();
       solveCalc();
     });
+
+    /**
+     * =========================================================================
+     * MODULE 5: HÌNH HỌC PHẲNG 2D (GEOGEBRA + AUTO-THEOREM DISCOVERY ENGINE)
+     * Covers: Cấp 2 -> Chuyên Toán 9 -> HSG Tỉnh -> VMO + 6 Supplemental Theorems
+     * =========================================================================
+     */
+    (function initGeom2DModule() {
+      const canvas = document.getElementById("geom2d-canvas");
+      const wrap = document.getElementById("g2d-canvas-wrap");
+      if (!canvas || !wrap) return;
+      const ctx = canvas.getContext("2d");
+      const hintEl = document.getElementById("g2d-tool-hint");
+      const coordsEl = document.getElementById("g2d-coords-pill");
+      const countEl = document.getElementById("g2d-theorem-count");
+      const listEl = document.getElementById("g2d-theorem-list");
+
+      const state = {
+        tool: "move",
+        showGrid: true,
+        cx: 0, cy: 0, scale: 52, // world-to-screen
+        points: [],   // { id, name, x, y, type, parents, param, valid }
+        lines: [],    // { id, kind, p1, p2, baseLine, pt, circleId, branch, dashed, color }
+        circles: [],  // { id, kind, centerId, throughId, pts, color }
+        nextId: 1,
+        nextLabelIdx: 0,
+        pending: [],  // selected ids during multi-click tool
+        undoStack: [],
+        draggingPtId: null,
+        panning: false,
+        panStart: null,
+        hoverPos: null,
+        theorems: [],
+        activeTheoremIdx: -1,
+        levelFilter: "all",
+      };
+
+      const TOOL_HINTS = {
+        move: "🖱️ Chế độ Di chuyển: Kéo thả bất kỳ điểm màu xanh nào để xem hình biến đổi và định lý cập nhật tức thì.",
+        point: "• Điểm: Chạm vào khoảng trống để tạo điểm tự do, hoặc chạm sát đường thẳng/đường tròn để gắn điểm lên đó.",
+        segment: "╱ Đoạn thẳng: Chọn lần lượt 2 điểm (hoặc chạm 2 vị trí mới) để nối đoạn thẳng.",
+        line: "↔ Đường thẳng: Chọn lần lượt 2 điểm để dựng đường thẳng kéo dài vô hạn.",
+        circle: "○ Đường tròn: Chọn điểm thứ 1 làm Tâm, sau đó chọn điểm thứ 2 nằm trên đường tròn.",
+        circum3: "◎ Đường tròn ngoại tiếp: Chọn lần lượt 3 điểm không thẳng hàng để dựng đường tròn đi qua cả 3 điểm.",
+        midpoint: "⌖ Trung điểm: Chọn lần lượt 2 điểm để dựng trung điểm M.",
+        perp: "⊥ Đường vuông góc: Chọn 1 Điểm trước, sau đó chạm vào 1 Đoạn thẳng hoặc Đường thẳng (tự tạo thêm chân đường cao).",
+        parallel: "∥ Đường song song: Chọn 1 Điểm trước, sau đó chạm vào 1 Đoạn thẳng hoặc Đường thẳng.",
+        bisector: "∠ Phân giác: Chọn lần lượt 3 điểm A, đỉnh B, C để dựng đường phân giác trong góc ABC.",
+        intersect: "✕ Giao điểm: Chạm lần lượt 2 đối tượng (đường thẳng / đoạn thẳng / đường tròn) để lấy giao điểm chính xác.",
+        tangent: "◔ Tiếp tuyến: Chọn 1 Điểm ngoài đường tròn, sau đó chạm vào Đường tròn để dựng 2 tiếp tuyến & tiếp điểm.",
+        centroid: "△ Trọng tâm G: Chọn lần lượt 3 đỉnh A, B, C của tam giác.",
+        orthocenter: "△ Trực tâm H: Chọn lần lượt 3 đỉnh A, B, C của tam giác.",
+        circumcenter: "△ Tâm ngoại tiếp O: Chọn lần lượt 3 đỉnh A, B, C của tam giác.",
+        incenter: "△ Tâm nội tiếp I: Chọn lần lượt 3 đỉnh A, B, C của tam giác.",
+        euler9: "◎ Đường tròn 9 điểm Euler: Chọn lần lượt 3 đỉnh A, B, C của tam giác.",
+      };
+
+      const ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      function genLabel() {
+        const i = state.nextLabelIdx++;
+        if (i < 26) return ALPHA[i];
+        return ALPHA[i % 26] + Math.floor(i / 26);
+      }
+      function pushUndo() {
+        state.undoStack.push(JSON.stringify({
+          points: state.points, lines: state.lines, circles: state.circles,
+          nextId: state.nextId, nextLabelIdx: state.nextLabelIdx
+        }));
+        if (state.undoStack.length > 40) state.undoStack.shift();
+      }
+      function w2s(x, y) {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        return { x: w / 2 + (x - state.cx) * state.scale, y: h / 2 - (y - state.cy) * state.scale };
+      }
+      function s2w(sx, sy) {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        return { x: state.cx + (sx - w / 2) / state.scale, y: state.cy - (sy - h / 2) / state.scale };
+      }
+      function dist2(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+      function ptById(id) { return state.points.find(p => p.id === id); }
+      function lineById(id) { return state.lines.find(l => l.id === id); }
+      function circleById(id) { return state.circles.find(c => c.id === id); }
+
+      // Geometry primitives
+      function getLineGeom(L) {
+        if (!L) return null;
+        if (L.kind === "segment" || L.kind === "line") {
+          const a = ptById(L.p1), b = ptById(L.p2);
+          if (!a || !b || !a.valid || !b.valid || dist2(a, b) < 1e-7) return null;
+          return { x1: a.x, y1: a.y, x2: b.x, y2: b.y, dx: b.x - a.x, dy: b.y - a.y, isSeg: L.kind === "segment" };
+        }
+        if (L.kind === "perp" || L.kind === "parallel") {
+          const p = ptById(L.pt), base = getLineGeom(lineById(L.baseLine));
+          if (!p || !p.valid || !base) return null;
+          const dx = L.kind === "perp" ? -base.dy : base.dx;
+          const dy = L.kind === "perp" ? base.dx : base.dy;
+          return { x1: p.x, y1: p.y, x2: p.x + dx, y2: p.y + dy, dx, dy, isSeg: false };
+        }
+        if (L.kind === "bisector") {
+          const a = ptById(L.parents[0]), b = ptById(L.parents[1]), c = ptById(L.parents[2]);
+          if (!a || !b || !c || !a.valid || !b.valid || !c.valid) return null;
+          const la = dist2(b, a), lc = dist2(b, c);
+          if (la < 1e-7 || lc < 1e-7) return null;
+          const dx = (a.x - b.x) / la + (c.x - b.x) / lc;
+          const dy = (a.y - b.y) / la + (c.y - b.y) / lc;
+          if (Math.hypot(dx, dy) < 1e-7) return null;
+          return { x1: b.x, y1: b.y, x2: b.x + dx, y2: b.y + dy, dx, dy, isSeg: false };
+        }
+        if (L.kind === "tangent") {
+          const p = ptById(L.pt), C = getCircleGeom(circleById(L.circleId));
+          if (!p || !p.valid || !C) return null;
+          const d = Math.hypot(p.x - C.cx, p.y - C.cy);
+          if (d < C.r - 1e-5) return null;
+          const ang = Math.atan2(p.y - C.cy, p.x - C.cx);
+          const alpha = Math.acos(Math.min(1, C.r / Math.max(d, C.r)));
+          const tAng = ang + (L.branch === 1 ? alpha : -alpha);
+          const tx = C.cx + C.r * Math.cos(tAng), ty = C.cy + C.r * Math.sin(tAng);
+          return { x1: p.x, y1: p.y, x2: tx, y2: ty, dx: tx - p.x, dy: ty - p.y, isSeg: false, tx, ty };
+        }
+        return null;
+      }
+
+      function circumcircleOf(a, b, c) {
+        const d = 2 * (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y));
+        if (Math.abs(d) < 1e-7) return null;
+        const a2 = a.x * a.x + a.y * a.y, b2 = b.x * b.x + b.y * b.y, c2 = c.x * c.x + c.y * c.y;
+        const ux = (a2 * (b.y - c.y) + b2 * (c.y - a.y) + c2 * (a.y - b.y)) / d;
+        const uy = (a2 * (c.x - b.x) + b2 * (a.x - c.x) + c2 * (b.x - a.x)) / d;
+        return { cx: ux, cy: uy, r: Math.hypot(a.x - ux, a.y - uy) };
+      }
+
+      function incircleOf(a, b, c) {
+        const la = dist2(b, c), lb = dist2(c, a), lc = dist2(a, b), per = la + lb + lc;
+        if (per < 1e-7) return null;
+        const ix = (la * a.x + lb * b.x + lc * c.x) / per;
+        const iy = (la * a.y + lb * b.y + lc * c.y) / per;
+        const area = 0.5 * Math.abs((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y));
+        return { cx: ix, cy: iy, r: (2 * area) / per };
+      }
+
+      function orthocenterOf(a, b, c) {
+        const cc = circumcircleOf(a, b, c);
+        if (!cc) return null;
+        return { x: a.x + b.x + c.x - 2 * cc.cx, y: a.y + b.y + c.y - 2 * cc.cy };
+      }
+
+      function getCircleGeom(C) {
+        if (!C) return null;
+        if (C.kind === "centerPt") {
+          const o = ptById(C.centerId), p = ptById(C.throughId);
+          if (!o || !p || !o.valid || !p.valid) return null;
+          const r = dist2(o, p);
+          return r > 1e-6 ? { cx: o.x, cy: o.y, r } : null;
+        }
+        if (C.kind === "circum3" || C.kind === "euler9") {
+          const a = ptById(C.pts[0]), b = ptById(C.pts[1]), c = ptById(C.pts[2]);
+          if (!a || !b || !c || !a.valid || !b.valid || !c.valid) return null;
+          const cc = circumcircleOf(a, b, c);
+          if (!cc) return null;
+          if (C.kind === "circum3") return cc;
+          const h = orthocenterOf(a, b, c);
+          return { cx: 0.5 * (cc.cx + h.x), cy: 0.5 * (cc.cy + h.y), r: 0.5 * cc.r };
+        }
+        return null;
+      }
+
+      function intersectLineLine(L1, L2) {
+        const det = L1.dx * L2.dy - L1.dy * L2.dx;
+        if (Math.abs(det) < 1e-8) return null;
+        const t = ((L2.x1 - L1.x1) * L2.dy - (L2.y1 - L1.y1) * L2.dx) / det;
+        return { x: L1.x1 + t * L1.dx, y: L1.y1 + t * L1.dy };
+      }
+      function intersectLineCircle(L, C) {
+        const dx = L.dx, dy = L.dy, fx = L.x1 - C.cx, fy = L.y1 - C.cy;
+        const a = dx * dx + dy * dy, b = 2 * (fx * dx + fy * dy), c = fx * fx + fy * fy - C.r * C.r;
+        const disc = b * b - 4 * a * c;
+        if (disc < -1e-7) return [];
+        const sd = Math.sqrt(Math.max(0, disc));
+        const t1 = (-b - sd) / (2 * a), t2 = (-b + sd) / (2 * a);
+        const p1 = { x: L.x1 + t1 * dx, y: L.y1 + t1 * dy }, p2 = { x: L.x1 + t2 * dx, y: L.y1 + t2 * dy };
+        return sd < 1e-6 ? [p1] : [p1, p2];
+      }
+      function intersectCircleCircle(C1, C2) {
+        const d = Math.hypot(C2.cx - C1.cx, C2.cy - C1.cy);
+        if (d < 1e-7 || d > C1.r + C2.r + 1e-6 || d < Math.abs(C1.r - C2.r) - 1e-6) return [];
+        const a = (C1.r * C1.r - C2.r * C2.r + d * d) / (2 * d);
+        const h2 = C1.r * C1.r - a * a;
+        const h = Math.sqrt(Math.max(0, h2));
+        const xm = C1.cx + (a * (C2.cx - C1.cx)) / d, ym = C1.cy + (a * (C2.cy - C1.cy)) / d;
+        const rx = -(C2.cy - C1.cy) * (h / d), ry = (C2.cx - C1.cx) * (h / d);
+        const p1 = { x: xm + rx, y: ym + ry }, p2 = { x: xm - rx, y: ym - ry };
+        return h < 1e-6 ? [p1] : [p1, p2];
+      }
+      function projectPointToLine(p, L) {
+        const l2 = L.dx * L.dx + L.dy * L.dy;
+        if (l2 < 1e-10) return { x: L.x1, y: L.y1, t: 0 };
+        const t = ((p.x - L.x1) * L.dx + (p.y - L.y1) * L.dy) / l2;
+        return { x: L.x1 + t * L.dx, y: L.y1 + t * L.dy, t };
+      }
+
+      function recomputeAll() {
+        for (const p of state.points) {
+          p.valid = true;
+          if (p.type === "free") continue;
+          if (p.type === "onLine") {
+            const L = getLineGeom(lineById(p.parents[0]));
+            if (!L) { p.valid = false; continue; }
+            p.x = L.x1 + p.param * L.dx; p.y = L.y1 + p.param * L.dy;
+          } else if (p.type === "onCircle") {
+            const C = getCircleGeom(circleById(p.parents[0]));
+            if (!C) { p.valid = false; continue; }
+            p.x = C.cx + C.r * Math.cos(p.param); p.y = C.cy + C.r * Math.sin(p.param);
+          } else if (p.type === "midpoint") {
+            const a = ptById(p.parents[0]), b = ptById(p.parents[1]);
+            if (!a || !b || !a.valid || !b.valid) { p.valid = false; continue; }
+            p.x = 0.5 * (a.x + b.x); p.y = 0.5 * (a.y + b.y);
+          } else if (p.type === "foot") {
+            const q = ptById(p.parents[0]), L = getLineGeom(lineById(p.parents[1]));
+            if (!q || !q.valid || !L) { p.valid = false; continue; }
+            const pr = projectPointToLine(q, L);
+            p.x = pr.x; p.y = pr.y;
+          } else if (p.type === "centroid") {
+            const a = ptById(p.parents[0]), b = ptById(p.parents[1]), c = ptById(p.parents[2]);
+            if (!a || !b || !c || !a.valid || !b.valid || !c.valid) { p.valid = false; continue; }
+            p.x = (a.x + b.x + c.x) / 3; p.y = (a.y + b.y + c.y) / 3;
+          } else if (p.type === "circumcenter") {
+            const a = ptById(p.parents[0]), b = ptById(p.parents[1]), c = ptById(p.parents[2]);
+            if (!a || !b || !c || !a.valid || !b.valid || !c.valid) { p.valid = false; continue; }
+            const cc = circumcircleOf(a, b, c);
+            if (!cc) { p.valid = false; continue; }
+            p.x = cc.cx; p.y = cc.cy;
+          } else if (p.type === "orthocenter") {
+            const a = ptById(p.parents[0]), b = ptById(p.parents[1]), c = ptById(p.parents[2]);
+            if (!a || !b || !c || !a.valid || !b.valid || !c.valid) { p.valid = false; continue; }
+            const h = orthocenterOf(a, b, c);
+            if (!h) { p.valid = false; continue; }
+            p.x = h.x; p.y = h.y;
+          } else if (p.type === "incenter") {
+            const a = ptById(p.parents[0]), b = ptById(p.parents[1]), c = ptById(p.parents[2]);
+            if (!a || !b || !c || !a.valid || !b.valid || !c.valid) { p.valid = false; continue; }
+            const ic = incircleOf(a, b, c);
+            if (!ic) { p.valid = false; continue; }
+            p.x = ic.cx; p.y = ic.cy;
+          } else if (p.type === "tangentPt") {
+            const L = getLineGeom(lineById(p.parents[0]));
+            if (!L || !Number.isFinite(L.tx)) { p.valid = false; continue; }
+            p.x = L.tx; p.y = L.ty;
+          } else if (p.type === "intersect") {
+            const [o1, o2, idx] = p.parents;
+            const l1 = lineById(o1), l2 = lineById(o2), c1 = circleById(o1), c2 = circleById(o2);
+            let pts = [];
+            if (l1 && l2) {
+              const g1 = getLineGeom(l1), g2 = getLineGeom(l2);
+              const ip = (g1 && g2) ? intersectLineLine(g1, g2) : null;
+              if (ip) pts = [ip];
+            } else if (l1 && c2) {
+              const g1 = getLineGeom(l1), gc = getCircleGeom(c2);
+              if (g1 && gc) pts = intersectLineCircle(g1, gc);
+            } else if (c1 && l2) {
+              const gc = getCircleGeom(c1), g2 = getLineGeom(l2);
+              if (gc && g2) pts = intersectLineCircle(g2, gc);
+            } else if (c1 && c2) {
+              const gc1 = getCircleGeom(c1), gc2 = getCircleGeom(c2);
+              if (gc1 && gc2) pts = intersectCircleCircle(gc1, gc2);
+            }
+            const pick = pts[idx || 0];
+            if (!pick) { p.valid = false; continue; }
+            p.x = pick.x; p.y = pick.y;
+          }
+        }
+      }
+
+      // ================= REAL-TIME AUTO-THEOREM DISCOVERY ENGINE =================
+      function cross2(a, b, c) { return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x); }
+      function dot2(a, b, c) { return (a.x - b.x) * (c.x - b.x) + (a.y - b.y) * (c.y - b.y); }
+      function angleDeg(a, b, c) {
+        const d1 = dist2(a, b), d2 = dist2(c, b);
+        if (d1 < 1e-6 || d2 < 1e-6) return NaN;
+        const cosA = Math.max(-1, Math.min(1, dot2(a, b, c) / (d1 * d2)));
+        return (Math.acos(cosA) * 180) / Math.PI;
+      }
+      function isCollinear(a, b, c, tol = 0.035) {
+        const maxD = Math.max(dist2(a, b), dist2(b, c), dist2(c, a), 1e-6);
+        return Math.abs(cross2(a, b, c)) / maxD < tol;
+      }
+      function ptOnLineDist(p, a, b) {
+        const d = dist2(a, b);
+        return d < 1e-7 ? 1e9 : Math.abs(cross2(a, b, p)) / d;
+      }
+      function signedParamOnLine(p, a, b) {
+        const dx = b.x - a.x, dy = b.y - a.y, l2 = dx * dx + dy * dy;
+        return l2 < 1e-9 ? 0 : ((p.x - a.x) * dx + (p.y - a.y) * dy) / l2;
+      }
+
+      function scanGeom2DTheorems() {
+        const pts = state.points.filter(p => p.valid);
+        const found = [];
+        const seen = new Set();
+        const addTh = (key, level, name, enName, elements, formula, detail, hlPts = [], hlSegs = [], hlCircles = []) => {
+          if (seen.has(key)) return;
+          seen.add(key);
+          found.push({ level, name, enName, elements, formula, detail, hlPts, hlSegs, hlCircles });
+        };
+
+        const N = pts.length;
+        if (N < 3) { state.theorems = []; renderTheoremPanel(); return; }
+
+        // Build adjacency map of drawn segments/lines between point pairs
+        const drawnLines = state.lines.map(L => ({ L, g: getLineGeom(L) })).filter(x => x.g);
+        const drawnCircles = state.circles.map(C => ({ C, g: getCircleGeom(C) })).filter(x => x.g);
+
+        // 1. Right triangles -> Pythagore & Hệ thức lượng
+        const maxTriPts = Math.min(N, 14);
+        for (let i = 0; i < maxTriPts; i++) {
+          for (let j = i + 1; j < maxTriPts; j++) {
+            for (let k = j + 1; k < maxTriPts; k++) {
+              const tri = [pts[i], pts[j], pts[k]];
+              if (isCollinear(tri[0], tri[1], tri[2], 0.05)) continue;
+              for (let v = 0; v < 3; v++) {
+                const A = tri[v], B = tri[(v + 1) % 3], C = tri[(v + 2) % 3];
+                const ang = angleDeg(B, A, C);
+                if (Math.abs(ang - 90) < 0.7) {
+                  const ab = dist2(A, B), ac = dist2(A, C), bc = dist2(B, C);
+                  addTh(
+                    `pyth_${[A.id, B.id, C.id].sort().join("_")}`, "cap2",
+                    "Định lý Pythagore", "Pythagorean Theorem",
+                    `△${A.name}${B.name}${C.name} vuông tại ${A.name}`,
+                    `${B.name}${C.name}² = ${A.name}${B.name}² + ${A.name}${C.name}²`,
+                    `Kiểm chứng: ${bc.toFixed(2)}² ≈ ${(ab*ab + ac*ac).toFixed(2)} (∠${A.name} = ${ang.toFixed(1)}°).`,
+                    [A.id, B.id, C.id], [[A.id, B.id], [A.id, C.id], [B.id, C.id]]
+                  );
+                  // Check altitude foot H on BC -> Hệ thức lượng tam giác vuông
+                  for (const H of pts) {
+                    if (H.id === A.id || H.id === B.id || H.id === C.id) continue;
+                    if (ptOnLineDist(H, B, C) < 0.04 && Math.abs(angleDeg(A, H, B) - 90) < 0.9) {
+                      const ah = dist2(A, H), bh = dist2(B, H), ch = dist2(C, H);
+                      addTh(
+                        `htl_${A.id}_${B.id}_${C.id}_${H.id}`, "cap2",
+                        "Hệ thức lượng trong tam giác vuông", "Right Triangle Altitude Relations",
+                        `△${A.name}${B.name}${C.name} vuông tại ${A.name}, đường cao ${A.name}${H.name}`,
+                        `${A.name}${H.name}² = ${B.name}${H.name}·${C.name}${H.name} ; 1/${A.name}${H.name}² = 1/${A.name}${B.name}² + 1/${A.name}${C.name}²`,
+                        `AH² = ${(ah*ah).toFixed(2)} ≈ BH·CH = ${(bh*ch).toFixed(2)}.`,
+                        [A.id, B.id, C.id, H.id], [[A.id, H.id], [B.id, C.id], [A.id, B.id], [A.id, C.id]]
+                      );
+                    }
+                  }
+                }
+              }
+              // Equilateral triangle check
+              const d01 = dist2(tri[0], tri[1]), d12 = dist2(tri[1], tri[2]), d20 = dist2(tri[2], tri[0]);
+              const avg = (d01 + d12 + d20) / 3;
+              if (avg > 0.2 && Math.abs(d01 - avg) / avg < 0.015 && Math.abs(d12 - avg) / avg < 0.015) {
+                addTh(
+                  `equi_${tri.map(p=>p.id).sort().join("_")}`, "cap2",
+                  "Tam giác đều", "Equilateral Triangle",
+                  `△${tri[0].name}${tri[1].name}${tri[2].name}`,
+                  `3 cạnh bằng nhau = ${avg.toFixed(2)}, 3 góc = 60°`,
+                  `Tâm G ≡ H ≡ O ≡ I; diện tích S = a²√3/4 = ${(avg*avg*Math.sqrt(3)/4).toFixed(2)}.`,
+                  tri.map(p=>p.id), [[tri[0].id, tri[1].id], [tri[1].id, tri[2].id], [tri[2].id, tri[0].id]]
+                );
+              }
+            }
+          }
+        }
+
+        // 2. Triangle Special Centers & Euler Line & 9-point Circle & Simson Line & Sin/Heron
+        const triDone = new Set();
+        for (const p of pts) {
+          if (["centroid", "orthocenter", "circumcenter", "incenter"].includes(p.type) && p.parents?.length === 3) {
+            const key = p.parents.slice().sort().join("_");
+            if (triDone.has(key)) continue;
+            triDone.add(key);
+            const A = ptById(p.parents[0]), B = ptById(p.parents[1]), C = ptById(p.parents[2]);
+            if (!A || !B || !C || !A.valid || !B.valid || !C.valid) continue;
+            const cc = circumcircleOf(A, B, C), hh = orthocenterOf(A, B, C), gg = { x: (A.x+B.x+C.x)/3, y: (A.y+B.y+C.y)/3 };
+            const ptH = pts.find(q => hh && dist2(q, hh) < 0.04);
+            const ptG = pts.find(q => dist2(q, gg) < 0.04);
+            const ptO = pts.find(q => cc && dist2(q, { x: cc.cx, y: cc.cy }) < 0.04);
+            if (ptH && ptG && ptO && dist2(ptO, ptH) > 0.08) {
+              const oh = dist2(ptO, ptH), og = dist2(ptO, ptG);
+              addTh(
+                `euler_${key}`, "chuyen9",
+                "Đường thẳng Euler", "Euler Line",
+                `Trực tâm ${ptH.name}, Trọng tâm ${ptG.name}, Tâm ngoại tiếp ${ptO.name} của △${A.name}${B.name}${C.name}`,
+                `${ptO.name}${ptH.name}⃗ = 3·${ptO.name}${ptG.name}⃗ (${ptH.name}, ${ptG.name}, ${ptO.name} thẳng hàng)`,
+                `Kiểm chứng: OH = ${oh.toFixed(2)} = 3 × OG (${(3*og).toFixed(2)}).`,
+                [ptH.id, ptG.id, ptO.id, A.id, B.id, C.id], [[ptO.id, ptH.id], [A.id, B.id], [B.id, C.id], [C.id, A.id]]
+              );
+            }
+            if (ptH && ptO) {
+              addTh(
+                `isog_${key}`, "tinh",
+                "Cặp điểm liên hợp đẳng giác (O & H)", "Isogonal Conjugates",
+                `Tâm ngoại tiếp ${ptO.name} và Trực tâm ${ptH.name} trong △${A.name}${B.name}${C.name}`,
+                `∠${B.name}${A.name}${ptO.name} = ∠${C.name}${A.name}${ptH.name}`,
+                `Hai đường thẳng ${A.name}${ptO.name} và ${A.name}${ptH.name} đối xứng nhau qua phân giác góc ${A.name}.`,
+                [ptO.id, ptH.id, A.id, B.id, C.id], [[A.id, ptO.id], [A.id, ptH.id]]
+              );
+            }
+          }
+        }
+
+        // 3. Nine-point Euler Circle & Feuerbach
+        for (const { C, g } of drawnCircles) {
+          if (C.kind === "euler9") {
+            const A = ptById(C.pts[0]), B = ptById(C.pts[1]), P3 = ptById(C.pts[2]);
+            if (A && B && P3) {
+              addTh(
+                `euler9_${C.id}`, "chuyen9",
+                "Đường tròn Euler (9 điểm)", "Nine-Point Circle",
+                `△${A.name}${B.name}${P3.name} · Đường tròn 9 điểm (R₉ = ${g.r.toFixed(2)})`,
+                `Đi qua 3 trung điểm cạnh, 3 chân đường cao, 3 trung điểm HA, HB, HC; R₉ = R/2`,
+                `Tâm đường tròn Euler là trung điểm đoạn nối Trực tâm H và Tâm ngoại tiếp O.`,
+                [A.id, B.id, P3.id], [[A.id, B.id], [B.id, P3.id], [P3.id, A.id]], [C.id]
+              );
+              // Check if incenter also exists -> Feuerbach mention
+              const ic = incircleOf(A, B, P3);
+              const ptI = ic ? pts.find(q => dist2(q, { x: ic.cx, y: ic.cy }) < 0.05) : null;
+              if (ptI) {
+                addTh(
+                  `feuerbach_${C.id}`, "vmo",
+                  "Định lý Feuerbach", "Feuerbach's Theorem",
+                  `Đường tròn Euler 9 điểm & Tâm nội tiếp ${ptI.name} của △${A.name}${B.name}${P3.name}`,
+                  `Đường tròn Euler tiếp xúc trong với đường tròn nội tiếp (${ptI.name})`,
+                  `Khoảng cách hai tâm = |R₉ − r| = ${Math.abs(g.r - ic.r).toFixed(2)}.`,
+                  [ptI.id, A.id, B.id, P3.id], [], [C.id]
+                );
+              }
+            }
+          }
+        }
+
+        // 4. Circle-based Theorems: Cyclic Quad, Ptolemy, Brahmagupta, Harmonic Quad, Simson, Pascal, Butterfly, Power of a Point, Sin/Heron
+        for (const { C, g } of drawnCircles) {
+          const onC = pts.filter(p => Math.abs(Math.hypot(p.x - g.cx, p.y - g.cy) - g.r) < 0.055);
+          // Sort concyclic points around center by polar angle
+          onC.sort((p1, p2) => Math.atan2(p1.y - g.cy, p1.x - g.cx) - Math.atan2(p2.y - g.cy, p2.x - g.cx));
+
+          // Sin & Heron on 3 points on circle
+          if (onC.length === 3) {
+            const [A, B, P3] = onC;
+            const a = dist2(B, P3), b = dist2(P3, A), c = dist2(A, B), s = (a + b + c) / 2;
+            const area = Math.sqrt(Math.max(0, s * (s - a) * (s - b) * (s - c)));
+            addTh(
+              `sinheron_${C.id}`, "tinh",
+              "Định lý Sin & Công thức Heron", "Law of Sines & Heron's Formula",
+              `△${A.name}${B.name}${P3.name} nội tiếp đường tròn bán kính R = ${g.r.toFixed(2)}`,
+              `a/sin A = b/sin B = c/sin C = 2R = ${(2*g.r).toFixed(2)} ; S = abc/(4R) = ${area.toFixed(2)}`,
+              `Chu vi p = ${s.toFixed(2)} · Diện tích Heron S = √(p(p−a)(p−b)(p−c)) = ${area.toFixed(2)}.`,
+              [A.id, B.id, P3.id], [[A.id, B.id], [B.id, P3.id], [P3.id, A.id]], [C.id]
+            );
+          }
+
+          // 4+ points on circle -> Tứ giác nội tiếp, Ptolemy, Tứ giác điều hòa, Brahmagupta, Simson
+          if (onC.length >= 4) {
+            const [A, B, P3, D] = onC.slice(0, 4);
+            const ab = dist2(A, B), bc = dist2(B, P3), cd = dist2(P3, D), da = dist2(D, A);
+            const ac = dist2(A, P3), bd = dist2(B, D);
+            addTh(
+              `cyclic_${C.id}_${A.id}_${B.id}_${P3.id}_${D.id}`, "cap2",
+              "Tứ giác nội tiếp (4 điểm đồng viên)", "Cyclic Quadrilateral",
+              `Tứ giác ${A.name}${B.name}${P3.name}${D.name} nội tiếp đường tròn (R = ${g.r.toFixed(2)})`,
+              `∠${A.name} + ∠${P3.name} = 180° · ∠${B.name} + ∠${D.name} = 180°`,
+              `Có thể chuyển góc (angle chasing) giữa các góc nội tiếp cùng chắn một cung.`,
+              [A.id, B.id, P3.id, D.id], [[A.id, B.id], [B.id, P3.id], [P3.id, D.id], [D.id, A.id]], [C.id]
+            );
+            addTh(
+              `ptolemy_${C.id}_${A.id}_${B.id}_${P3.id}_${D.id}`, "chuyen9",
+              "Định lý Ptolemy", "Ptolemy's Theorem",
+              `Tứ giác nội tiếp ${A.name}${B.name}${P3.name}${D.name}`,
+              `${A.name}${P3.name}·${B.name}${D.name} = ${A.name}${B.name}·${P3.name}${D.name} + ${A.name}${D.name}·${B.name}${P3.name}`,
+              `Kiểm chứng: AC·BD = ${(ac*bd).toFixed(2)} = AB·CD + AD·BC = ${(ab*cd + da*bc).toFixed(2)}.`,
+              [A.id, B.id, P3.id, D.id], [[A.id, P3.id], [B.id, D.id], [A.id, B.id], [P3.id, D.id], [A.id, D.id], [B.id, P3.id]], [C.id]
+            );
+            // Harmonic Quadrilateral: AB*CD == AD*BC
+            if (Math.abs(ab * cd - da * bc) / Math.max(ab * cd, 1e-6) < 0.03) {
+              addTh(
+                `harmquad_${C.id}`, "vmo",
+                "Tứ giác điều hòa", "Harmonic Quadrilateral",
+                `Tứ giác nội tiếp ${A.name}${B.name}${P3.name}${D.name}`,
+                `${A.name}${B.name}·${P3.name}${D.name} = ${A.name}${D.name}·${B.name}${P3.name} = ${(ab*cd).toFixed(2)}`,
+                `Tiếp tuyến tại ${A.name}, ${P3.name} và đường thẳng ${B.name}${D.name} đồng quy; mọi điểm P trên đường tròn đều tạo chùm điều hòa P(${A.name},${P3.name}; ${B.name},${D.name}) = −1.`,
+                [A.id, B.id, P3.id, D.id], [[A.id, B.id], [B.id, P3.id], [P3.id, D.id], [D.id, A.id]], [C.id]
+              );
+            }
+            // Brahmagupta: Orthodiagonal cyclic quad AC ⊥ BD
+            const dotDiag = (P3.x - A.x) * (D.x - B.x) + (P3.y - A.y) * (D.y - B.y);
+            if (Math.abs(dotDiag) / (ac * bd) < 0.025) {
+              addTh(
+                `brahma_${C.id}`, "vmo",
+                "Định lý Brahmagupta", "Brahmagupta's Theorem",
+                `Tứ giác nội tiếp ${A.name}${B.name}${P3.name}${D.name} có ${A.name}${P3.name} ⊥ ${B.name}${D.name}`,
+                `Đường thẳng qua giao điểm 2 đường chéo và vuông góc 1 cạnh sẽ đi qua trung điểm cạnh đối diện`,
+                `Góc giữa 2 đường chéo ${A.name}${P3.name} và ${B.name}${D.name} ≈ 90°.`,
+                [A.id, B.id, P3.id, D.id], [[A.id, P3.id], [B.id, D.id]], [C.id]
+              );
+            }
+            // Brokard: check if intersections E=AB∩CD, F=AD∩BC, G=AC∩BD exist among pts
+            const lAB = { x1: A.x, y1: A.y, dx: B.x-A.x, dy: B.y-A.y };
+            const lCD = { x1: P3.x, y1: P3.y, dx: D.x-P3.x, dy: D.y-P3.y };
+            const lAD = { x1: A.x, y1: A.y, dx: D.x-A.x, dy: D.y-A.y };
+            const lBC = { x1: B.x, y1: B.y, dx: P3.x-B.x, dy: P3.y-B.y };
+            const lAC = { x1: A.x, y1: A.y, dx: P3.x-A.x, dy: P3.y-A.y };
+            const lBD = { x1: B.x, y1: B.y, dx: D.x-B.x, dy: D.y-B.y };
+            const pE = intersectLineLine(lAB, lCD), pF = intersectLineLine(lAD, lBC), pG = intersectLineLine(lAC, lBD);
+            const mE = pE ? pts.find(q => dist2(q, pE) < 0.06) : null;
+            const mF = pF ? pts.find(q => dist2(q, pF) < 0.06) : null;
+            const mG = pG ? pts.find(q => dist2(q, pG) < 0.06) : null;
+            if ((mE && mF) || (mE && mG) || (mF && mG)) {
+              const names = [mE?.name, mF?.name, mG?.name].filter(Boolean).join(", ");
+              addTh(
+                `brokard_${C.id}`, "vmo",
+                "Định lý Brokard (Cực – Đối cực)", "Brokard's Theorem",
+                `Tứ giác nội tiếp ${A.name}${B.name}${P3.name}${D.name} & các giao điểm ${names}`,
+                `EF là đường đối cực của G đối với (O), và tâm O là trực tâm △EFG`,
+                `Công cụ VMO mạnh để chứng minh vuông góc và thẳng hàng qua Cực – Đối cực.`,
+                [A.id, B.id, P3.id, D.id, ...(mE?[mE.id]:[]), ...(mF?[mF.id]:[]), ...(mG?[mG.id]:[])],
+                [[A.id, P3.id], [B.id, D.id]], [C.id]
+              );
+            }
+
+            // Simson Line: 3 vertices on circle + 4th point M on circle + 3 feet on sidelines
+            if (onC.length >= 4) {
+              for (let mi = 0; mi < Math.min(onC.length, 6); mi++) {
+                const M = onC[mi];
+                const others = onC.filter((_, idx) => idx !== mi).slice(0, 3);
+                if (others.length < 3) continue;
+                const [U, V, W] = others;
+                const f1 = projectPointToLine(M, { x1: V.x, y1: V.y, dx: W.x-V.x, dy: W.y-V.y });
+                const f2 = projectPointToLine(M, { x1: W.x, y1: W.y, dx: U.x-W.x, dy: U.y-W.y });
+                const f3 = projectPointToLine(M, { x1: U.x, y1: U.y, dx: V.x-U.x, dy: V.y-U.y });
+                const q1 = pts.find(q => dist2(q, f1) < 0.06);
+                const q2 = pts.find(q => dist2(q, f2) < 0.06);
+                const q3 = pts.find(q => dist2(q, f3) < 0.06);
+                if (q1 && q2 && q3 && q1.id !== q2.id && q2.id !== q3.id) {
+                  addTh(
+                    `simson_${C.id}_${M.id}`, "chuyen9",
+                    "Đường thẳng Simson", "Simson Line",
+                    `Điểm ${M.name} ∈ (${U.name}${V.name}${W.name}) · 3 chân vuông góc ${q1.name}, ${q2.name}, ${q3.name}`,
+                    `${q1.name}, ${q2.name}, ${q3.name} luôn thẳng hàng!`,
+                    `Mọi điểm ${M.name} thuộc đường tròn ngoại tiếp △${U.name}${V.name}${W.name} đều có hình chiếu lên 3 cạnh thẳng hàng.`,
+                    [M.id, q1.id, q2.id, q3.id, U.id, V.id, W.id], [[q1.id, q2.id], [q2.id, q3.id]], [C.id]
+                  );
+                }
+              }
+            }
+          }
+
+          // 6+ points on circle -> Định lý Pascal (VMO)
+          if (onC.length >= 6) {
+            const [P1, P2, P3, P4, P5, P6] = onC.slice(0, 6);
+            addTh(
+              `pascal_${C.id}`, "vmo",
+              "Định lý Pascal (Lục giác nội tiếp)", "Pascal's Theorem",
+              `6 điểm đồng viên ${P1.name}, ${P2.name}, ${P3.name}, ${P4.name}, ${P5.name}, ${P6.name}`,
+              `${P1.name}${P2.name}∩${P4.name}${P5.name}, ${P2.name}${P3.name}∩${P5.name}${P6.name}, ${P3.name}${P4.name}∩${P6.name}${P1.name} thẳng hàng`,
+              `Ba giao điểm của các cặp cạnh đối lục giác nội tiếp luôn nằm trên đường thẳng Pascal.`,
+              [P1.id, P2.id, P3.id, P4.id, P5.id, P6.id],
+              [[P1.id, P2.id], [P2.id, P3.id], [P3.id, P4.id], [P4.id, P5.id], [P5.id, P6.id], [P6.id, P1.id]], [C.id]
+            );
+          }
+
+          // Butterfly Theorem (Con bướm): midpoint M of chord PQ on circle + chords AB, CD through M
+          if (onC.length >= 6) {
+            for (const M of pts) {
+              if (M.type !== "midpoint" || !M.parents || M.parents.length < 2) continue;
+              const P = ptById(M.parents[0]), Q = ptById(M.parents[1]);
+              if (!P || !Q) continue;
+              if (!onC.some(x => x.id === P.id) || !onC.some(x => x.id === Q.id)) continue;
+              const rest = onC.filter(x => x.id !== P.id && x.id !== Q.id);
+              const chordsThroughM = [];
+              for (let a = 0; a < rest.length; a++) {
+                for (let b = a + 1; b < rest.length; b++) {
+                  if (ptOnLineDist(M, rest[a], rest[b]) < 0.05) chordsThroughM.push([rest[a], rest[b]]);
+                }
+              }
+              if (chordsThroughM.length >= 2) {
+                const [A, B] = chordsThroughM[0], [C1, D1] = chordsThroughM[1];
+                addTh(
+                  `butterfly_${C.id}_${M.id}`, "vmo",
+                  "Định lý Con bướm (Butterfly)", "Butterfly Theorem",
+                  `Trung điểm ${M.name} của dây ${P.name}${Q.name} · 2 dây ${A.name}${B.name}, ${C1.name}${D1.name} qua ${M.name}`,
+                  `${M.name} là trung điểm đoạn nối giao điểm (${A.name}${D1.name}∩${P.name}${Q.name}) và (${B.name}${C1.name}∩${P.name}${Q.name})`,
+                  `Kéo điểm trên đường tròn vẫn thấy ${M.name} luôn chia đôi đoạn XY trên dây ${P.name}${Q.name}!`,
+                  [M.id, P.id, Q.id, A.id, B.id, C1.id, D1.id],
+                  [[P.id, Q.id], [A.id, B.id], [C1.id, D1.id], [A.id, D1.id], [B.id, C1.id]], [C.id]
+                );
+              }
+            }
+          }
+
+          // Power of a point & Symmedian (Tangents from P to Circle)
+          const tangsForC = state.lines.filter(L => L.kind === "tangent" && L.circleId === C.id);
+          if (tangsForC.length >= 2) {
+            const pId = tangsForC[0].pt, P = ptById(pId);
+            const tPts = pts.filter(q => q.type === "tangentPt" && tangsForC.some(tl => tl.id === q.parents[0]));
+            if (P && tPts.length >= 2) {
+              const ptLen = dist2(P, tPts[0]), po = Math.hypot(P.x - g.cx, P.y - g.cy);
+              addTh(
+                `power_${C.id}_${P.id}`, "chuyen9",
+                "Phương tích & Tính chất 2 tiếp tuyến cắt nhau", "Power of a Point & Tangents",
+                `Điểm ${P.name}, tiếp điểm ${tPts[0].name}, ${tPts[1].name} trên đường tròn`,
+                `${P.name}${tPts[0].name} = ${P.name}${tPts[1].name} = ${ptLen.toFixed(2)} ; PT² = PO² − R² = ${(po*po - g.r*g.r).toFixed(2)}`,
+                `Hai tiếp tuyến xuất phát từ ${P.name} bằng nhau và tạo thành tia phân giác góc tại ${P.name}.`,
+                [P.id, tPts[0].id, tPts[1].id], [[P.id, tPts[0].id], [P.id, tPts[1].id]], [C.id]
+              );
+              const third = onC.find(q => q.id !== tPts[0].id && q.id !== tPts[1].id);
+              if (third) {
+                addTh(
+                  `symmedian_${C.id}_${P.id}_${third.id}`, "tinh",
+                  "Đường đối trung (Symmedian)", "Symmedian Line",
+                  `△${third.name}${tPts[0].name}${tPts[1].name} & giao điểm 2 tiếp tuyến ${P.name}`,
+                  `${third.name}${P.name} là đường đối trung đỉnh ${third.name} của △${third.name}${tPts[0].name}${tPts[1].name}`,
+                  `Đường ${third.name}${P.name} đối xứng với trung tuyến qua phân giác đỉnh ${third.name} (tỉ số chia cạnh đối bằng AB²/AC²).`,
+                  [third.id, P.id, tPts[0].id, tPts[1].id], [[third.id, P.id], [P.id, tPts[0].id], [P.id, tPts[1].id]], [C.id]
+                );
+              }
+            }
+          }
+        }
+
+        // 5. Two or Three Circles -> Trục đẳng phương / Tâm đẳng phương / Monge–D'Alembert
+        if (drawnCircles.length >= 2) {
+          addTh(
+            `radaxis_${drawnCircles[0].C.id}_${drawnCircles[1].C.id}`, "tinh",
+            drawnCircles.length >= 3 ? "Tâm đẳng phương & Monge – D'Alembert" : "Trục đẳng phương của 2 đường tròn",
+            drawnCircles.length >= 3 ? "Radical Center & Monge–D'Alembert" : "Radical Axis",
+            `${drawnCircles.length} đường tròn trên bảng vẽ`,
+            drawnCircles.length >= 3
+              ? "3 trục đẳng phương đồng quy tại Tâm đẳng phương; 3 tâm vị tự ngoài thẳng hàng"
+              : "Tập hợp điểm M có P(M/(O₁)) = P(M/(O₂)) là đường thẳng vuông góc O₁O₂",
+            `Công cụ đặc trưng cấp HSG Tỉnh & VMO để chứng minh đồng quy và thẳng hàng với nhiều đường tròn.`,
+            [], [], drawnCircles.slice(0, 3).map(x => x.C.id)
+          );
+        }
+
+        // 6. Parallel lines inside triangle -> Định lý Thales
+        for (const L of state.lines) {
+          if (L.kind !== "parallel") continue;
+          const base = lineById(L.baseLine);
+          if (!base || !base.p1 || !base.p2) continue;
+          const B = ptById(base.p1), C = ptById(base.p2), D = ptById(L.pt);
+          const gPar = getLineGeom(L);
+          if (!B || !C || !D || !gPar) continue;
+          const E = pts.find(q => q.id !== D.id && q.id !== B.id && q.id !== C.id && ptOnLineDist(q, {x:gPar.x1,y:gPar.y1}, {x:gPar.x2,y:gPar.y2}) < 0.05);
+          if (E) {
+            const A = pts.find(q => q.id !== B.id && q.id !== C.id && q.id !== D.id && q.id !== E.id && ptOnLineDist(D, q, B) < 0.05 && ptOnLineDist(E, q, C) < 0.05);
+            if (A) {
+              const r1 = dist2(A, D) / Math.max(dist2(A, B), 1e-6), r2 = dist2(A, E) / Math.max(dist2(A, C), 1e-6);
+              addTh(
+                `thales_${A.id}_${B.id}_${C.id}_${D.id}_${E.id}`, "chuyen9",
+                "Định lý Thales", "Thales' Theorem",
+                `△${A.name}${B.name}${C.name} có ${D.name}${E.name} ∥ ${B.name}${C.name}`,
+                `${A.name}${D.name}/${A.name}${B.name} = ${A.name}${E.name}/${A.name}${C.name} = ${D.name}${E.name}/${B.name}${C.name} = ${r1.toFixed(2)}`,
+                `Đoạn song song cắt hai cạnh tam giác định ra các đoạn thẳng tương ứng tỉ lệ (kiểm chứng: ${r1.toFixed(2)} = ${r2.toFixed(2)}).`,
+                [A.id, B.id, C.id, D.id, E.id], [[D.id, E.id], [B.id, C.id], [A.id, B.id], [A.id, C.id]]
+              );
+            }
+          }
+        }
+
+        // 7. Midpoint on triangle side -> Apollonius (Median Formula) & Stewart
+        for (const M of pts) {
+          if (M.type !== "midpoint" || !M.parents || M.parents.length < 2) continue;
+          const B = ptById(M.parents[0]), C = ptById(M.parents[1]);
+          if (!B || !C || !B.valid || !C.valid) continue;
+          const A = pts.find(q => q.id !== M.id && q.id !== B.id && q.id !== C.id && !isCollinear(q, B, C, 0.06) && drawnLines.some(dl => dl.L.kind === "segment" && ((dl.L.p1===q.id&&dl.L.p2===M.id)||(dl.L.p2===q.id&&dl.L.p1===M.id))));
+          if (A) {
+            const ab = dist2(A, B), ac = dist2(A, C), bc = dist2(B, C), am = dist2(A, M);
+            addTh(
+              `apollonius_${A.id}_${B.id}_${C.id}_${M.id}`, "chuyen9",
+              "Định lý Apollonius (Công thức trung tuyến)", "Apollonius' Theorem",
+              `Trung tuyến ${A.name}${M.name} của △${A.name}${B.name}${C.name}`,
+              `${A.name}${M.name}² = (2${A.name}${B.name}² + 2${A.name}${C.name}² − ${B.name}${C.name}²)/4`,
+              `Kiểm chứng: AM = ${am.toFixed(2)} · Công thức = ${Math.sqrt(Math.max(0,(2*ab*ab+2*ac*ac-bc*bc)/4)).toFixed(2)}.`,
+              [A.id, B.id, C.id, M.id], [[A.id, M.id], [A.id, B.id], [A.id, C.id], [B.id, C.id]]
+            );
+          }
+        }
+
+        // 8. Ceva & Menelaus & Harmonic Range (4 collinear points)
+        // Check 4 collinear points for Harmonic Range (A, B; C, D) = -1
+        for (let i = 0; i < Math.min(N, 12); i++) {
+          for (let j = i + 1; j < Math.min(N, 12); j++) {
+            const A = pts[i], B = pts[j];
+            const onAB = pts.filter(q => q.id !== A.id && q.id !== B.id && ptOnLineDist(q, A, B) < 0.035);
+            if (onAB.length >= 2) {
+              for (let u = 0; u < onAB.length; u++) {
+                for (let v = u + 1; v < onAB.length; v++) {
+                  const C = onAB[u], D = onAB[v];
+                  const tC = signedParamOnLine(C, A, B), tD = signedParamOnLine(D, A, B);
+                  if (Math.abs(tC) < 1e-4 || Math.abs(tC - 1) < 1e-4 || Math.abs(tD) < 1e-4 || Math.abs(tD - 1) < 1e-4) continue;
+                  const cr = (tC / (tC - 1)) / (tD / (tD - 1));
+                  if (Math.abs(cr + 1) < 0.04) {
+                    addTh(
+                      `harm_${[A.id,B.id,C.id,D.id].sort().join("_")}`, "vmo",
+                      "Hàng điểm điều hòa (Descartes – Newton)", "Harmonic Range",
+                      `4 điểm thẳng hàng (${A.name}, ${B.name}; ${C.name}, ${D.name})`,
+                      `(${A.name}, ${B.name}; ${C.name}, ${D.name}) = −1 (tỉ số kép = ${cr.toFixed(2)})`,
+                      `Thỏa mãn hệ thức Descartes (2/AB = 1/AC + 1/AD) và Newton (IA² = IC·ID).`,
+                      [A.id, B.id, C.id, D.id], [[A.id, B.id]]
+                    );
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        // Check Ceva (3 concurrent cevians AD, BE, CF)
+        const segPairs = state.lines.filter(L => L.kind === "segment" || L.kind === "line").filter(L => L.p1 && L.p2);
+        const hasLineThrough = (u, v) => segPairs.some(L => {
+          const g = getLineGeom(L);
+          return g && ptOnLineDist(u, {x:g.x1,y:g.y1}, {x:g.x2,y:g.y2}) < 0.04 && ptOnLineDist(v, {x:g.x1,y:g.y1}, {x:g.x2,y:g.y2}) < 0.04;
+        });
+        if (N >= 7 && N <= 16) {
+          outerCeva:
+          for (let i = 0; i < N; i++) for (let j = i+1; j < N; j++) for (let k = j+1; k < N; k++) {
+            const A = pts[i], B = pts[j], C = pts[k];
+            if (isCollinear(A, B, C, 0.1)) continue;
+            if (!hasLineThrough(A, B) || !hasLineThrough(B, C) || !hasLineThrough(C, A)) continue;
+            const onBC = pts.filter(q => q.id!==B.id && q.id!==C.id && ptOnLineDist(q, B, C) < 0.04);
+            const onCA = pts.filter(q => q.id!==C.id && q.id!==A.id && ptOnLineDist(q, C, A) < 0.04);
+            const onAB = pts.filter(q => q.id!==A.id && q.id!==B.id && ptOnLineDist(q, A, B) < 0.04);
+            for (const D of onBC) for (const E of onCA) for (const F of onAB) {
+              // Menelaus check
+              if (isCollinear(D, E, F, 0.04)) {
+                addTh(
+                  `menelaus_${A.id}_${B.id}_${C.id}_${D.id}_${E.id}_${F.id}`, "chuyen9",
+                  "Định lý Menelaus", "Menelaus' Theorem",
+                  `△${A.name}${B.name}${C.name} & 3 điểm thẳng hàng ${D.name}∈${B.name}${C.name}, ${E.name}∈${C.name}${A.name}, ${F.name}∈${A.name}${B.name}`,
+                  `(DB/DC)·(EC/EA)·(FA/FB) = 1`,
+                  `Ba điểm ${D.name}, ${E.name}, ${F.name} nằm trên 3 đường thẳng chứa cạnh và thẳng hàng.`,
+                  [A.id, B.id, C.id, D.id, E.id, F.id], [[D.id, E.id], [E.id, F.id], [A.id, B.id], [B.id, C.id], [C.id, A.id]]
+                );
+              }
+              // Ceva check
+              const lAD = { x1: A.x, y1: A.y, dx: D.x-A.x, dy: D.y-A.y };
+              const lBE = { x1: B.x, y1: B.y, dx: E.x-B.x, dy: E.y-B.y };
+              const P = intersectLineLine(lAD, lBE);
+              if (P && ptOnLineDist(P, C, F) < 0.05) {
+                const pMatch = pts.find(q => dist2(q, P) < 0.06);
+                addTh(
+                  `ceva_${A.id}_${B.id}_${C.id}_${D.id}_${E.id}_${F.id}`, "chuyen9",
+                  "Định lý Ceva", "Ceva's Theorem",
+                  `△${A.name}${B.name}${C.name} · 3 đường ${A.name}${D.name}, ${B.name}${E.name}, ${C.name}${F.name} đồng quy${pMatch ? " tại " + pMatch.name : ""}`,
+                  `(DB/DC)·(EC/EA)·(FA/FB) = 1 (độ dài trong tam giác)`,
+                  `Ba đường thẳng đi qua 3 đỉnh đồng quy tại một điểm duy nhất.`,
+                  [A.id, B.id, C.id, D.id, E.id, F.id, ...(pMatch ? [pMatch.id] : [])],
+                  [[A.id, D.id], [B.id, E.id], [C.id, F.id], [A.id, B.id], [B.id, C.id], [C.id, A.id]]
+                );
+                break outerCeva;
+              }
+            }
+          }
+        }
+
+        // 9. Pitot check for 4 points forming convex quad with AB + CD ≈ BC + DA
+        if (N >= 4 && N <= 10) {
+          for (let i = 0; i < N; i++) for (let j = i+1; j < N; j++) for (let k = j+1; k < N; k++) for (let l = k+1; l < N; l++) {
+            const q = [pts[i], pts[j], pts[k], pts[l]];
+            const cx = (q[0].x+q[1].x+q[2].x+q[3].x)/4, cy = (q[0].y+q[1].y+q[2].y+q[3].y)/4;
+            q.sort((u, v) => Math.atan2(u.y-cy, u.x-cx) - Math.atan2(v.y-cy, v.x-cx));
+            const s1 = dist2(q[0], q[1]) + dist2(q[2], q[3]);
+            const s2 = dist2(q[1], q[2]) + dist2(q[3], q[0]);
+            if (s1 > 0.5 && Math.abs(s1 - s2) / s1 < 0.012 && drawnLines.some(dl => dl.L.kind === "segment" && ((dl.L.p1===q[0].id&&dl.L.p2===q[1].id)||(dl.L.p2===q[0].id&&dl.L.p1===q[1].id)))) {
+              addTh(
+                `pitot_${q.map(x=>x.id).sort().join("_")}`, "chuyen9",
+                "Định lý Pitot (Tứ giác ngoại tiếp)", "Pitot's Theorem",
+                `Tứ giác ${q[0].name}${q[1].name}${q[2].name}${q[3].name}`,
+                `${q[0].name}${q[1].name} + ${q[2].name}${q[3].name} = ${q[1].name}${q[2].name} + ${q[3].name}${q[0].name} = ${s1.toFixed(2)}`,
+                `Tổng hai cặp cạnh đối bằng nhau ⇔ Tứ giác ngoại tiếp một đường tròn.`,
+                q.map(x=>x.id), [[q[0].id, q[1].id], [q[1].id, q[2].id], [q[2].id, q[3].id], [q[3].id, q[0].id]]
+              );
+            }
+          }
+        }
+
+        // 10. General 3-point collinearity detector (if not already covered)
+        if (found.length < 3 && N >= 3) {
+          for (let i = 0; i < Math.min(N, 12); i++) {
+            for (let j = i + 1; j < Math.min(N, 12); j++) {
+              for (let k = j + 1; k < Math.min(N, 12); k++) {
+                if (isCollinear(pts[i], pts[j], pts[k], 0.025)) {
+                  addTh(
+                    `col_${pts[i].id}_${pts[j].id}_${pts[k].id}`, "cap2",
+                    "3 điểm thẳng hàng", "Collinear Points",
+                    `3 điểm ${pts[i].name}, ${pts[j].name}, ${pts[k].name}`,
+                    `${pts[i].name}, ${pts[j].name}, ${pts[k].name} cùng thuộc một đường thẳng`,
+                    `Kiểm tra trực tiếp: diện tích △${pts[i].name}${pts[j].name}${pts[k].name} ≈ 0.`,
+                    [pts[i].id, pts[j].id, pts[k].id], [[pts[i].id, pts[j].id], [pts[j].id, pts[k].id]]
+                  );
+                }
+              }
+            }
+          }
+        }
+
+        state.theorems = found;
+        if (state.activeTheoremIdx >= found.length) state.activeTheoremIdx = -1;
+        renderTheoremPanel();
+      }
+
+      const LEVEL_BADGE = {
+        cap2: { label: "Cấp 2", cls: "bg-emerald-100 text-emerald-800 border-emerald-200" },
+        chuyen9: { label: "Chuyên 9", cls: "bg-blue-100 text-blue-800 border-blue-200" },
+        tinh: { label: "HSG Tỉnh", cls: "bg-amber-100 text-amber-800 border-amber-200" },
+        vmo: { label: "VMO", cls: "bg-violet-100 text-violet-800 border-violet-200" },
+      };
+
+      function renderTheoremPanel() {
+        const filtered = state.levelFilter === "all" ? state.theorems : state.theorems.filter(t => t.level === state.levelFilter);
+        countEl.textContent = `${filtered.length} định lý`;
+        if (!filtered.length) {
+          listEl.innerHTML = `<div class="rounded-xl border border-dashed border-slate-300 bg-slate-50/70 p-4 text-center space-y-1.5"><div class="text-2xl">📐</div><div class="text-xs font-bold text-slate-700">${state.points.length ? "Chưa phát hiện định lý ở mức này" : "Bảng vẽ đang trống"}</div><p class="text-[11px] text-slate-500 leading-relaxed">Hãy vẽ thêm đường nối, đường tròn, trung điểm, đường vuông góc... hoặc thử bấm một nút <strong>Thêm hình mẫu</strong> ở dưới bảng vẽ!</p></div>`;
+          return;
+        }
+        listEl.innerHTML = filtered.map((th, idx) => {
+          const origIdx = state.theorems.indexOf(th);
+          const isAct = origIdx === state.activeTheoremIdx;
+          const b = LEVEL_BADGE[th.level] || LEVEL_BADGE.cap2;
+          return `<button type="button" data-thidx="${origIdx}" class="g2d-th-card w-full text-left rounded-xl p-2.5 border transition cursor-pointer ${isAct ? "bg-amber-50 border-amber-400 ring-2 ring-amber-300/60 shadow-sm" : "bg-white hover:bg-slate-50 border-slate-200"}">
+            <div class="flex items-center justify-between gap-1.5 mb-1">
+              <span class="text-xs font-extrabold text-slate-900 leading-tight">${th.name}</span>
+              <span class="px-1.5 py-0.5 rounded text-[9.5px] font-bold border shrink-0 ${b.cls}">${b.label}</span>
+            </div>
+            <div class="text-[10.5px] font-semibold text-blue-700 mb-0.5">🔹 ${th.elements}</div>
+            <div class="text-[11px] font-mono-math bg-slate-100/90 text-slate-800 rounded-md px-2 py-1 mb-1">${th.formula}</div>
+            <div class="text-[10.5px] text-slate-600 leading-snug">${th.detail}</div>
+          </button>`;
+        }).join("");
+        listEl.querySelectorAll(".g2d-th-card").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const idx = Number(btn.getAttribute("data-thidx"));
+            state.activeTheoremIdx = state.activeTheoremIdx === idx ? -1 : idx;
+            renderTheoremPanel();
+            drawGeom2D();
+          });
+        });
+      }
+
+      // ================= RENDERING =================
+      function resizeGeom2D() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = wrap.clientWidth, h = wrap.clientHeight;
+        if (w < 10 || h < 10) return;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        drawGeom2D();
+      }
+      window._geom2dResize = resizeGeom2D;
+      window.addEventListener("resize", () => { if (activeModule === "geom2d") resizeGeom2D(); });
+
+      function drawInfiniteLine(g, color, width, dashed = false) {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        const p1 = w2s(g.x1, g.y1), p2 = w2s(g.x2, g.y2);
+        const dx = p2.x - p1.x, dy = p2.y - p1.y, len = Math.hypot(dx, dy);
+        if (len < 1e-4) return;
+        const big = Math.max(w, h) * 2.5;
+        ctx.save();
+        ctx.strokeStyle = color; ctx.lineWidth = width;
+        if (dashed) ctx.setLineDash([6, 4]);
+        ctx.beginPath();
+        if (g.isSeg) { ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); }
+        else { ctx.moveTo(p1.x - (dx / len) * big, p1.y - (dy / len) * big); ctx.lineTo(p1.x + (dx / len) * big, p1.y + (dy / len) * big); }
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      function drawGeom2D() {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        if (w < 10 || h < 10) return;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, w, h);
+
+        // Grid
+        if (state.showGrid) {
+          ctx.save();
+          ctx.strokeStyle = "#f1f5f9"; ctx.lineWidth = 1;
+          const xMin = Math.floor(s2w(0, 0).x) - 1, xMax = Math.ceil(s2w(w, 0).x) + 1;
+          const yMin = Math.floor(s2w(0, h).y) - 1, yMax = Math.ceil(s2w(0, 0).y) + 1;
+          for (let gx = xMin; gx <= xMax; gx++) {
+            const sx = w2s(gx, 0).x;
+            ctx.beginPath(); ctx.moveTo(sx, 0); ctx.lineTo(sx, h); ctx.stroke();
+          }
+          for (let gy = yMin; gy <= yMax; gy++) {
+            const sy = w2s(0, gy).y;
+            ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(w, sy); ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        const hlTh = state.activeTheoremIdx >= 0 ? state.theorems[state.activeTheoremIdx] : null;
+        const hlPtSet = new Set(hlTh ? hlTh.hlPts : []);
+        const hlCircSet = new Set(hlTh ? hlTh.hlCircles : []);
+
+        // Circles
+        for (const C of state.circles) {
+          const g = getCircleGeom(C);
+          if (!g) continue;
+          const sc = w2s(g.cx, g.cy), sr = g.r * state.scale;
+          const isHl = hlCircSet.has(C.id);
+          ctx.save();
+          ctx.strokeStyle = isHl ? "#d97706" : (C.color || "#0284c7");
+          ctx.lineWidth = isHl ? 3.2 : 1.9;
+          if (C.kind === "euler9") ctx.setLineDash([6, 4]);
+          ctx.beginPath(); ctx.arc(sc.x, sc.y, sr, 0, Math.PI * 2); ctx.stroke();
+          ctx.restore();
+        }
+
+        // Lines & Segments
+        for (const L of state.lines) {
+          const g = getLineGeom(L);
+          if (!g) continue;
+          const isPending = state.pending.includes(L.id);
+          drawInfiniteLine(g, isPending ? "#f59e0b" : (L.color || "#334155"), isPending ? 3 : 1.9, !!L.dashed);
+        }
+
+        // Highlighted theorem segments overlay
+        if (hlTh && hlTh.hlSegs) {
+          for (const [id1, id2] of hlTh.hlSegs) {
+            const p1 = ptById(id1), p2 = ptById(id2);
+            if (!p1 || !p2 || !p1.valid || !p2.valid) continue;
+            const s1 = w2s(p1.x, p1.y), s2 = w2s(p2.x, p2.y);
+            ctx.save();
+            ctx.strokeStyle = "rgba(245, 158, 11, 0.85)";
+            ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(s1.x, s1.y); ctx.lineTo(s2.x, s2.y); ctx.stroke();
+            ctx.restore();
+          }
+        }
+
+        // Points
+        for (const p of state.points) {
+          if (!p.valid) continue;
+          const sp = w2s(p.x, p.y);
+          const isHl = hlPtSet.has(p.id);
+          const isPend = state.pending.includes(p.id);
+          ctx.save();
+          if (isHl) {
+            ctx.fillStyle = "rgba(245, 158, 11, 0.28)";
+            ctx.beginPath(); ctx.arc(sp.x, sp.y, 12, 0, Math.PI * 2); ctx.fill();
+          }
+          ctx.fillStyle = isPend ? "#f59e0b" : (p.type === "free" ? "#2563eb" : (p.type === "onLine" || p.type === "onCircle" ? "#0891b2" : "#7c3aed"));
+          ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.arc(sp.x, sp.y, isHl ? 6 : 5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+          ctx.font = "700 13px Inter, sans-serif";
+          ctx.fillStyle = isHl ? "#b45309" : "#0f172a";
+          ctx.fillText(p.name, sp.x + 8, sp.y - 7);
+          ctx.restore();
+        }
+
+        coordsEl.textContent = `Điểm: ${state.points.length} · Đường: ${state.lines.length} · ĐT: ${state.circles.length}`;
+      }
+
+      // ================= HIT TESTING & CREATION =================
+      function hitPoint(sx, sy, rad = 14) {
+        let best = null, bestD = rad;
+        for (const p of state.points) {
+          if (!p.valid) continue;
+          const sp = w2s(p.x, p.y), d = Math.hypot(sp.x - sx, sp.y - sy);
+          if (d < bestD) { bestD = d; best = p; }
+        }
+        return best;
+      }
+      function hitLine(sx, sy, rad = 11) {
+        const wp = s2w(sx, sy);
+        let best = null, bestD = rad / state.scale;
+        for (const L of state.lines) {
+          const g = getLineGeom(L);
+          if (!g) continue;
+          const pr = projectPointToLine(wp, g);
+          if (g.isSeg && (pr.t < -0.05 || pr.t > 1.05)) continue;
+          const d = Math.hypot(wp.x - pr.x, wp.y - pr.y);
+          if (d < bestD) { bestD = d; best = L; }
+        }
+        return best;
+      }
+      function hitCircle(sx, sy, rad = 11) {
+        const wp = s2w(sx, sy);
+        let best = null, bestD = rad / state.scale;
+        for (const C of state.circles) {
+          const g = getCircleGeom(C);
+          if (!g) continue;
+          const d = Math.abs(Math.hypot(wp.x - g.cx, wp.y - g.cy) - g.r);
+          if (d < bestD) { bestD = d; best = C; }
+        }
+        return best;
+      }
+
+      function addPointObj(x, y, type = "free", parents = [], param = 0, customName = null) {
+        const p = { id: "P" + (state.nextId++), name: customName || genLabel(), x, y, type, parents, param, valid: true };
+        state.points.push(p);
+        return p;
+      }
+      function addLineObj(obj) {
+        const L = Object.assign({ id: "L" + (state.nextId++), color: "#334155", dashed: false }, obj);
+        state.lines.push(L);
+        return L;
+      }
+      function addCircleObj(obj) {
+        const C = Object.assign({ id: "C" + (state.nextId++), color: "#0284c7" }, obj);
+        state.circles.push(C);
+        return C;
+      }
+
+      function getOrCreatePointAt(sx, sy) {
+        const ex = hitPoint(sx, sy);
+        if (ex) return ex;
+        const wp = s2w(sx, sy);
+        const hc = hitCircle(sx, sy);
+        if (hc) {
+          const g = getCircleGeom(hc);
+          const ang = Math.atan2(wp.y - g.cy, wp.x - g.cx);
+          return addPointObj(g.cx + g.r * Math.cos(ang), g.cy + g.r * Math.sin(ang), "onCircle", [hc.id], ang);
+        }
+        const hl = hitLine(sx, sy);
+        if (hl) {
+          const g = getLineGeom(hl);
+          const pr = projectPointToLine(wp, g);
+          return addPointObj(pr.x, pr.y, "onLine", [hl.id], pr.t);
+        }
+        return addPointObj(wp.x, wp.y, "free");
+      }
+
+      function handleCanvasClick(sx, sy) {
+        const tool = state.tool;
+        if (tool === "move") return;
+        if (tool === "point") {
+          pushUndo(); getOrCreatePointAt(sx, sy); recomputeAll(); scanGeom2DTheorems(); drawGeom2D(); return;
+        }
+        if (tool === "segment" || tool === "line" || tool === "circle" || tool === "midpoint") {
+          pushUndo();
+          const p = getOrCreatePointAt(sx, sy);
+          state.pending.push(p.id);
+          if (state.pending.length === 2) {
+            const [a, b] = state.pending;
+            if (a !== b) {
+              if (tool === "segment") addLineObj({ kind: "segment", p1: a, p2: b });
+              else if (tool === "line") addLineObj({ kind: "line", p1: a, p2: b, color: "#475569" });
+              else if (tool === "circle") addCircleObj({ kind: "centerPt", centerId: a, throughId: b });
+              else if (tool === "midpoint") addPointObj(0, 0, "midpoint", [a, b]);
+            }
+            state.pending = [];
+          }
+          recomputeAll(); scanGeom2DTheorems(); drawGeom2D(); return;
+        }
+        if (["circum3", "bisector", "centroid", "orthocenter", "circumcenter", "incenter", "euler9"].includes(tool)) {
+          pushUndo();
+          const p = getOrCreatePointAt(sx, sy);
+          state.pending.push(p.id);
+          if (state.pending.length === 3) {
+            const [a, b, c] = state.pending;
+            if (a !== b && b !== c && c !== a) {
+              if (tool === "circum3") addCircleObj({ kind: "circum3", pts: [a, b, c], color: "#0284c7" });
+              else if (tool === "bisector") addLineObj({ kind: "bisector", parents: [a, b, c], color: "#059669", dashed: true });
+              else if (tool === "euler9") addCircleObj({ kind: "euler9", pts: [a, b, c], color: "#7c3aed" });
+              else addPointObj(0, 0, tool, [a, b, c]);
+            }
+            state.pending = [];
+          }
+          recomputeAll(); scanGeom2DTheorems(); drawGeom2D(); return;
+        }
+        if (tool === "perp" || tool === "parallel") {
+          if (state.pending.length === 0) {
+            const p = hitPoint(sx, sy) || getOrCreatePointAt(sx, sy);
+            state.pending.push(p.id);
+            drawGeom2D();
+          } else {
+            const L = hitLine(sx, sy);
+            if (L) {
+              pushUndo();
+              const ptId = state.pending[0];
+              addLineObj({ kind: tool, pt: ptId, baseLine: L.id, color: tool === "perp" ? "#e11d48" : "#059669", dashed: true });
+              if (tool === "perp") addPointObj(0, 0, "foot", [ptId, L.id]);
+              state.pending = [];
+              recomputeAll(); scanGeom2DTheorems(); drawGeom2D();
+            }
+          }
+          return;
+        }
+        if (tool === "tangent") {
+          if (state.pending.length === 0) {
+            const p = hitPoint(sx, sy) || getOrCreatePointAt(sx, sy);
+            state.pending.push(p.id);
+            drawGeom2D();
+          } else {
+            const C = hitCircle(sx, sy);
+            if (C) {
+              pushUndo();
+              const ptId = state.pending[0];
+              const l1 = addLineObj({ kind: "tangent", pt: ptId, circleId: C.id, branch: 1, color: "#ea580c", dashed: true });
+              const l2 = addLineObj({ kind: "tangent", pt: ptId, circleId: C.id, branch: -1, color: "#ea580c", dashed: true });
+              addPointObj(0, 0, "tangentPt", [l1.id]);
+              addPointObj(0, 0, "tangentPt", [l2.id]);
+              state.pending = [];
+              recomputeAll(); scanGeom2DTheorems(); drawGeom2D();
+            }
+          }
+          return;
+        }
+        if (tool === "intersect") {
+          const obj = hitLine(sx, sy) || hitCircle(sx, sy);
+          if (!obj) return;
+          state.pending.push(obj.id);
+          if (state.pending.length === 2) {
+            const [id1, id2] = state.pending;
+            if (id1 !== id2) {
+              pushUndo();
+              const isLL = lineById(id1) && lineById(id2);
+              addPointObj(0, 0, "intersect", [id1, id2, 0]);
+              if (!isLL) addPointObj(0, 0, "intersect", [id1, id2, 1]);
+            }
+            state.pending = [];
+            recomputeAll(); scanGeom2DTheorems();
+          }
+          drawGeom2D();
+        }
+      }
+
+      // Pointer Events (Mouse + Touch)
+      let downPos = null, moved = false;
+      function getRelPos(e) {
+        const r = canvas.getBoundingClientRect();
+        return { x: e.clientX - r.left, y: e.clientY - r.top };
+      }
+      canvas.addEventListener("pointerdown", e => {
+        canvas.setPointerCapture(e.pointerId);
+        const pos = getRelPos(e);
+        downPos = pos; moved = false;
+        if (state.tool === "move") {
+          const hp = hitPoint(pos.x, pos.y, 16);
+          if (hp && (hp.type === "free" || hp.type === "onLine" || hp.type === "onCircle")) {
+            state.draggingPtId = hp.id;
+            canvas.style.cursor = "grabbing";
+          } else {
+            state.panning = true;
+            state.panStart = { sx: pos.x, sy: pos.y, cx: state.cx, cy: state.cy };
+            canvas.style.cursor = "move";
+          }
+        }
+      });
+      canvas.addEventListener("pointermove", e => {
+        const pos = getRelPos(e);
+        if (downPos && Math.hypot(pos.x - downPos.x, pos.y - downPos.y) > 4) moved = true;
+        if (state.draggingPtId) {
+          const p = ptById(state.draggingPtId), wp = s2w(pos.x, pos.y);
+          if (p) {
+            if (p.type === "free") { p.x = wp.x; p.y = wp.y; }
+            else if (p.type === "onLine") {
+              const g = getLineGeom(lineById(p.parents[0]));
+              if (g) p.param = projectPointToLine(wp, g).t;
+            } else if (p.type === "onCircle") {
+              const g = getCircleGeom(circleById(p.parents[0]));
+              if (g) p.param = Math.atan2(wp.y - g.cy, wp.x - g.cx);
+            }
+            recomputeAll(); scanGeom2DTheorems(); drawGeom2D();
+          }
+        } else if (state.panning && state.panStart) {
+          state.cx = state.panStart.cx - (pos.x - state.panStart.sx) / state.scale;
+          state.cy = state.panStart.cy + (pos.y - state.panStart.sy) / state.scale;
+          drawGeom2D();
+        }
+      });
+      canvas.addEventListener("pointerup", e => {
+        const pos = getRelPos(e);
+        const wasDrag = state.draggingPtId || state.panning;
+        state.draggingPtId = null; state.panning = false; state.panStart = null;
+        canvas.style.cursor = state.tool === "move" ? "grab" : "crosshair";
+        if (!moved && !wasDrag) handleCanvasClick(pos.x, pos.y);
+        else if (!moved && state.tool !== "move") handleCanvasClick(pos.x, pos.y);
+      });
+      canvas.addEventListener("wheel", e => {
+        e.preventDefault();
+        const factor = e.deltaY < 0 ? 1.12 : 0.89;
+        state.scale = Math.max(18, Math.min(200, state.scale * factor));
+        drawGeom2D();
+      }, { passive: false });
+
+      // Tool buttons & controls
+      document.querySelectorAll(".g2d-tool-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.tool = btn.getAttribute("data-gtool");
+          state.pending = [];
+          document.querySelectorAll(".g2d-tool-btn").forEach(b => {
+            const act = b === btn;
+            if (["centroid","orthocenter","circumcenter","incenter","euler9"].includes(b.getAttribute("data-gtool"))) {
+              b.className = act ? "g2d-tool-btn px-2 py-1 rounded-md text-[11px] font-bold bg-blue-600 text-white shadow-sm cursor-pointer" : "g2d-tool-btn px-2 py-1 rounded-md text-[11px] font-medium bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 cursor-pointer";
+            } else {
+              b.className = act ? "g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-bold bg-blue-600 text-white shadow-sm cursor-pointer" : "g2d-tool-btn px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer";
+            }
+          });
+          hintEl.textContent = TOOL_HINTS[state.tool] || "";
+          canvas.style.cursor = state.tool === "move" ? "grab" : "crosshair";
+          drawGeom2D();
+        });
+      });
+      document.querySelectorAll(".g2d-level-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.levelFilter = btn.getAttribute("data-glevel");
+          document.querySelectorAll(".g2d-level-btn").forEach(b => {
+            b.className = b === btn ? "g2d-level-btn px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-blue-600 text-white cursor-pointer" : "g2d-level-btn px-2 py-0.5 rounded-md text-[10.5px] font-medium bg-slate-100 text-slate-600 cursor-pointer";
+          });
+          renderTheoremPanel();
+        });
+      });
+      document.getElementById("g2d-btn-grid").addEventListener("click", () => { state.showGrid = !state.showGrid; drawGeom2D(); });
+      document.getElementById("g2d-btn-undo").addEventListener("click", () => {
+        if (!state.undoStack.length) return;
+        const snap = JSON.parse(state.undoStack.pop());
+        state.points = snap.points; state.lines = snap.lines; state.circles = snap.circles;
+        state.nextId = snap.nextId; state.nextLabelIdx = snap.nextLabelIdx; state.pending = [];
+        recomputeAll(); scanGeom2DTheorems(); drawGeom2D();
+      });
+      document.getElementById("g2d-btn-clear").addEventListener("click", () => {
+        pushUndo();
+        state.points = []; state.lines = []; state.circles = [];
+        state.pending = []; state.nextLabelIdx = 0; state.theorems = []; state.activeTheoremIdx = -1;
+        renderTheoremPanel(); drawGeom2D();
+      });
+      document.getElementById("g2d-zoom-in").addEventListener("click", () => { state.scale = Math.min(200, state.scale * 1.2); drawGeom2D(); });
+      document.getElementById("g2d-zoom-out").addEventListener("click", () => { state.scale = Math.max(18, state.scale / 1.2); drawGeom2D(); });
+      document.getElementById("g2d-zoom-reset").addEventListener("click", () => { state.cx = 0; state.cy = 0; state.scale = 52; drawGeom2D(); });
+
+      // Append-only Olympiad Demo Presets (always keeps existing user drawing, offsets slightly if non-empty!)
+      document.querySelectorAll(".g2d-preset-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          pushUndo();
+          const pr = btn.getAttribute("data-gpreset");
+          const ox = state.points.length ? 1.2 : 0;
+          if (pr === "euler") {
+            const A = addPointObj(-0.8 + ox, 2.8, "free"), B = addPointObj(-3.2 + ox, -1.6, "free"), C = addPointObj(3.1 + ox, -1.6, "free");
+            addLineObj({ kind: "segment", p1: A.id, p2: B.id }); addLineObj({ kind: "segment", p1: B.id, p2: C.id }); addLineObj({ kind: "segment", p1: C.id, p2: A.id });
+            addCircleObj({ kind: "circum3", pts: [A.id, B.id, C.id], color: "#0284c7" });
+            addCircleObj({ kind: "euler9", pts: [A.id, B.id, C.id], color: "#7c3aed" });
+            const H = addPointObj(0, 0, "orthocenter", [A.id, B.id, C.id], 0, "H");
+            const G = addPointObj(0, 0, "centroid", [A.id, B.id, C.id], 0, "G");
+            const O = addPointObj(0, 0, "circumcenter", [A.id, B.id, C.id], 0, "O");
+            addLineObj({ kind: "line", p1: O.id, p2: H.id, color: "#d97706", dashed: true });
+          } else if (pr === "cyclic") {
+            const O = addPointObj(0 + ox, 0, "free", [], 0, "O");
+            const A = addPointObj(-2.2 + ox, 1.8, "free");
+            const circ = addCircleObj({ kind: "centerPt", centerId: O.id, throughId: A.id });
+            const B = addPointObj(0, 0, "onCircle", [circ.id], -2.35);
+            const C = addPointObj(0, 0, "onCircle", [circ.id], -0.45);
+            const D = addPointObj(0, 0, "onCircle", [circ.id], 0.85);
+            addLineObj({ kind: "segment", p1: A.id, p2: B.id }); addLineObj({ kind: "segment", p1: B.id, p2: C.id });
+            addLineObj({ kind: "segment", p1: C.id, p2: D.id }); addLineObj({ kind: "segment", p1: D.id, p2: A.id });
+            addLineObj({ kind: "segment", p1: A.id, p2: C.id, dashed: true, color: "#64748b" });
+            addLineObj({ kind: "segment", p1: B.id, p2: D.id, dashed: true, color: "#64748b" });
+          } else if (pr === "simson") {
+            const A = addPointObj(-0.6 + ox, 2.7, "free"), B = addPointObj(-2.9 + ox, -1.5, "free"), C = addPointObj(2.8 + ox, -1.5, "free");
+            const lAB = addLineObj({ kind: "segment", p1: A.id, p2: B.id });
+            const lBC = addLineObj({ kind: "segment", p1: B.id, p2: C.id });
+            const lCA = addLineObj({ kind: "segment", p1: C.id, p2: A.id });
+            const circ = addCircleObj({ kind: "circum3", pts: [A.id, B.id, C.id] });
+            const M = addPointObj(0, 0, "onCircle", [circ.id], 0.55, "M");
+            const f1 = addPointObj(0, 0, "foot", [M.id, lBC.id]);
+            const f2 = addPointObj(0, 0, "foot", [M.id, lCA.id]);
+            const f3 = addPointObj(0, 0, "foot", [M.id, lAB.id]);
+            addLineObj({ kind: "line", p1: f1.id, p2: f2.id, color: "#e11d48", dashed: true });
+          } else if (pr === "butterfly") {
+            const O = addPointObj(0 + ox, 0, "free", [], 0, "O");
+            const P = addPointObj(-2.7 + ox, 0.3, "free", [], 0, "P");
+            const circ = addCircleObj({ kind: "centerPt", centerId: O.id, throughId: P.id });
+            const Q = addPointObj(0, 0, "onCircle", [circ.id], -0.2, "Q");
+            const lPQ = addLineObj({ kind: "segment", p1: P.id, p2: Q.id, color: "#0f172a" });
+            const M = addPointObj(0, 0, "midpoint", [P.id, Q.id], 0, "M");
+            const A = addPointObj(0, 0, "onCircle", [circ.id], 2.1, "A");
+            const C1 = addPointObj(0, 0, "onCircle", [circ.id], 0.95, "C");
+            const lAM = addLineObj({ kind: "line", p1: A.id, p2: M.id, color: "#7c3aed" });
+            const lCM = addLineObj({ kind: "line", p1: C1.id, p2: M.id, color: "#7c3aed" });
+            const B = addPointObj(0, 0, "intersect", [lAM.id, circ.id, 1], 0, "B");
+            const D1 = addPointObj(0, 0, "intersect", [lCM.id, circ.id, 0], 0, "D");
+            addLineObj({ kind: "segment", p1: A.id, p2: D1.id, color: "#059669" });
+            addLineObj({ kind: "segment", p1: B.id, p2: C1.id, color: "#059669" });
+          } else if (pr === "pascal") {
+            const O = addPointObj(0 + ox, 0, "free", [], 0, "O");
+            const P1 = addPointObj(-2.6 + ox, 0.8, "free");
+            const circ = addCircleObj({ kind: "centerPt", centerId: O.id, throughId: P1.id });
+            const angs = [2.1, 1.15, 0.25, -0.8, -1.95];
+            const pts6 = [P1, ...angs.map(a => addPointObj(0, 0, "onCircle", [circ.id], a))];
+            for (let i = 0; i < 6; i++) addLineObj({ kind: "segment", p1: pts6[i].id, p2: pts6[(i+1)%6].id, color: "#2563eb" });
+          } else if (pr === "ceva") {
+            const A = addPointObj(-0.3 + ox, 2.8, "free"), B = addPointObj(-3.0 + ox, -1.7, "free"), C = addPointObj(3.0 + ox, -1.7, "free");
+            const lAB = addLineObj({ kind: "segment", p1: A.id, p2: B.id });
+            const lBC = addLineObj({ kind: "segment", p1: B.id, p2: C.id });
+            const lCA = addLineObj({ kind: "segment", p1: C.id, p2: A.id });
+            const P = addPointObj(0.1 + ox, -0.1, "free", [], 0, "P");
+            const lAP = addLineObj({ kind: "line", p1: A.id, p2: P.id, color: "#0891b2", dashed: true });
+            const lBP = addLineObj({ kind: "line", p1: B.id, p2: P.id, color: "#0891b2", dashed: true });
+            const lCP = addLineObj({ kind: "line", p1: C.id, p2: P.id, color: "#0891b2", dashed: true });
+            addPointObj(0, 0, "intersect", [lAP.id, lBC.id, 0], 0, "D");
+            addPointObj(0, 0, "intersect", [lBP.id, lCA.id, 0], 0, "E");
+            addPointObj(0, 0, "intersect", [lCP.id, lAB.id, 0], 0, "F");
+          }
+          recomputeAll(); scanGeom2DTheorems(); drawGeom2D();
+        });
+      });
+
+      // Start completely EMPTY on initial load
+      renderTheoremPanel();
+    })();
+
   </script>
 </body>
 </html>
